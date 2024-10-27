@@ -28,6 +28,7 @@
 .nav_mail_icons{
     color: white;
     text-decoration: none;
+    font-size: 12px;
 }
 
 .nav2{
@@ -46,13 +47,14 @@
     justify-content: space-around;
     margin: 40px 80px;
     gap: 40px;
-    font-size:25px;
+    font-size:20px;
  
    
 }
 
 .nav2_list li a{
     text-decoration: none;
+    font-size: 20px;
 }
 
 .nav2_icons {
@@ -84,9 +86,35 @@
   .menu-toggle {
     display: none; /* Esconde por padrão */
   }
+
+  #login_btn{
+    background-color: #007bff;
+    color: white; 
+    padding: 10px 30px; 
+    border-radius: 50px; 
+    font-size: 15px;
+  }
+  
+  #login_btn:hover{
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  }
+
+ #cadastro_btn{
+  background-color: white;
+  color: #007bff; 
+  border-style: solid;
+  border-width: 2px;
+  padding: 10px 20px; 
+  border-radius: 50px; 
+  font-size: 15px;
+ }
+
+ #cadastro_btn:hover{
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+ }
   
   /* Exibe o ícone de menu em telas menores */
-  @media (max-width: 727px) {
+  @media (max-width: 947px) {
     .menu-toggle {
       display: block; /* Mostra o ícone de menu */
       cursor: pointer; /* Altera o cursor ao passar o mouse */

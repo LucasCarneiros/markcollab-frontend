@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Estado para controle de login
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -56,14 +57,34 @@ const Navbar = () => {
             <Link to="/" className='nav2_icons'>Home</Link>
           </li>
           <li>
-            <Link to="" className='nav2_icons' id='projetos'>Projetos</Link>
+            <Link to="" className='nav2_icons'>Sobre</Link>
           </li>
           <li>
-            <Link to="" className='nav2_icons'><CiBellOn /></Link>
+            <Link to="" className='nav2_icons'>Serviços</Link>
           </li>
-          <li>
-            <Link to="" className='nav2_icons'><VscAccount /></Link>
-          </li>
+          {isLoggedIn ? (
+            <>
+              <li>
+                <Link to="" className='nav2_icons' id='projetos'>Projetos</Link>
+              </li>
+              <li>
+                <Link to="" className='nav2_icons'><CiBellOn /></Link>
+              </li>
+              <li>
+                <Link to="" className='nav2_icons'><VscAccount /></Link>
+              </li>
+            </>
+          ) : (
+            // Mantém os links de login e cadastro na navbar, mas os oculta em telas grandes
+            <>
+              <li className="hidden-on-large">
+                <Link to="/login" className='nav2_icons' id='login_btn'>Login</Link>
+              </li>
+              <li className="hidden-on-large">
+                <Link to="/register" className='nav2_icons' id='cadastro_btn'>Cadastro</Link>
+              </li>
+            </>
+          )}
         </ul>
       </div>
       {isSidebarOpen && (
@@ -71,9 +92,20 @@ const Navbar = () => {
           <button className='close-sidebar' onClick={closeSidebar}>✖</button>
           <ul>
             <li><Link to="/" className='nav2_icons' onClick={closeSidebar}>Home</Link></li>
-            <li><Link to="" className='nav2_icons' id='projetos' onClick={closeSidebar}>Projetos</Link></li>
-            <li><Link to="" className='nav2_icons' onClick={closeSidebar}><CiBellOn />Notificações</Link></li>
-            <li><Link to="" className='nav2_icons' onClick={closeSidebar}><VscAccount />Perfil</Link></li>
+            <li><Link to="/sobrenos" className='nav2_icons' onClick={closeSidebar}>Sobre nós</Link></li>
+            <li><Link to="/servicos" className='nav2_icons' onClick={closeSidebar}>Serviços</Link></li>
+            {isLoggedIn ? (
+              <>
+                <li><Link to="/projetos" className='nav2_icons' id='projetos' onClick={closeSidebar}>Projetos</Link></li>
+                <li><Link to="/notificacoes" className='nav2_icons' onClick={closeSidebar}><CiBellOn />Notificações</Link></li>
+                <li><Link to="/perfil" className='nav2_icons' onClick={closeSidebar}><VscAccount />Perfil</Link></li>
+              </>
+            ) : (
+              <>
+                <li><Link to="/login" className='nav2_icons' onClick={closeSidebar}>Login</Link></li>
+                <li><Link to="/register" className='nav2_icons' onClick={closeSidebar}>Cadastro</Link></li>
+              </>
+            )}
           </ul>
         </div>
       )}
