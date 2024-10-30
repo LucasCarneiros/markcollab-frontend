@@ -5,6 +5,7 @@ import './Home.css'
 import imagem2 from '../../assets/images/fOTO.png'
 
 
+
 const Home = () => {
   return (
     <div>
@@ -20,10 +21,10 @@ const Home = () => {
           </div>
         </div> 
         <div className='home_div2'>
-          <div>
+          <div className='home_div2_divs1'>
            <img src={imagem2} alt="descricao da imagem" id='imagem2'/>
           </div>
-          <div>
+          <div className='home_div2_divs2'>
             <h1 className='home_h1'>Por que escolher a MarkCollab? </h1>
             <p>Na MarkCollab, reunimos uma equipe de especialistas para criar soluções de marketing sob medida para sua empresa. Seja para desenvolver campanhas de social media, criar conteúdos, ou elaborar estratégias completas de marketing, estamos aqui para transformar suas ideias em projetos de sucesso. Nosso compromisso é entender a fundo suas necessidades, conectar você aos melhores profissionais e garantir que cada etapa do projeto seja executada com excelência. </p>
           </div>
