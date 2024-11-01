@@ -57,10 +57,10 @@ const Navbar = () => {
             <Link to="/" className='nav2_icons'>Home</Link>
           </li>
           <li>
-            <Link to="sobre" className='nav2_icons'>Sobre</Link>
+            <Link to="/sobre" className='nav2_icons'>Sobre</Link>
           </li>
           <li>
-            <Link to="servicos" className='nav2_icons'>Serviços</Link>
+            <Link to="/servicos" className='nav2_icons'>Serviços</Link>
           </li>
           {isLoggedIn ? (
             <>
