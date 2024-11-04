@@ -57,10 +57,10 @@ const Navbar = () => {
             <Link to="/" className='nav2_icons'>Home</Link>
           </li>
           <li>
-            <Link to="" className='nav2_icons'>Sobre</Link>
+            <Link to="/sobre" className='nav2_icons'>Sobre</Link>
           </li>
           <li>
-            <Link to="" className='nav2_icons'>Serviços</Link>
+            <Link to="/servicos" className='nav2_icons'>Serviços</Link>
           </li>
           {isLoggedIn ? (
             <>
@@ -92,7 +92,7 @@ const Navbar = () => {
           <button className='close-sidebar' onClick={closeSidebar}>✖</button>
           <ul>
             <li><Link to="/" className='nav2_icons' onClick={closeSidebar}>Home</Link></li>
-            <li><Link to="/sobrenos" className='nav2_icons' onClick={closeSidebar}>Sobre nós</Link></li>
+            <li><Link to="/sobre" className='nav2_icons' onClick={closeSidebar}>Sobre</Link></li>
             <li><Link to="/servicos" className='nav2_icons' onClick={closeSidebar}>Serviços</Link></li>
             {isLoggedIn ? (
               <>
