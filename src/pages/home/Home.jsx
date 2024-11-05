@@ -4,8 +4,6 @@ import Footer from '../../components/footer/Footer.jsx'
 import './Home.css'
 import imagem2 from '../../assets/images/fOTO.png'
 
-
-
 const Home = () => {
   return (
     <div>
@@ -13,7 +11,7 @@ const Home = () => {
       <div className='home_container'>
         <div className='home_div1'>
           <div>
-            <h1 className='home_h1'>A equipe de marketing perfeita para o seu negócio!</h1>
+            <h1 className='home_h1'> A equipe de marketing perfeita para o seu negócio!</h1>
             <p>Estamos aqui para simplificar o marketing para você, proporcionando uma experiência sem estresse e resultados que realmente fazem a diferença.</p>
           </div>
           <div>
