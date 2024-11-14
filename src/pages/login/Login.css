@@ -1,0 +1,77 @@
+.login-container {
+  display: flex;
+  height: 100vh; 
+}
+
+.login-blue-side {
+  flex: 1; 
+  background-color: #0946DF; 
+}
+
+.login-white-side {
+  flex: 1; 
+  background-color: white; 
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center; 
+}
+
+.login-title {
+  margin-bottom: 20px; 
+  font-size: 24px; /* Ajuste de tamanho para o título */
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column; 
+  width: 70%;
+  align-items: center; /* Alinhamento centralizado */
+}
+
+.login-input {
+  margin-bottom: 20px; /* Diminui o espaço entre os inputs */
+  padding: 20px; /* Diminui o padding */
+  border: 1px solid #ccc; 
+  border-radius: 50px; 
+  width: 100%; /* Preenche toda a largura do formulário */
+  max-width: 300px; /* Limita o tamanho máximo dos inputs */
+
+}
+
+.login-button {
+  padding: 20px; /* Diminui o padding */
+  background-color: #0946DF; 
+  color: white;
+  border: none; 
+  border-radius: 50px; 
+  cursor: pointer; 
+  width: 100%; 
+  max-width: 350px; /* Limita o tamanho máximo do botão */
+  margin-bottom: 20px; /* Diminui o espaço inferior */
+  font-size: 18px;
+  font-weight: bold;
+  background-repeat: no-repeat;
+  background-position: 10px center; /* Ajusta a posição do ícone */
+  background-size: 20px 20px; /* Ajusta o tamanho do ícone */
+  padding-left: 40px; /* Cria espaço para o ícone */
+
+/* Adicionando SVG diretamente aos campos de entrada */
+.login-input[type="email"] {
+  background-image: url('data:image/svg+xml;utf8,<svg width="33" height="33" xmlns="http://www.w3.org/2000/svg"><g opacity="0.3"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.57812 7.79102L3.57032 6.79883H29.3673L30.3595 7.79102V25.6505L29.3673 26.6427H3.57032L2.57812 25.6505V7.79102ZM4.56251 9.84486V24.6583H28.3751V9.84684L17.084 18.5067H15.8735L4.56251 9.84486ZM26.4503 8.78321H6.48736L16.4688 16.4608L26.4503 8.78321Z" fill="%23757575"/></g></svg>');
+}
+
+.login-input[type="password"] {
+  background-image: url('data:image/svg+xml;utf8,<svg width="23" height="27" xmlns="http://www.w3.org/2000/svg"><path d="M22.0535 13.2629C22.0535 11.8037 20.8668 10.6171 19.4076 10.6171H18.0847V6.6483C18.0847 3.00101 15.1174 0.0336914 11.4701 0.0336914C7.8228 0.0336914 4.85549 3.00101 4.85549 6.6483V10.6171H3.53256C2.07338 10.6171 0.886719 11.8037 0.886719 13.2629V23.8463C0.886719 25.3055 2.07338 26.4921 3.53256 26.4921H19.4076C20.8668 26.4921 22.0535 25.3055 22.0535 23.8463V13.2629ZM7.50133 6.6483C7.50133 4.46019 9.28198 2.67954 11.4701 2.67954C13.6582 2.67954 15.4389 4.46019 15.4389 6.6483V10.6171H7.50133V6.6483Z" fill="%23333333"/></svg>');
+}
+}
+
+.login-button:hover {
+  background-color: darkblue;
+}
+
+.login-link {
+  margin-top: 15px; 
+  color: rgb(19, 141, 255); 
+  text-decoration: none; 
+}
