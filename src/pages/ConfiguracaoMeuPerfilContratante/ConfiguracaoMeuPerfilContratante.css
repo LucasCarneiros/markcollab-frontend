@@ -1,0 +1,54 @@
+/* src/pages/ConfiguracaoMeuPerfilContratante/ConfiguracaoMeuPerfilContratante.css */
+.perfil-container {
+  display: flex;
+  height: 150vh;
+  background-color: #fff;
+}
+
+.perfil-sidebar {
+  background-color: #ffffff;
+  width: 250px;
+  padding: 20px;
+}
+
+.perfil-nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.perfil-nav ul li {
+  margin-bottom: 20px;
+}
+
+.perfil-nav ul li a {
+  text-decoration: none;
+  font-size: 1rem;
+  color: #2C65F6;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 20px;
+  transition: background-color 0.3s;
+}
+
+.perfil-nav ul li a:hover {
+  background-color: #dbdbdb;
+}
+
+.perfil-icon {
+  margin-right: 10px;
+}
+
+.perfil-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.perfil-form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgb(255, 255, 255, 0.1);
+  max-width
