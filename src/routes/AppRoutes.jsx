@@ -13,7 +13,6 @@ import ConfiguracaoMeuPerfilContratante from '../pages/ConfiguracaoMeuPerfilCont
 
 // Páginas freelancer
 import MeusProjetosFreelancer from '../pages/MeusProjetosFreelancer/MeusProjetosFreelancer';
-import PropostaFreelancer from '../pages/PropostaFreelancer/PropostaFreelancer';
 import EditarMeuPerfilFreelancer from '../pages/EditarMeuPerfilFreelancer/EditarMeuPerfilFreelancer';
 import ConfiguracaoMeuPerfilFreelancer from '../pages/ConfiguracaoMeuPerfilFreelancer/ConfiguracaoMeuPerfilFreelancer';
 import AreaDeAtuacaoFreelancer from '../pages/AreaDeAtuacaoFreelancer/AreaDeAtuacaoFreelancer';
@@ -46,7 +45,6 @@ const AppRoutes = () => {
         <Route path="configuracaoMeuPerfilContratante" element={<ConfiguracaoMeuPerfilContratante />} />
 
         <Route path="meusProjetosFreelancer" element={<MeusProjetosFreelancer />} />
-        <Route path="propostaFreelancer" element={<PropostaFreelancer />} />
         <Route path="areaDeAtuacaoFreelancer" element={<AreaDeAtuacaoFreelancer />} />
         <Route path="editarMeuPerfilFreelancer" element={<EditarMeuPerfilFreelancer />} />
         <Route path="configuracaoMeuPerfilFreelancer" element={<ConfiguracaoMeuPerfilFreelancer />} />
