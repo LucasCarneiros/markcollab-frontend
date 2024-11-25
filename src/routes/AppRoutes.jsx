@@ -23,7 +23,7 @@ import BuscarProjetosFreelancerPrincipal from '../pages/BuscarProjetosFreelancer
 import Home from '../pages/home/Home';
 import Sobre from '../pages/sobre/sobre';
 import Servicos from '../pages/serviços/Serviços';
-import Login from '../pages/Login/Login';
+import Login from '../pages/login/Login';
 import Cadastro from '../pages/Cadastro/Cadastro';
 
 const AppRoutes = () => {

@@ -81,7 +81,7 @@ const Navbar = () => {
                 <Link to="/login" className='nav2_icons' id='login_btn'>Login</Link>
               </li>
               <li className="hidden-on-large">
-                <Link to="/register" className='nav2_icons' id='cadastro_btn'>Cadastro</Link>
+                <Link to="/Cadastro" className='nav2_icons' id='cadastro_btn'>Cadastro</Link>
               </li>
             </>
           )}
@@ -103,7 +103,7 @@ const Navbar = () => {
             ) : (
               <>
                 <li><Link to="/login" className='nav2_icons' onClick={closeSidebar}>Login</Link></li>
-                <li><Link to="/register" className='nav2_icons' onClick={closeSidebar}>Cadastro</Link></li>
+                <li><Link to="/Cadastro" className='nav2_icons' onClick={closeSidebar}>Cadastro</Link></li>
               </>
             )}
           </ul>

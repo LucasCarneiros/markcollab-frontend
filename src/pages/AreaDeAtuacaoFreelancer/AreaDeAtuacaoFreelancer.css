@@ -1,92 +1,67 @@
-import React, { useState } from 'react';
-import Navbar from '../../components/navbar/Navbar';
-import Footer from '../../components/footer/Footer';
-import './AreaDeAtuacaoFreelancer.css';
+.atuacao-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #ffffff;
+}
 
-const AreaDeAtuacaoFreelancer = () => {
-  const [area, setArea] = useState('');
-  const [funcao, setFuncao] = useState('');
-  const [habilidades, setHabilidades] = useState('');
-  const [linguas, setLinguas] = useState('');
-  const [telefone, setTelefone] = useState('');
+.atuacao-form {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgb(255, 255, 255, 0.1);
+  max-width: 600px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Implementar a lógica para enviar os dados aqui
-    console.log('Área:', area);
-    console.log('Função:', funcao);
-    console.log('Habilidades:', habilidades);
-    console.log('Línguas:', linguas);
-    console.log('Telefone:', telefone);
-  };
+.atuacao-title {
+  font-size: 1.5rem;
+  color: #2C65F6;
+  text-align: center;
+  margin-bottom: 20px;
+}
 
-  return (
-    <div>
-      <Navbar />
-      <div className="atuacao-container">
-        <form className="atuacao-form" onSubmit={handleSubmit}>
-          <h1 className="atuacao-title">Para criar seu perfil como freelancer nos informe qual sua area de atuação</h1>
-          <div className="atuacao-field">
-            <label htmlFor="area">Selecione a sua área de atuação</label>
-            <select
-              id="area"
-              value={area}
-              onChange={(e) => setArea(e.target.value)}
-              required
-            >
-              <option value="">Área de atuação</option>
-              <option value="desenvolvimento-web">Desenvolvimento Web</option>
-              <option value="design-grafico">Design Gráfico</option>
-              <option value="redacao">Redação</option>
-              <option value="marketing-digital">Marketing Digital</option>
-            </select>
-          </div>
-          <div className="atuacao-field">
-            <label htmlFor="funcao">Selecione a função na sua área de atuação</label>
-            <input
-              type="text"
-              id="funcao"
-              value={funcao}
-              onChange={(e) => setFuncao(e.target.value)}
-              required
-            />
-          </div>
-          <div className="atuacao-field">
-            <label htmlFor="habilidades">Quais são suas principais habilidades você procura? </label>
-            <input
-              type="text"
-              id="habilidades"
-              value={habilidades}
-              onChange={(e) => setHabilidades(e.target.value)}
-              required
-            />
-          </div>
-          <div className="atuacao-field">
-            <label htmlFor="linguas">Selecione seus idiomas</label>
-            <input
-              type="text"
-              id="linguas"
-              value={linguas}
-              onChange={(e) => setLinguas(e.target.value)}
-              required
-            />
-          </div>
-          <div className="atuacao-field">
-            <label htmlFor="telefone">Qual seu número de telefone?</label>
-            <input
-              type="tel"
-              id="telefone"
-              value={telefone}
-              onChange={(e) => setTelefone(e.target.value)}
-              required
-            />
-          </div>
-          <button className="atuacao-button" type="submit">Criar</button>
-        </form>
-      </div>
-      <Footer />
-    </div>
-  );
-};
+.atuacao-field {
+  display: flex;
+  flex-direction: column;
+}
 
-export default AreaDeAtuacaoFreelancer;
+.atuacao-field label {
+  margin-bottom: 5px;
+}
+
+.atuacao-field input,
+.atuacao-field select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 0.875rem;
+}
+
+.atuacao-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.atuacao-button:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .atuacao-title {
+    font-size: 1.2rem;
+  }
+
+  .atuacao-form {
+    padding: 10px;
+  }
+}
