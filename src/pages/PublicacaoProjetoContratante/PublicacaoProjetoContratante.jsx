@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Navbar from '../../components/navbar/Navbar';
+import Navbar from '../../components/navbar3/navbar3';
 import Footer from '../../components/footer/Footer';
 import './PublicacaoProjetoContratante.css';
 
@@ -31,6 +31,7 @@ const handleSubmit = (event) => {
 return (
     <div>
     <Navbar />
+    <a href="/meus-projetos-contratante" className="projeto-publicado-button">Ir para os meus projetos publicados</a>
     <div className="publicacao-container">
         <header className="publicacao-header">
         <h1 className="publicacao-title">Publicação de Projeto</h1>

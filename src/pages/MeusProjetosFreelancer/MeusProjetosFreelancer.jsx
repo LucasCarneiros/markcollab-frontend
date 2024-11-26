@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Navbar from '../../components/navbar/Navbar';
+import Navbar from '../../components/navbar2/Navbar2';
 import Footer from '../../components/footer/Footer';
 import './MeusProjetosFreelancer.css';
 
@@ -29,7 +29,7 @@ const MeusProjetosFreelancer = () => {
             <option value="analisando">Analisando propostas</option>
           </select>
           <button className="meusprojetosfreelancer-button">
-            Encontrar Trabalhos
+          Encontrar Trabalhos
           </button>
         </div>
         <div className="meusprojetosfreelancer-list">

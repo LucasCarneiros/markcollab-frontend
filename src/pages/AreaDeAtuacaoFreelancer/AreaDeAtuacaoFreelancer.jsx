@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Navbar from '../../components/navbar/Navbar';
+import Navbar from '../../components/navbar2/Navbar2';
 import Footer from '../../components/footer/Footer';
 import './AreaDeAtuacaoFreelancer.css';
 
@@ -52,7 +52,7 @@ const AreaDeAtuacaoFreelancer = () => {
             />
           </div>
           <div className="atuacao-field">
-            <label htmlFor="habilidades">Quais são suas principais habilidades você procura? </label>
+            <label htmlFor="habilidades">Quais são suas principais habilidades? </label>
             <input
               type="text"
               id="habilidades"

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Navbar from '../../components/navbar/Navbar';
+import Navbar from '../../components/navbar2/Navbar2';
 import Footer from '../../components/footer/Footer';
 import './BuscarProjetosFreelancerPrincipal.css';
 
@@ -39,7 +39,7 @@ const BuscarProjetosFreelancerPrincipal = () => {
                 <p className="resultado-description">
                   Descrição do projeto {result}. Aqui está um breve resumo sobre este projeto.
                 </p>
-                <button className="resultado-button">Ver Detalhes</button>
+                <button className="resultado-button">Fazer uma proposta</button>
               </div>
             ))}
           </div>
