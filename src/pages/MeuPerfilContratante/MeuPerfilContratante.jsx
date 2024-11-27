@@ -3,20 +3,43 @@ import './MeuPerfilContratante.css';
 import { FaUser, FaCog, FaSignOutAlt, FaEdit } from 'react-icons/fa';
 import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/footer/Footer';
+import PopUpSalvarInfos from '../../components/PopUpSalvarInfos/PopUpSalvarInfos'; // Importando o pop-up de salvar
+import PopUpSairDaConta from '../../components/PopUpSairDaConta/PopUpSairDaConta'; // Importando o pop-up de sair
 
 const MeuPerfilContratante = () => {
   const [nome, setNome] = useState('Joao da Silva');
   const [email, setEmail] = useState('joao@example.com');
   const [telefone, setTelefone] = useState('(11) 99999-9999');
   const [descricao, setDescricao] = useState('Descrição breve sobre o contratante.');
+  
+  const [showPopUpSalvar, setShowPopUpSalvar] = useState(false); // Estado para controlar a visibilidade do pop-up de salvar
+  const [showPopUpSair, setShowPopUpSair] = useState(false); // Estado para controlar a visibilidade do pop-up de sair
 
   const handleSave = (event) => {
     event.preventDefault();
-    // Implementar a lógica para salvar as alterações do perfil
+    // Log para confirmar os dados salvos
     console.log('Nome:', nome);
     console.log('Email:', email);
     console.log('Telefone:', telefone);
     console.log('Descrição:', descricao);
+
+    // Exibir o pop-up de salvar após a ação
+    setShowPopUpSalvar(true);
+  };
+
+  // Função para exibir o pop-up de sair
+  const handleShowPopUpSair = () => {
+    setShowPopUpSair(true); // Exibe o pop-up de sair
+  };
+
+  // Função para fechar o pop-up de salvar
+  const handleClosePopUpSalvar = () => {
+    setShowPopUpSalvar(false);
+  };
+
+  // Função para fechar o pop-up de sair
+  const handleClosePopUpSair = () => {
+    setShowPopUpSair(false);
   };
 
   return (
@@ -45,7 +68,7 @@ const MeuPerfilContratante = () => {
                 </a>
               </li>
               <li>
-                <a href="/sair">
+                <a href="#" onClick={handleShowPopUpSair}> {/* Ação para abrir o pop-up de sair */}
                   <FaSignOutAlt className="perfil-icon" />
                   Sair
                 </a>
@@ -96,6 +119,12 @@ const MeuPerfilContratante = () => {
         </main>
       </div>
       <Footer />
+      
+      {/* Mostrar o pop-up de salvar se o estado 'showPopUpSalvar' for verdadeiro */}
+      {showPopUpSalvar && <PopUpSalvarInfos onClose={handleClosePopUpSalvar} />}
+
+      {/* Mostrar o pop-up de sair se o estado 'showPopUpSair' for verdadeiro */}
+      {showPopUpSair && <PopUpSairDaConta onClose={handleClosePopUpSair} />}
     </div>
   );
 };

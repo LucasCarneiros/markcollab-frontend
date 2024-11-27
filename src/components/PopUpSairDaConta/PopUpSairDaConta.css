@@ -1,0 +1,81 @@
+/* PopUpSairDaConta.css */
+
+.popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Transparência para o fundo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .popup-content {
+    background-color: #fff;
+    width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+  }
+  
+  .popup-header {
+    background-color: #0056b3; /* Azul da barra */
+    color: white;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  .popup-header-icon {
+    margin-right: 10px;
+    font-size: 20px;
+  }
+  
+  .popup-header-title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .popup-body {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .popup-message {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .popup-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  
+  .popup-button {
+    width: 45%;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .sair {
+    background-color: #38AE00; /* Verde */
+    color: white;
+  }
+  
+  .cancelar {
+    background-color: #D01010; /* Vermelho */
+    color: white;
+  }
+  
+  .popup-button:hover {
+    opacity: 0.8;
+  }
+  

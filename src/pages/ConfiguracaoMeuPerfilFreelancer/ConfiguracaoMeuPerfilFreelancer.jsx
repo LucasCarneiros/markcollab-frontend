@@ -3,6 +3,8 @@ import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/footer/Footer';
 import { FaUser, FaCog, FaSignOutAlt, FaEdit } from 'react-icons/fa';
 import './ConfiguracaoMeuPerfilFreelancer.css';
+import PopUpSalvarInfos from '../../components/PopUpSalvarInfos/PopUpSalvarInfos';  // Importando o PopUpSalvarInfos
+import PopUpSairDaConta from '../../components/PopUpSairDaConta/PopUpSairDaConta'; // Importando o PopUpSairDaConta
 
 const ConfiguracaoMeuPerfilFreelancer = () => {
   const [nome, setNome] = useState('');
@@ -12,10 +14,16 @@ const ConfiguracaoMeuPerfilFreelancer = () => {
   const [endereco, setEndereco] = useState('');
   const [cidade, setCidade] = useState('');
   const [estado, setEstado] = useState('');
+  const [showPopUpSalvar, setShowPopUpSalvar] = useState(false);  // Controle para mostrar o pop-up de salvar
+  const [showPopUpSair, setShowPopUpSair] = useState(false); // Controle para mostrar o pop-up de sair
 
+  // Função que é chamada ao clicar em "Salvar"
   const handleSave = (event) => {
     event.preventDefault();
-    // Implementar a lógica para salvar as alterações de configuração
+    // Exibir o pop-up quando o usuário clicar em "Salvar"
+    setShowPopUpSalvar(true);
+
+    // Implementar a lógica para salvar as alterações do perfil
     console.log('Nome:', nome);
     console.log('Email:', email);
     console.log('Senha:', senha);
@@ -23,6 +31,21 @@ const ConfiguracaoMeuPerfilFreelancer = () => {
     console.log('Endereço:', endereco);
     console.log('Cidade:', cidade);
     console.log('Estado:', estado);
+  };
+
+  // Função para mostrar o pop-up de sair
+  const handleShowPopUpSair = () => {
+    setShowPopUpSair(true); // Exibe o pop-up de sair
+  };
+
+  // Função para fechar o pop-up de salvar
+  const handleClosePopUpSalvar = () => {
+    setShowPopUpSalvar(false);
+  };
+
+  // Função para fechar o pop-up de sair
+  const handleClosePopUpSair = () => {
+    setShowPopUpSair(false);
   };
 
   return (
@@ -51,9 +74,9 @@ const ConfiguracaoMeuPerfilFreelancer = () => {
                 </a>
               </li>
               <li>
-                <a href="/sair">
+                <a href="#" onClick={handleShowPopUpSair}> {/* Ação para abrir o pop-up de sair */}
                   <FaSignOutAlt className="configuracao-icon" />
-                  Sair
+                  Sair da Conta
                 </a>
               </li>
             </ul>
@@ -130,6 +153,12 @@ const ConfiguracaoMeuPerfilFreelancer = () => {
         </main>
       </div>
       <Footer />
+
+      {/* Mostrar o pop-up de salvar se o estado 'showPopUpSalvar' for verdadeiro */}
+      {showPopUpSalvar && <PopUpSalvarInfos onClose={handleClosePopUpSalvar} />}
+
+      {/* Mostrar o pop-up de sair se o estado 'showPopUpSair' for verdadeiro */}
+      {showPopUpSair && <PopUpSairDaConta onClose={handleClosePopUpSair} />}
     </div>
   );
 };

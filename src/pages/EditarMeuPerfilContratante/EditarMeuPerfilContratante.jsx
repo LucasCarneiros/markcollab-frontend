@@ -3,15 +3,20 @@ import './EditarMeuPerfilContratante.css';
 import { FaUser, FaCog, FaSignOutAlt, FaEdit } from 'react-icons/fa';
 import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/footer/Footer';
+import PopUpSalvarInfos from '../../components/PopUpSalvarInfos/PopUpSalvarInfos'; // Importando o pop-up de salvar
+import PopUpSairDaConta from '../../components/PopUpSairDaConta/PopUpSairDaConta'; // Importando o pop-up de sair
 
 const EditarMeuPerfilContratante = () => {
   const [nomeEmpresa, setNomeEmpresa] = useState('');
-  const [usuario, setUsuario] = useState('');
+  const [nome, setNome] = useState('');
   const [descricao, setDescricao] = useState('');
   const [tituloProfissional, setTituloProfissional] = useState('');
   const [ramoEmpresa, setRamoEmpresa] = useState('');
   const [caracteristicas, setCaracteristicas] = useState('');
+  const [showPopUpSalvar, setShowPopUpSalvar] = useState(false); // Estado para controlar o pop-up de salvar
+  const [showPopUpSair, setShowPopUpSair] = useState(false); // Estado para controlar o pop-up de sair
 
+  // Função para salvar as alterações e mostrar o pop-up de salvar
   const handleSave = (event) => {
     event.preventDefault();
     console.log('Nome da Empresa:', nomeEmpresa);
@@ -20,6 +25,24 @@ const EditarMeuPerfilContratante = () => {
     console.log('Título Profissional:', tituloProfissional);
     console.log('Ramo da Empresa:', ramoEmpresa);
     console.log('Características:', caracteristicas);
+
+    // Exibir o pop-up de salvar
+    setShowPopUpSalvar(true);
+  };
+
+  // Função para exibir o pop-up de sair
+  const handleShowPopUpSair = () => {
+    setShowPopUpSair(true); // Exibe o pop-up de sair
+  };
+
+  // Função para fechar o pop-up de salvar
+  const handleClosePopUpSalvar = () => {
+    setShowPopUpSalvar(false);
+  };
+
+  // Função para fechar o pop-up de sair
+  const handleClosePopUpSair = () => {
+    setShowPopUpSair(false);
   };
 
   return (
@@ -48,7 +71,7 @@ const EditarMeuPerfilContratante = () => {
                 </a>
               </li>
               <li>
-                <a href="/sair">
+                <a href="#" onClick={handleShowPopUpSair}> {/* Ação para abrir o pop-up de sair */}
                   <FaSignOutAlt className="perfil-icon" />
                   Sair
                 </a>
@@ -69,7 +92,7 @@ const EditarMeuPerfilContratante = () => {
               />
             </div>
             <div className="perfil-field">
-              <label htmlFor="Nome">Nome:</label>
+              <label htmlFor="nome">Nome:</label>
               <input
                 type="text"
                 id="nome"
@@ -119,6 +142,12 @@ const EditarMeuPerfilContratante = () => {
         </main>
       </div>
       <Footer />
+
+      {/* Mostrar o pop-up de salvar se o estado 'showPopUpSalvar' for verdadeiro */}
+      {showPopUpSalvar && <PopUpSalvarInfos onClose={handleClosePopUpSalvar} />}
+
+      {/* Mostrar o pop-up de sair se o estado 'showPopUpSair' for verdadeiro */}
+      {showPopUpSair && <PopUpSairDaConta onClose={handleClosePopUpSair} />}
     </div>
   );
 };

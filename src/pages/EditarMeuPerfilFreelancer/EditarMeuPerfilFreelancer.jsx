@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/footer/Footer';
+import PopUpSalvarInfos from '../../components/PopUpSalvarInfos/PopUpSalvarInfos'; // Importando o pop-up de salvar
+import PopUpSairDaConta from '../../components/PopUpSairDaConta/PopUpSairDaConta'; // Importando o pop-up de sair
 import './EditarMeuPerfilFreelancer.css';
 
 const EditarMeuPerfilFreelancer = () => {
@@ -12,10 +14,13 @@ const EditarMeuPerfilFreelancer = () => {
   const [habilidades, setHabilidades] = useState('');
   const [portfolios, setPortfolios] = useState(null);
   const [descricaoProjeto, setDescricaoProjeto] = useState('');
+  
+  const [showPopUpSalvar, setShowPopUpSalvar] = useState(false); // Estado para controlar a visibilidade do pop-up de salvar
+  const [showPopUpSair, setShowPopUpSair] = useState(false); // Estado para controlar a visibilidade do pop-up de sair
 
+  // Função para salvar as alterações e mostrar o pop-up de salvar
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Implementar a lógica para salvar as alterações do perfil
     console.log('Nome:', nome);
     console.log('Usuario:', usuario);
     console.log('Título:', titulo);
@@ -24,6 +29,24 @@ const EditarMeuPerfilFreelancer = () => {
     console.log('Habilidades:', habilidades);
     console.log('Portfólios:', portfolios);
     console.log('Descrição do Projeto:', descricaoProjeto);
+
+    // Mostrar o pop-up após o envio do formulário
+    setShowPopUpSalvar(true);
+  };
+
+  // Função para exibir o pop-up de sair
+  const handleShowPopUpSair = () => {
+    setShowPopUpSair(true); // Exibe o pop-up de sair
+  };
+
+  // Função para fechar o pop-up de salvar
+  const handleClosePopUpSalvar = () => {
+    setShowPopUpSalvar(false);
+  };
+
+  // Função para fechar o pop-up de sair
+  const handleClosePopUpSair = () => {
+    setShowPopUpSair(false);
   };
 
   return (
@@ -34,22 +57,16 @@ const EditarMeuPerfilFreelancer = () => {
           <nav className="perfil-nav">
             <ul>
               <li>
-                <a href="/meu-perfil">
-                  Meu Perfil
-                </a>
+                <a href="/meu-perfil">Meu Perfil</a>
               </li>
               <li>
-                <a href="/editar-perfil">
-                  Editar Perfil
-                </a>
+                <a href="/editar-perfil">Editar Perfil</a>
               </li>
               <li>
-                <a href="/configuracoes">
-                  Configurações
-                </a>
+                <a href="/configuracoes">Configurações</a>
               </li>
               <li>
-                <a href="/sair">
+                <a href="#" onClick={handleShowPopUpSair}> {/* Ação para abrir o pop-up de sair */}
                   Sair
                 </a>
               </li>
@@ -138,6 +155,12 @@ const EditarMeuPerfilFreelancer = () => {
         </main>
       </div>
       <Footer />
+      
+      {/* Mostrar o pop-up de salvar se o estado 'showPopUpSalvar' for verdadeiro */}
+      {showPopUpSalvar && <PopUpSalvarInfos onClose={handleClosePopUpSalvar} />}
+
+      {/* Mostrar o pop-up de sair se o estado 'showPopUpSair' for verdadeiro */}
+      {showPopUpSair && <PopUpSairDaConta onClose={handleClosePopUpSair} />}
     </div>
   );
 };
