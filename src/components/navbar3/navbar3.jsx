@@ -57,7 +57,7 @@ const Navbar = () => {
             <Link to="/HomeContratante" className='nav2_icons'>Home</Link>
           </li>
           <li>
-            <Link to="/EditarMeuPerfilContratante" className='nav2_icons'>Meu Perfil</Link>
+            <Link to="/PerfilContratante" className='nav2_icons'>Meu Perfil</Link>
           </li>
           {isLoggedIn ? (
             <>
@@ -90,9 +90,9 @@ const Navbar = () => {
         <div className='sidebar'>
           <button className='close-sidebar' onClick={closeSidebar}>✖</button>
           <ul>
-            <li><Link to="/" className='nav2_icons' onClick={closeSidebar}>Home</Link></li>
-            <li><Link to="/sobre" className='nav2_icons' onClick={closeSidebar}>Sobre</Link></li>
-            <li><Link to="/servicos" className='nav2_icons' onClick={closeSidebar}>Serviços</Link></li>
+            <li><Link to="/HomeContratante" className='nav2_icons' onClick={closeSidebar}>Home</Link></li>
+            <li><Link to="/PerfilContratante" className='nav2_icons' onClick={closeSidebar}>Meu Perfil</Link></li>
+            <li><Link to="/PublicacaoProjetoContratante" className='nav2_icons' onClick={closeSidebar}>Projetos</Link></li>
             {isLoggedIn ? (
               <>
                 <li><Link to="/projetos" className='nav2_icons' id='projetos' onClick={closeSidebar}>Projetos</Link></li>
@@ -101,8 +101,7 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <li><Link to="/login" className='nav2_icons' onClick={closeSidebar}>Login</Link></li>
-                <li><Link to="/Cadastro" className='nav2_icons' onClick={closeSidebar}>Cadastro</Link></li>
+            
               </>
             )}
           </ul>

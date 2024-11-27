@@ -73,3 +73,20 @@
       padding: 10px;
     }
   }
+  .meusprojetos-button {
+    display: block; /* Para ocupar a linha inteira e permitir a centralização */
+    margin: 20px auto; /* Auto nas laterais centraliza o elemento horizontalmente */
+    padding: 10px 20px; /* Espaçamento interno do botão */
+    font-size: 16px; /* Tamanho da fonte */
+    text-align: center; /* Centraliza o texto dentro do botão */
+    background-color: #007bff; /* Cor de fundo */
+    color: #fff; /* Cor do texto */
+    border: none; /* Remove a borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Mostra o cursor de "clique" */
+    text-decoration: none; /* Remove sublinhado no texto */
+    width: fit-content; /* Ajusta a largura ao conteúdo */
+}
+.meusprojetos-button:hover {
+  background-color: #0056b3;
+}

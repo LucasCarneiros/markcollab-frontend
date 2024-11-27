@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Navbar from '../../components/navbar/Navbar';
+import Navbar from '../../components/navbar3/navbar3';
 import Footer from '../../components/footer/Footer';
 import './MeusProjetosContratante.css';
 
@@ -24,7 +24,7 @@ const MeusProjetosContratante = () => {
             onChange={handleStatusChange}
           >
             <option value="">Selecione um status</option>
-            <option value="analisando">Analisando propostas</option>
+            <option value="analisando">Analisar propostas</option>
             <option value="em-progresso">Em progresso</option>
             <option value="concluido">Concluído</option>
           </select>
@@ -37,7 +37,7 @@ const MeusProjetosContratante = () => {
             <div key={project} className="meusprojetoscontratante-item">
               <h2 className="meusprojetoscontratante-item-title">Nome do projeto</h2>
               <p className="meusprojetoscontratante-item-time">Publicado há 42 minutos</p>
-              <button className="meusprojetoscontratante-item-button">Analisando propostas</button>
+              <button className="meusprojetoscontratante-item-button">Analisar propostas</button>
               <div className="meusprojetoscontratante-item-options">
                 <button className="meusprojetoscontratante-item-option">Editar projeto</button>
                 <button className="meusprojetoscontratante-item-option">Cancelar projeto</button>
