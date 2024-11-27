@@ -6,10 +6,11 @@ import MeusProjetosContratante from '../pages/MeusProjetosContratante/MeusProjet
 import VisualizacaoMeusProjetosContratante from '../pages/VisualizacaoMeusProjetosContratante/VisualizacaoMeusProjetosContratante'; //aumentar espaço do container publicar para o footer
 import PublicacaoProjetoContratante from '../pages/PublicacaoProjetoContratante/PublicacaoProjetoContratante'; //aumentar espaço do botão publicar para o footer
 import ProjetoPublicadoContratante from '../pages/ProjetoPublicadoContratante/ProjetoPublicadoContratante';
-import MeuPerfilContratante from '../pages/MeuPerfilContratante/MeuPerfilContratante'; // ajeitar css
-import EditarMeuPerfilContratante from '../pages/EditarMeuPerfilContratante/EditarMeuPerfilContratante'; //n ta abrindo
+import EditarPerfilContratante from '../pages/EditarPerfilContratante/EditarPerfilContratante'; //n ta abrindo
 import ConfiguracaoMeuPerfilContratante from '../pages/ConfiguracaoMeuPerfilContratante/ConfiguracaoMeuPerfilContratante'; // ajeitar css
 import AreaContratante from '../pages/AreaContratante/AreaContratante';
+import HomeContratante from '../pages/HomeContratante/HomeContratante';
+import PerfilContratante from '../pages/PerfilContratante/PerfilContratante';
 
 
 // Páginas freelancer
@@ -43,9 +44,11 @@ const AppRoutes = () => {
         <Route path="visualizacaoMeusProjetosContratante" element={<VisualizacaoMeusProjetosContratante />} />
         <Route path="publicacaoProjetoContratante" element={<PublicacaoProjetoContratante />} />
         <Route path="projetoPublicadoContratante" element={<ProjetoPublicadoContratante />} />
-        <Route path="meuPerfilContratante" element={<MeuPerfilContratante />} />
-        <Route path="EditarMeuPerfilContratante" element={<EditarMeuPerfilContratante />} />
+        <Route path="EditarPerfilContratante" element={<EditarPerfilContratante />} />
         <Route path="configuracaoMeuPerfilContratante" element={<ConfiguracaoMeuPerfilContratante />} />
+        <Route path="AreaContratante" element={<AreaContratante />} />
+        <Route path="HomeContratante" element={<HomeContratante />} />
+        <Route path="PerfilContratante" element={<PerfilContratante />} />
 
         <Route path="MeusProjetosFreelancer" element={<MeusProjetosFreelancer />} />
         <Route path="areaDeAtuacaoFreelancer" element={<AreaDeAtuacaoFreelancer />} />
@@ -54,7 +57,8 @@ const AppRoutes = () => {
         <Route path="buscarProjetosFreelancerVisualizacao" element={<BuscarProjetosFreelancerVisualizacao />} />
         <Route path="buscarProjetosFreelancerPrincipal" element={<BuscarProjetosFreelancerPrincipal />} />
         <Route path="HomeFreelancer" element={<HomeFreelancer />} />
-        <Route path="AreaContratante" element={<AreaContratante />} />
+        
+
         
       </Routes>
     </Router>
