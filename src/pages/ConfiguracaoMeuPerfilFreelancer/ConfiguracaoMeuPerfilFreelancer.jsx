@@ -8,12 +8,12 @@ import PopUpSairDaConta from '../../components/PopUpSairDaConta/PopUpSairDaConta
 
 const ConfiguracaoMeuPerfilFreelancer = () => {
   const [nome, setNome] = useState('');
+  const [cidade, setSobrenome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [telefone, setTelefone] = useState('');
   const [endereco, setEndereco] = useState('');
-  const [cidade, setCidade] = useState('');
-  const [estado, setEstado] = useState('');
+  
   const [showPopUpSalvar, setShowPopUpSalvar] = useState(false);  // Controle para mostrar o pop-up de salvar
   const [showPopUpSair, setShowPopUpSair] = useState(false); // Controle para mostrar o pop-up de sair
 
@@ -25,12 +25,13 @@ const ConfiguracaoMeuPerfilFreelancer = () => {
 
     // Implementar a lógica para salvar as alterações do perfil
     console.log('Nome:', nome);
+    console.log('Sobrenome:', sobrenome);
     console.log('Email:', email);
     console.log('Senha:', senha);
     console.log('Telefone:', telefone);
     console.log('Endereço:', endereco);
-    console.log('Cidade:', cidade);
-    console.log('Estado:', estado);
+    
+    
   };
 
   // Função para mostrar o pop-up de sair
@@ -95,6 +96,15 @@ const ConfiguracaoMeuPerfilFreelancer = () => {
               />
             </div>
             <div className="configuracao-field">
+              <label htmlFor="cidade">Sobrenome:</label>
+              <input
+                type="text"
+                id="Sobrenome"
+                value={cidade}
+                onChange={(e) => setSobrenome(e.target.value)}
+              />
+            </div>
+            <div className="configuracao-field">
               <label htmlFor="email">Email:</label>
               <input
                 type="email"
@@ -130,24 +140,7 @@ const ConfiguracaoMeuPerfilFreelancer = () => {
                 onChange={(e) => setEndereco(e.target.value)}
               />
             </div>
-            <div className="configuracao-field">
-              <label htmlFor="cidade">Cidade:</label>
-              <input
-                type="text"
-                id="cidade"
-                value={cidade}
-                onChange={(e) => setCidade(e.target.value)}
-              />
-            </div>
-            <div className="configuracao-field">
-              <label htmlFor="estado">Estado:</label>
-              <input
-                type="text"
-                id="estado"
-                value={estado}
-                onChange={(e) => setEstado(e.target.value)}
-              />
-            </div>
+          
             <button className="configuracao-button" type="submit">Salvar</button>
           </form>
         </main>

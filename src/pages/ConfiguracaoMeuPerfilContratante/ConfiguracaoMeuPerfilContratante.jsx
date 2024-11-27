@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
 import './ConfiguracaoMeuPerfilContratante.css';
 import { FaUser, FaCog, FaSignOutAlt, FaEdit } from 'react-icons/fa';
-import Navbar from '../../components/navbar/Navbar';
+import Navbar from '../../components/navbar3/navbar3';
 import Footer from '../../components/footer/Footer';
 import PopUpSalvarInfos from '../../components/PopUpSalvarInfos/PopUpSalvarInfos'; // Importando o pop-up de salvar
 import PopUpSairDaConta from '../../components/PopUpSairDaConta/PopUpSairDaConta'; // Importando o pop-up de sair
 
 const ConfiguracaoMeuPerfilContratante = () => {
   const [nome, setNome] = useState('');
-  const [sobrenome, setSobrenome] = useState('');
   const [email, setEmail] = useState('');
   const [endereco, setEndereco] = useState('');
   const [contato, setContato] = useState('');
-  const [cidade, setCidade] = useState('');
-  const [estado, setEstado] = useState('');
   const [senha, setSenha] = useState('');
   const [showPopUpSalvar, setShowPopUpSalvar] = useState(false); // Estado para controlar o pop-up de salvar
   const [showPopUpSair, setShowPopUpSair] = useState(false); // Estado para controlar o pop-up de sair
@@ -22,12 +19,9 @@ const ConfiguracaoMeuPerfilContratante = () => {
     event.preventDefault();
     // Lógica de salvar os dados do perfil
     console.log('Nome:', nome);
-    console.log('Sobrenome:', sobrenome);
     console.log('Email:', email);
     console.log('Endereço:', endereco);
     console.log('Contato:', contato);
-    console.log('Cidade:', cidade);
-    console.log('Estado:', estado);
     console.log('Senha:', senha);
 
     // Mostrar o pop-up de salvar após salvar os dados
@@ -82,7 +76,7 @@ const ConfiguracaoMeuPerfilContratante = () => {
         </aside>
         <main className="perfil-main">
           <form className="perfil-form" onSubmit={handleSave}>
-            <h1 className="perfil-title">Configurações do Perfil</h1>
+            <h1 className="perfil-title">Configurações do Perfil da Empresa</h1>
             <div className="perfil-field">
               <label htmlFor="nome">Nome:</label>
               <input
@@ -90,15 +84,6 @@ const ConfiguracaoMeuPerfilContratante = () => {
                 id="nome"
                 value={nome}
                 onChange={(e) => setNome(e.target.value)}
-              />
-            </div>
-            <div className="perfil-field">
-              <label htmlFor="sobrenome">Sobrenome:</label>
-              <input
-                type="text"
-                id="sobrenome"
-                value={sobrenome}
-                onChange={(e) => setSobrenome(e.target.value)}
               />
             </div>
             <div className="perfil-field">
@@ -126,24 +111,6 @@ const ConfiguracaoMeuPerfilContratante = () => {
                 id="contato"
                 value={contato}
                 onChange={(e) => setContato(e.target.value)}
-              />
-            </div>
-            <div className="perfil-field">
-              <label htmlFor="cidade">Cidade:</label>
-              <input
-                type="text"
-                id="cidade"
-                value={cidade}
-                onChange={(e) => setCidade(e.target.value)}
-              />
-            </div>
-            <div className="perfil-field">
-              <label htmlFor="estado">Estado:</label>
-              <input
-                type="text"
-                id="estado"
-                value={estado}
-                onChange={(e) => setEstado(e.target.value)}
               />
             </div>
             <div className="perfil-field">

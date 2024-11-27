@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import Navbar from '../../components/navbar/Navbar';
+import Navbar from '../../components/navbar2/Navbar2';
 import Footer from '../../components/footer/Footer';
 import PopUpSalvarInfos from '../../components/PopUpSalvarInfos/PopUpSalvarInfos'; // Importando o pop-up de salvar
 import PopUpSairDaConta from '../../components/PopUpSairDaConta/PopUpSairDaConta'; // Importando o pop-up de sair
 import './EditarMeuPerfilFreelancer.css';
+import { FaUser, FaCog, FaSignOutAlt, FaEdit } from 'react-icons/fa';
 
 const EditarMeuPerfilFreelancer = () => {
   const [nome, setNome] = useState('');
