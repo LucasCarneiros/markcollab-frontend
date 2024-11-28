@@ -1,5 +1,6 @@
 import React from 'react';
 import './PopUpSairDaConta.css'; // Importar a folha de estilo para o PopUpSairDaConta
+import { FaDoorOpen } from 'react-icons/fa'; // Novo ícone de porta
 
 // Componente PopUpSairDaConta
 const PopUpSairDaConta = ({ onClose, onConfirm }) => {
@@ -8,7 +9,7 @@ const PopUpSairDaConta = ({ onClose, onConfirm }) => {
       <div className="popup-content" onClick={(e) => e.stopPropagation()}>
         {/* Barra azul com ícone */}
         <div className="popup-header">
-          <span className="popup-header-icon">🚪</span>
+          <FaDoorOpen className="popup-header-icon" /> {/* Novo ícone */}
           <span className="popup-header-title">SAIR DA CONTA</span>
         </div>
 

@@ -46,12 +46,12 @@
     padding: 20px 10px; /* Reduzindo o padding */
   }
   
-  /* Texto principal da pergunta */
+  /* Texto principal da pergunta (Mensagem do pop-up) */
   .popup-body h2 {
     margin-bottom: 20px; /* Distância para os botões */
     font-size: 17.5px; /* Reduzindo o tamanho da pergunta (35px -> 17.5px) */
     color: #333;
-    font-weight: normal; /* Retirando o negrito */
+    font-weight: bold; /* Texto em negrito */
     white-space: nowrap; /* Garantir que o texto fique em uma linha */
     line-height: 1.2; /* Ajusta o espaçamento entre as linhas */
   }
@@ -60,12 +60,12 @@
   .popup-buttons {
     display: flex;
     justify-content: center;
-    gap: 25px; /* Reduzindo o gap entre os botões */
+    gap: 10px; /* Reduzindo o gap entre os botões */
     margin-top: 10px; /* Espaço acima dos botões */
   }
   
   .popup-button {
-    padding: 15px 35px; /* Reduzindo o padding dos botões */
+    padding: 5px 10px; /* Reduzindo o padding dos botões */
     font-size: 0.9rem; /* Reduzindo o tamanho da fonte dos botões */
     border: none;
     border-radius: 20px; /* Bordas mais arredondadas */

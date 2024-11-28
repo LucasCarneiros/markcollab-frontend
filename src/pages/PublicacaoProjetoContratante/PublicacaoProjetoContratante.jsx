@@ -31,7 +31,7 @@ const handleSubmit = (event) => {
 return (
     <div>
     <Navbar />
-    <a href="/meus-projetos-contratante" className="meusprojetos-button">Ir para os meus projetos publicados</a>
+    <a href="/meusprojetoscontratante" className="meusprojetos-button">Ir para os meus projetos publicados</a>
     <div className="publicacao-container">
         <header className="publicacao-header">
         <h1 className="publicacao-title">Publicação de Projeto</h1>

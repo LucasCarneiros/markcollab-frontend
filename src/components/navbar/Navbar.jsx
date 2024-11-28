@@ -5,10 +5,12 @@ import { VscAccount } from "react-icons/vsc";
 import Logo from '../../assets/images/logo_markcollab.png';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
+import PopUpCadastro from '../../components/PopUpCadastro/PopUpCadastro'; // Importação do PopUpCadastro
 
 const Navbar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Estado para controle de login
+  const [isPopUpOpen, setIsPopUpOpen] = useState(false); // Estado para controlar a abertura do PopUp
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -29,6 +31,16 @@ const Navbar = () => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  // Função para abrir o PopUpCadastro
+  const openPopUp = () => {
+    setIsPopUpOpen(true);
+  };
+
+  // Função para fechar o PopUpCadastro
+  const closePopUp = () => {
+    setIsPopUpOpen(false);
+  };
 
   return (
     <div>
@@ -75,13 +87,12 @@ const Navbar = () => {
               </li>
             </>
           ) : (
-            // Mantém os links de login e cadastro na navbar, mas os oculta em telas grandes
             <>
               <li className="hidden-on-large">
                 <Link to="/login" className='nav2_icons' id='login_btn'>Login</Link>
               </li>
               <li className="hidden-on-large">
-                <Link to="/Cadastro" className='nav2_icons' id='cadastro_btn'>Cadastro</Link>
+                <Link to="#" className='nav2_icons' id='cadastro_btn' onClick={openPopUp}>Cadastro</Link>
               </li>
             </>
           )}
@@ -109,6 +120,8 @@ const Navbar = () => {
           </ul>
         </div>
       )}
+      {/* Passando as props para o PopUpCadastro */}
+      <PopUpCadastro isOpen={isPopUpOpen} onClose={closePopUp} />
     </div>
   );
 };

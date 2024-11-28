@@ -3,8 +3,28 @@ import Navbar from '../../components/navbar3/navbar3';
 import Footer from '../../components/footer/Footer';
 import { FaUser, FaCog, FaSignOutAlt, FaEdit } from 'react-icons/fa';
 import './PerfilContratante.css';
+import PopUpSairDaConta from '../../components/PopUpSairDaConta/PopUpSairDaConta'; // Importando o pop-up
 
 function PerfilContratante() {
+  const [isPopUpOpen, setIsPopUpOpen] = useState(false); // Estado para controlar a visibilidade do pop-up
+
+  // Função para abrir o pop-up
+  const handleOpenPopUp = () => {
+    setIsPopUpOpen(true);
+  };
+
+  // Função para fechar o pop-up
+  const handleClosePopUp = () => {
+    setIsPopUpOpen(false);
+  };
+
+  // Função para confirmar a saída
+  const handleConfirmExit = () => {
+    console.log('Usuário saiu da conta');
+    // Aqui você pode adicionar a lógica para realmente sair da conta, como redirecionamento ou logout
+    setIsPopUpOpen(false); // Fecha o pop-up após confirmar
+  };
+
   return (
     <div>
       <Navbar />
@@ -68,7 +88,7 @@ function PerfilContratante() {
                 </a>
               </li>
               <li>
-                <a href="/sair">
+                <a href="#" onClick={handleOpenPopUp}>
                   <FaSignOutAlt className="configuracao-icon" />
                   Sair
                 </a>
@@ -94,7 +114,6 @@ function PerfilContratante() {
 
         {/* Portfólio */}
         <section id="portifolio" className="portifolio">
-            
           <h2>Portfólio de Projetos</h2>
           <div className="projetos-grid">
             <div className="projeto">
@@ -141,8 +160,17 @@ function PerfilContratante() {
           </div>
         </section>
     
-     </div>
+      </div>
       <Footer /> 
+
+      {/* PopUp Sair da Conta - Só será exibido se isPopUpOpen for true */}
+      {isPopUpOpen && (
+        <PopUpSairDaConta
+          isOpen={isPopUpOpen}
+          onClose={handleClosePopUp}
+          onConfirm={handleConfirmExit}
+        />
+      )}
     </div> 
   );
 }

@@ -1,9 +1,34 @@
 import React, { useState } from 'react';
 import Navbar from '../../components/navbar3/navbar3';
 import Footer from '../../components/footer/Footer';
+import PopUpAceitarProposta from '../../components/PopUpAceitarProposta/PopUpAceitarProposta'; // PopUpAceitarProposta
+import PopUpRejeitarProposta from '../../components/PopUpRejeitarProposta/PopUpRejeitarProposta'; // Importando o PopUpRejeitarProposta
 import './VisualizacaoMeusProjetosContratante.css';
 
 const VisualizacaoMeusProjetosContratante = () => {
+  const [isPopUpAceitarVisible, setPopUpAceitarVisible] = useState(false); // Estado para o pop-up de aceitar
+  const [isPopUpRejeitarVisible, setPopUpRejeitarVisible] = useState(false); // Estado para o pop-up de rejeitar
+
+  // Função para abrir o pop-up de aceitar proposta
+  const handleAcceptProposal = () => {
+    setPopUpAceitarVisible(true);
+  };
+
+  // Função para fechar o pop-up (quando clica fora dele)
+  const handleClosePopUpAceitar = () => {
+    setPopUpAceitarVisible(false);
+  };
+
+  // Função para abrir o pop-up de rejeitar proposta
+  const handleRejectProposal = () => {
+    setPopUpRejeitarVisible(true);
+  };
+
+  // Função para fechar o pop-up de rejeitar
+  const handleClosePopUpRejeitar = () => {
+    setPopUpRejeitarVisible(false);
+  };
+
   return (
     <div>
       <Navbar />
@@ -46,17 +71,22 @@ const VisualizacaoMeusProjetosContratante = () => {
               <div className="visualizacao-proposal-actions">
                 <button className="visualizacao-action-button">Ver Perfil</button>
                 <button className="visualizacao-action-button">Mensagem</button>
-                <button className="visualizacao-action-button">Aceitar</button>
-                <button className="visualizacao-action-button">Recusar</button>
+                <button className="visualizacao-action-button" onClick={handleAcceptProposal}>Aceitar</button> {/* Botão "Aceitar" */}
+                <button className="visualizacao-action-button" onClick={handleRejectProposal}>Recusar</button> {/* Botão "Recusar" */}
               </div>
             </div>
           ))}
         </div>
       </div>
       <Footer />
+
+      {/* Pop-up para mostrar quando aceitar a proposta */}
+      {isPopUpAceitarVisible && <PopUpAceitarProposta onClose={handleClosePopUpAceitar} />} {/* Usando o pop-up de aceitar */}
+
+      {/* Pop-up para mostrar quando recusar a proposta */}
+      {isPopUpRejeitarVisible && <PopUpRejeitarProposta onClose={handleClosePopUpRejeitar} />} {/* Usando o pop-up de rejeitar */}
     </div>
   );
 };
 
 export default VisualizacaoMeusProjetosContratante;
-
