@@ -44,10 +44,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 100px 20px; /* Adiciona espaço acima e abaixo */
+  box-sizing: border-box; /* Garante que padding seja incluído no tamanho */
 }
 
+
 .perfil-form {
-  background-color: #fff;
+  background-color: #000000;
   padding: 20px;
   border-radius: 20px;
   box-shadow: 0 0 10px rgb(255, 255, 255, 0.1);
@@ -107,11 +110,6 @@
     box-shadow: none;
     margin-bottom: 20px;
   }
-
-  .perfil-main {
-    width: 100%;
-  }
-
   .perfil-title {
     font-size: 1.2rem;
   }

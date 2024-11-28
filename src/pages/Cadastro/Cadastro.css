@@ -84,3 +84,9 @@
     padding: 10px;
   }
 }
+.login-arrow {
+  position: absolute; /* Permite ajustar com `top` e `left` */
+  top: 20px; /* Distância do topo */
+  left: 20px; /* Distância da lateral esquerda */
+}
+

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Cadastro.css';
+import { Link } from 'react-router-dom';
 import PopUpCadastro from '../../components/PopUpCadastro/PopUpCadastro'; // Caminho corrigido para o PopUpCadastro
 
 const Cadastro = () => {
@@ -46,6 +47,12 @@ const Cadastro = () => {
     <div className="cadastro-container">
       <div className="cadastro-left">
         {/* Espaço reservado para conteúdo ou branding */}
+        <Link to="/" className="login-arrow" style={{ cursor: "pointer" }}>
+  <svg width="30" height="30" viewBox="0 0 59 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M54.918 43.0015L34.2157 23.7779L54.918 4.55435" stroke="white" stroke-width="5.51686" stroke-linecap="square"/>
+    <path d="M25.3359 43.0015L4.63364 23.7779L25.3359 4.55435" stroke="white" stroke-width="5.51686" stroke-linecap="square"/>
+  </svg>
+</Link>
       </div>
       <div className="cadastro-right">
         <form className="cadastro-form" onSubmit={handleCadastro}>

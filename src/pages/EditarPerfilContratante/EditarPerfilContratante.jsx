@@ -2,28 +2,26 @@ import React, { useState } from 'react';
 import Navbar from '../../components/navbar3/navbar3';
 import Footer from '../../components/footer/Footer';
 import './EditarPerfilContratante.css';
+import { Link } from 'react-router-dom';
 
 const EditarPerfilContratante = () => {
   const [nome, setNome] = useState('');
   const [usuario, setUsuario] = useState('');
-  const [titulo, setTitulo] = useState('');
-  const [principalAtuacao, setPrincipalAtuacao] = useState('');
+  const [ramo, setRamo] = useState('');
+  const [Caracteristicas, setCaracteristicas] = useState('');
   const [descricao, setDescricao] = useState('');
-  const [habilidades, setHabilidades] = useState('');
   const [portfolios, setPortfolios] = useState(null);
-  const [descricaoProjeto, setDescricaoProjeto] = useState('');
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // Implementar a lógica para salvar as alterações do perfil
-    console.log('Nome:', nome);
+    console.log('Nome da empresa:', nome);
     console.log('Usuario:', usuario);
-    console.log('Título:', titulo);
+    console.log('Ramo:', ramo);
     console.log('Principal Atuação:', principalAtuacao);
     console.log('Descrição:', descricao);
-    console.log('Habilidades:', habilidades);
     console.log('Portfólios:', portfolios);
-    console.log('Descrição do Projeto:', descricaoProjeto);
   };
 
   return (
@@ -60,7 +58,7 @@ const EditarPerfilContratante = () => {
           <form className="perfil-form" onSubmit={handleSubmit}>
             <h1 className="perfil-title">Edite seu perfil</h1>
             <div className="perfil-field">
-              <label htmlFor="nome">Nome completo:</label>
+              <label htmlFor="nome">Nome da Empresa:</label>
               <input
                 type="text"
                 id="nome"
@@ -78,44 +76,30 @@ const EditarPerfilContratante = () => {
               />
             </div>
             <div className="perfil-field">
-              <label htmlFor="titulo">Título profissional:</label>
+              <label htmlFor="ramo">Ramo profissional:</label>
               <input
                 type="text"
-                id="titulo"
-                value={titulo}
-                onChange={(e) => setTitulo(e.target.value)}
+                id="ramo"
+                value={ramo}
+                onChange={(e) => setRamo(e.target.value)}
               />
             </div>
             <div className="perfil-field">
-              <label htmlFor="principalAtuacao">Principal atuação:</label>
+              <label htmlFor="Caracteristicas">Características que você procura em um profissional:</label>
               <input
                 type="text"
-                id="principalAtuacao"
-                value={principalAtuacao}
-                onChange={(e) => setPrincipalAtuacao(e.target.value)}
+                id="Caracteristicas"
+                value={Caracteristicas}
+                onChange={(e) => setCaracteristicas(e.target.value)}
               />
             </div>
             <div className="perfil-field">
-              <label htmlFor="descricao">Escreva sobre você e suas experiências profissionais:</label>
+              <label htmlFor="descricao">Explique um pouco sobre a empresa:</label>
               <textarea
                 id="descricao"
                 value={descricao}
                 onChange={(e) => setDescricao(e.target.value)}
               ></textarea>
-            </div>
-            <div className="perfil-field">
-              <label htmlFor="habilidades">Selecione as suas principais habilidades:</label>
-              <select
-                id="habilidades"
-                value={habilidades}
-                onChange={(e) => setHabilidades(e.target.value)}
-              >
-                <option value="">Selecione...</option>
-                <option value="desenvolvimento-web">Desenvolvimento Web</option>
-                <option value="design-grafico">Design Gráfico</option>
-                <option value="redacao">Redação</option>
-                <option value="marketing-digital">Marketing Digital</option>
-              </select>
             </div>
             <div className="perfil-field">
               <label htmlFor="portfolios">Portfólio de projetos:</label>
@@ -124,14 +108,6 @@ const EditarPerfilContratante = () => {
                 id="portfolios"
                 onChange={(e) => setPortfolios(e.target.files[0])}
               />
-            </div>
-            <div className="perfil-field">
-              <label htmlFor="descricaoProjeto">Dê uma breve descrição sobre o seu projeto:</label>
-              <textarea
-                id="descricaoProjeto"
-                value={descricaoProjeto}
-                onChange={(e) => setDescricaoProjeto(e.target.value)}
-              ></textarea>
             </div>
             <button className="perfil-button" type="submit">Salvar</button>
           </form>
