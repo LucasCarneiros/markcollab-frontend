@@ -57,7 +57,7 @@ const Navbar = () => {
             <Link to="/HomeFreelancer" className='nav2_icons'>Home</Link>
           </li>
           <li>
-            <Link to="/EditarMeuPerfilContratante" className='nav2_icons'>Meu Perfil</Link>
+            <Link to="/PerfilFreelancer" className='nav2_icons'>Meu Perfil</Link>
           </li>
           {isLoggedIn ? (
             <>

@@ -28,9 +28,6 @@ const MeusProjetosContratante = () => {
             <option value="em-progresso">Em progresso</option>
             <option value="concluido">Concluído</option>
           </select>
-          <button className="meusprojetoscontratante-button">
-            Encontrar Freelancers
-          </button>
         </div>
         <div className="meusprojetoscontratante-list">
           {[1, 2, 3].map((project) => (

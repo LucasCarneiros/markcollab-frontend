@@ -1,7 +1,7 @@
 .conteudo {
     max-width: 900px;
     margin: 0 auto;
-    margin-top: -250px; /* Adicione espaço suficiente para compensar a altura da navbar */
+    margin-top: 100px; /* Adicione espaço suficiente para compensar a altura da navbar */
     margin-bottom: 200px;
     background-color: #f9f9f9;
     border-radius: 10px;
@@ -84,14 +84,7 @@
   .h3-PerfilContratante{
     padding: 20px;
   }
-  .configuracao-nav {
-    background-color: #ffffff;
-    margin-right: 100px; /* Remove margens desnecessárias */
-    padding: 0; /* Remove preenchimento desnecessário */
-    position: sticky; /* Deixa a navbar fixa no topo */
-    top: 0; /* Garantir que está no topo */
-   
-}
+
 /* Navbar */
 .navbar {
     display: flex;

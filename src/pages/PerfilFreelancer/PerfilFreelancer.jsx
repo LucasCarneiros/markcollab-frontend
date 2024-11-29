@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Navbar from '../../components/navbar3/navbar3';
+import Navbar from '../../components/navbar2/Navbar2';
 import Footer from '../../components/footer/Footer';
+import './PerfilFreelancer.css';
 import { Link } from 'react-router-dom';
-import './PerfilContratante.css';
 import PopUpSairDaConta from '../../components/PopUpSairDaConta/PopUpSairDaConta'; // Importando o pop-up
 
 function PerfilContratante() {
@@ -28,8 +28,8 @@ function PerfilContratante() {
   return (
     <div>
       <Navbar />
-       {/* Navbar */}
-       <nav className="navbar">
+      {/* Navbar */}
+      <nav className="navbar">
         <ul className="navbar-list">
           <li>
           <Link to='/PerfilFreelancer'>Meu Perfil</Link>
@@ -56,8 +56,8 @@ function PerfilContratante() {
             className="perfil-foto"
           />
           <div>
-            <h1>@Empresa</h1>
-            <p>Ramo atual da empresa</p>
+            <h1>Nome_do_freelancer</h1>
+            <p>Freelancer experiente em Programação e tecnologia</p>
             <div className="habilidades">
               <span className="habilidade">Javascript</span>
               <span className="habilidade">Java</span>
@@ -68,7 +68,7 @@ function PerfilContratante() {
         </header>
         {/* Sobre Mim */}
         <section id="sobre-mim" className="sobre-mim">
-          <h2>Sobre a empresa</h2>
+          <h2>Sobre mim</h2>
           <p>
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
           </p>
@@ -79,7 +79,7 @@ function PerfilContratante() {
         </section>
         {/* Portfólio */}
         <section id="portifolio" className="portifolio">
-          <h2>Projetos finalizados</h2>
+          <h2>Portfólio de Projetos</h2>
           <div className="projetos-grid">
             <div className="projeto">
               <img src="https://via.placeholder.com/150" alt="Projeto 1" />
@@ -110,7 +110,7 @@ function PerfilContratante() {
 
         {/* Avaliações */}
         <section id="avaliacoes" className="avaliacoes">
-          <h2>Avaliações de parceiros</h2>
+          <h2>Avaliações dos Clientes</h2>
           <div className="avaliacoes-lista">
             <div className="avaliacao">
               <p>Excelente trabalho!</p>

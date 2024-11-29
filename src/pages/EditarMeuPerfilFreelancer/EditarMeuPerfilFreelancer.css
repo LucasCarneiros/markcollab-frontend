@@ -1,6 +1,6 @@
 .perfil-container {
   display: flex;
-  height: 140vh;
+  height: 130vh;
   background-color: #ffffff;
 }
 
@@ -106,6 +106,7 @@
 
   .perfil-main {
     width: 100%;
+    height: 400vh;
   }
 
   .perfil-title {
@@ -114,6 +115,14 @@
 
   .perfil-form {
     padding: 10px;
+    
   }
 }
-
+.configuracao-nav {
+  background-color: #ffffff;
+  margin-right: 100px; /* Remove margens desnecessárias */
+  padding: 0; /* Remove preenchimento desnecessário */
+  position: sticky; /* Deixa a navbar fixa no topo */
+  top: 0; /* Garantir que está no topo */
+ 
+}

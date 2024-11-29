@@ -28,32 +28,7 @@ const EditarPerfilContratante = () => {
     <div>
       <Navbar />
       <div className="perfil-container">
-        <aside className="perfil-sidebar">
-          <nav className="perfil-nav">
-            <ul>
-              <li>
-                <a href="/meu-perfil">
-                  Meu Perfil
-                </a>
-              </li>
-              <li>
-                <a href="/editar-perfil">
-                  Editar Perfil
-                </a>
-              </li>
-              <li>
-                <a href="/configuracoes">
-                  Configurações
-                </a>
-              </li>
-              <li>
-                <a href="/sair">
-                  Sair
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </aside>
+      
         <main className="perfil-main">
           <form className="perfil-form" onSubmit={handleSubmit}>
             <h1 className="perfil-title">Edite seu perfil</h1>

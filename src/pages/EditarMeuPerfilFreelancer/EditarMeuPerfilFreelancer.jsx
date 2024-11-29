@@ -10,11 +10,10 @@ const EditarMeuPerfilFreelancer = () => {
   const [nome, setNome] = useState('');
   const [usuario, setUsuario] = useState('');
   const [titulo, setTitulo] = useState('');
-  const [principalAtuacao, setPrincipalAtuacao] = useState('');
   const [descricao, setDescricao] = useState('');
   const [habilidades, setHabilidades] = useState('');
   const [portfolios, setPortfolios] = useState(null);
-  const [descricaoProjeto, setDescricaoProjeto] = useState('');
+  const [descricaoExperiencia, setDescricaoExperiencia] = useState('');
   
   const [showPopUpSalvar, setShowPopUpSalvar] = useState(false); // Estado para controlar a visibilidade do pop-up de salvar
   const [showPopUpSair, setShowPopUpSair] = useState(false); // Estado para controlar a visibilidade do pop-up de sair
@@ -25,11 +24,10 @@ const EditarMeuPerfilFreelancer = () => {
     console.log('Nome:', nome);
     console.log('Usuario:', usuario);
     console.log('Título:', titulo);
-    console.log('Principal Atuação:', principalAtuacao);
     console.log('Descrição:', descricao);
     console.log('Habilidades:', habilidades);
     console.log('Portfólios:', portfolios);
-    console.log('Descrição do Projeto:', descricaoProjeto);
+    console.log('Descrição da experiencia:', descricaoExperiencia);
 
     // Mostrar o pop-up após o envio do formulário
     setShowPopUpSalvar(true);
@@ -54,20 +52,25 @@ const EditarMeuPerfilFreelancer = () => {
     <div>
       <Navbar />
       <div className="perfil-container">
-        <aside className="perfil-sidebar">
-          <nav className="perfil-nav">
+        <aside className="configuracao-sidebar">
+          <nav className="configuracao-nav">
             <ul>
               <li>
-                <a href="/meu-perfil">Meu Perfil</a>
+                <a href="#"><FaUser className="configuracao-icon" />Meu Perfil</a>
+                
               </li>
               <li>
-                <a href="/editar-perfil">Editar Perfil</a>
+                <a href="#"><FaEdit className="configuracao-icon" />
+                Editar Perfil
+                </a>
               </li>
               <li>
-                <a href="/configuracoes">Configurações</a>
+                <a href="#"><FaCog className="configuracao-icon" />Configurações</a>
+                
               </li>
               <li>
-                <a href="#" onClick={handleShowPopUpSair}> {/* Ação para abrir o pop-up de sair */}
+                <a href="#" onClick={handleShowPopUpSair}>{/* Ação para abrir o pop-up de sair */}
+                <FaSignOutAlt className="configuracao-icon" /> 
                   Sair
                 </a>
               </li>
@@ -78,7 +81,7 @@ const EditarMeuPerfilFreelancer = () => {
           <form className="perfil-form" onSubmit={handleSubmit}>
             <h1 className="perfil-title">Edite seu perfil</h1>
             <div className="perfil-field">
-              <label htmlFor="nome">Nome completo:</label>
+              <label htmlFor="nome">Nome:</label>
               <input
                 type="text"
                 id="nome"
@@ -105,16 +108,7 @@ const EditarMeuPerfilFreelancer = () => {
               />
             </div>
             <div className="perfil-field">
-              <label htmlFor="principalAtuacao">Principal atuação:</label>
-              <input
-                type="text"
-                id="principalAtuacao"
-                value={principalAtuacao}
-                onChange={(e) => setPrincipalAtuacao(e.target.value)}
-              />
-            </div>
-            <div className="perfil-field">
-              <label htmlFor="descricao">Escreva sobre você e suas experiências profissionais:</label>
+              <label htmlFor="descricao">Escreva sobre você:</label>
               <textarea
                 id="descricao"
                 value={descricao}
@@ -144,11 +138,11 @@ const EditarMeuPerfilFreelancer = () => {
               />
             </div>
             <div className="perfil-field">
-              <label htmlFor="descricaoProjeto">Dê uma breve descrição sobre o seu projeto:</label>
+              <label htmlFor="descricaoExperiencia">Dê uma breve descrição sobre sua experiência profissional:</label>
               <textarea
-                id="descricaoProjeto"
-                value={descricaoProjeto}
-                onChange={(e) => setDescricaoProjeto(e.target.value)}
+                id="descricaoExperiencia"
+                value={descricaoExperiencia}
+                onChange={(e) => setDescricaoExperiencia(e.target.value)}
               ></textarea>
             </div>
             <button className="perfil-button" type="submit">Salvar</button>

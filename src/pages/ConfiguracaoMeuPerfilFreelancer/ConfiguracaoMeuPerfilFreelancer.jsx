@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Navbar from '../../components/navbar/Navbar';
+import Navbar from '../../components/navbar2/Navbar2';
 import Footer from '../../components/footer/Footer';
 import { FaUser, FaCog, FaSignOutAlt, FaEdit } from 'react-icons/fa';
 import './ConfiguracaoMeuPerfilFreelancer.css';

@@ -4,7 +4,7 @@ import Footer from '../../components/footer/Footer';
 import './AreaContratante.css';
 
 const AreaDeAtuacaoFreelancer = () => {
-  const [ramo, setArea] = useState('');
+  const [ramo] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -26,11 +26,12 @@ const AreaDeAtuacaoFreelancer = () => {
               onChange={(e) => setRamo(e.target.value)}
               required
             >
-              <option value="">Ramo</option>
+              <option value=""></option>
               <option value="desenvolvimento-web">Desenvolvimento Web</option>
               <option value="design-grafico">Design Gráfico</option>
               <option value="redacao">Redação</option>
               <option value="marketing-digital">Marketing Digital</option>
+              <option value="marketing-digital">Outro</option>
             </select>
           </div>
           <button className="atuacao-button" type="submit">Criar</button>

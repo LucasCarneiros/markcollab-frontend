@@ -11,6 +11,7 @@ import ConfiguracaoMeuPerfilContratante from '../pages/ConfiguracaoMeuPerfilCont
 import AreaContratante from '../pages/AreaContratante/AreaContratante';
 import HomeContratante from '../pages/HomeContratante/HomeContratante';
 import PerfilContratante from '../pages/PerfilContratante/PerfilContratante';
+import CadastroContratante from '../pages/CadastroContratante/CadastroContratante';
 
 
 // Páginas freelancer
@@ -21,13 +22,16 @@ import AreaDeAtuacaoFreelancer from '../pages/AreaDeAtuacaoFreelancer/AreaDeAtua
 import BuscarProjetosFreelancerVisualizacao from '../pages/BuscarProjetosFreelancerVisualizacao/BuscarProjetosFreelancerVisualizacao';//ajusatr css
 import BuscarProjetosFreelancerPrincipal from '../pages/BuscarProjetosFreelancerPrincipal/BuscarProjetosFreelancerPrincipal';
 import HomeFreelancer from '../pages/HomeFreelancer/HomeFreelancer';
+import PerfilFreelancer from '../pages/PerfilFreelancer/PerfilFreelancer';
+import Cadastro from '../pages/Cadastro/Cadastro';
 
 // Páginas gerais
 import Home from '../pages/home/Home';
 import Sobre from '../pages/sobre/sobre';
 import Servicos from '../pages/serviços/Serviços';
 import Login from '../pages/login/Login';
-import Cadastro from '../pages/Cadastro/Cadastro';
+
+
 
 
 const AppRoutes = () => {
@@ -57,9 +61,9 @@ const AppRoutes = () => {
         <Route path="buscarProjetosFreelancerVisualizacao" element={<BuscarProjetosFreelancerVisualizacao />} />
         <Route path="buscarProjetosFreelancerPrincipal" element={<BuscarProjetosFreelancerPrincipal />} />
         <Route path="HomeFreelancer" element={<HomeFreelancer />} />
-        
-
-        
+        <Route path="PerfilFreelancer" element={<PerfilFreelancer />} />
+        <Route path="CadastroContratante" element={<CadastroContratante />} />
+      
       </Routes>
     </Router>
   );
