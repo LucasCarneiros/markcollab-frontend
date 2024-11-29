@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import Navbar from '../../components/navbar2/Navbar2';
 import Footer from '../../components/footer/Footer';
-import { FaUser, FaCog, FaSignOutAlt, FaEdit } from 'react-icons/fa';
 import './ConfiguracaoMeuPerfilFreelancer.css';
 import PopUpSalvarInfos from '../../components/PopUpSalvarInfos/PopUpSalvarInfos';  // Importando o PopUpSalvarInfos
 import PopUpSairDaConta from '../../components/PopUpSairDaConta/PopUpSairDaConta'; // Importando o PopUpSairDaConta
+import { Link } from 'react-router-dom';
 
 const ConfiguracaoMeuPerfilFreelancer = () => {
   const [nome, setNome] = useState('');
-  const [cidade, setSobrenome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [telefone, setTelefone] = useState('');
@@ -24,8 +23,7 @@ const ConfiguracaoMeuPerfilFreelancer = () => {
     setShowPopUpSalvar(true);
 
     // Implementar a lógica para salvar as alterações do perfil
-    console.log('Nome:', nome);
-    console.log('Sobrenome:', sobrenome);
+    console.log('Nome completo:', nome);
     console.log('Email:', email);
     console.log('Senha:', senha);
     console.log('Telefone:', telefone);
@@ -52,56 +50,38 @@ const ConfiguracaoMeuPerfilFreelancer = () => {
   return (
     <div>
       <Navbar />
+       {/* Navbar */}
+       <nav className="navbar">
+        <ul className="navbar-list">
+          <li>
+            <Link to='/PerfilFreelancer'>Meu Perfil</Link>
+          </li>
+          {/* Link para Editar Perfil */}
+          <li>
+            <Link to='/EditarMeuPerfilFreelancer'>Editar Perfil</Link>
+          </li>
+          {/* Link para Configurações */}
+          <li>
+            <Link to='/ConfiguracaoMeuPerfilFreelancer'>Configurações</Link>
+          </li>
+          {/* Link "Sair" que agora abre o pop-up */}
+          <li>
+            <Link to="#" onClick={handleShowPopUpSair}>Sair</Link>
+          </li>
+        </ul>
+      </nav>
       <div className="configuracao-container">
-        <aside className="configuracao-sidebar">
-          <nav className="configuracao-nav">
-            <ul>
-              <li>
-                <a href="/meu-perfil">
-                  <FaUser className="configuracao-icon" />
-                  Meu Perfil
-                </a>
-              </li>
-              <li>
-                <a href="/editar-perfil">
-                  <FaEdit className="configuracao-icon" />
-                  Editar Perfil
-                </a>
-              </li>
-              <li>
-                <a href="/configuracoes">
-                  <FaCog className="configuracao-icon" />
-                  Configurações
-                </a>
-              </li>
-              <li>
-                <a href="#" onClick={handleShowPopUpSair}> {/* Ação para abrir o pop-up de sair */}
-                  <FaSignOutAlt className="configuracao-icon" />
-                  Sair da Conta
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </aside>
+       
         <main className="configuracao-main">
           <form className="configuracao-form" onSubmit={handleSave}>
             <h1 className="configuracao-title">Configurações do Freelancer</h1>
             <div className="configuracao-field">
-              <label htmlFor="nome">Nome:</label>
+              <label htmlFor="nome">Nome Completo:</label>
               <input
                 type="text"
                 id="nome"
                 value={nome}
                 onChange={(e) => setNome(e.target.value)}
-              />
-            </div>
-            <div className="configuracao-field">
-              <label htmlFor="cidade">Sobrenome:</label>
-              <input
-                type="text"
-                id="Sobrenome"
-                value={cidade}
-                onChange={(e) => setSobrenome(e.target.value)}
               />
             </div>
             <div className="configuracao-field">

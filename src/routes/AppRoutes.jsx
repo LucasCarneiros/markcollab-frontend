@@ -24,6 +24,7 @@ import BuscarProjetosFreelancerPrincipal from '../pages/BuscarProjetosFreelancer
 import HomeFreelancer from '../pages/HomeFreelancer/HomeFreelancer';
 import PerfilFreelancer from '../pages/PerfilFreelancer/PerfilFreelancer';
 import Cadastro from '../pages/Cadastro/Cadastro';
+import PropostaFreelancer from '../pages/PropostaFreelancer/PropostaFreelancer';
 
 // Páginas gerais
 import Home from '../pages/home/Home';
@@ -63,6 +64,7 @@ const AppRoutes = () => {
         <Route path="HomeFreelancer" element={<HomeFreelancer />} />
         <Route path="PerfilFreelancer" element={<PerfilFreelancer />} />
         <Route path="CadastroContratante" element={<CadastroContratante />} />
+        <Route path='PropostaFreelancer' element={<PropostaFreelancer/>}/>
       
       </Routes>
     </Router>

@@ -4,7 +4,7 @@ import Footer from '../../components/footer/Footer';
 import './AreaContratante.css';
 import { useNavigate } from 'react-router-dom'; // Importando o hook useNavigate
 
-const AreaDeAtuacaoFreelancer = () => {
+const AreaContratante = () => {
   const [ramo, setRamo] = useState('');
   const navigate = useNavigate(); // Hook para navegação
 
@@ -46,4 +46,4 @@ const AreaDeAtuacaoFreelancer = () => {
   );
 };
 
-export default AreaDeAtuacaoFreelancer;
+export default AreaContratante;

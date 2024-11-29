@@ -118,3 +118,28 @@
     padding: 10px;
   }
 }
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: center;
+  background-color: #2C65F6;
+  padding: 10px 0;
+ 
+}
+
+.navbar-list {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-list li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.navbar-list li a:hover {
+  color: #00bcd4;
+}

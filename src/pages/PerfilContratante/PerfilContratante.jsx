@@ -28,24 +28,26 @@ function PerfilContratante() {
   return (
     <div>
       <Navbar />
-      {/* Navbar */}
-      <nav className="navbar">
+     {/* Navbar */}
+     <nav className="navbar">
         <ul className="navbar-list">
           <li>
             <Link to="/PerfilContratante">Meu Perfil</Link>
           </li>
+          {/* Link para Editar Perfil */}
           <li>
-            <Link to="/EditarPerfilContratante">Editar Perfil</Link> {/* Corrigido o link para Editar Perfil */}
+            <Link to="/EditarPerfilContratante">Editar Perfil</Link>
           </li>
+          {/* Link para Configurações */}
           <li>
             <Link to="/ConfiguracaoMeuPerfilContratante">Configurações</Link>
           </li>
+          {/* Link "Sair" que agora abre o pop-up */}
           <li>
-            <Link to="#" onClick={handleOpenPopUp}>Sair</Link> {/* Link para abrir o pop-up */}
+            <Link to="#" onClick={handleShowPopUpSair}>Sair</Link>
           </li>
         </ul>
       </nav>
-
       {/* Conteúdo da página */}
       <div className="conteudo">
         {/* Header Perfil */}

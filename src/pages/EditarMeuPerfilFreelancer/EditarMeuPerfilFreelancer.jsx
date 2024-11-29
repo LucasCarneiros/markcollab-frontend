@@ -4,7 +4,7 @@ import Footer from '../../components/footer/Footer';
 import PopUpSalvarInfos from '../../components/PopUpSalvarInfos/PopUpSalvarInfos'; // Importando o pop-up de salvar
 import PopUpSairDaConta from '../../components/PopUpSairDaConta/PopUpSairDaConta'; // Importando o pop-up de sair
 import './EditarMeuPerfilFreelancer.css';
-import { FaUser, FaCog, FaSignOutAlt, FaEdit } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const EditarMeuPerfilFreelancer = () => {
   const [nome, setNome] = useState('');
@@ -51,32 +51,27 @@ const EditarMeuPerfilFreelancer = () => {
   return (
     <div>
       <Navbar />
+       {/* Navbar */}
+       <nav className="navbar">
+        <ul className="navbar-list">
+          <li>
+            <Link to='/PerfilFreelancer'>Meu Perfil</Link>
+          </li>
+          {/* Link para Editar Perfil */}
+          <li>
+            <Link to='/EditarMeuPerfilFreelancer'>Editar Perfil</Link>
+          </li>
+          {/* Link para Configurações */}
+          <li>
+            <Link to='/ConfiguracaoMeuPerfilFreelancer'>Configurações</Link>
+          </li>
+          {/* Link "Sair" que agora abre o pop-up */}
+          <li>
+            <Link to="#" onClick={handleShowPopUpSair}>Sair</Link>
+          </li>
+        </ul>
+      </nav>
       <div className="perfil-container">
-        <aside className="configuracao-sidebar">
-          <nav className="configuracao-nav">
-            <ul>
-              <li>
-                <a href="#"><FaUser className="configuracao-icon" />Meu Perfil</a>
-                
-              </li>
-              <li>
-                <a href="#"><FaEdit className="configuracao-icon" />
-                Editar Perfil
-                </a>
-              </li>
-              <li>
-                <a href="#"><FaCog className="configuracao-icon" />Configurações</a>
-                
-              </li>
-              <li>
-                <a href="#" onClick={handleShowPopUpSair}>{/* Ação para abrir o pop-up de sair */}
-                <FaSignOutAlt className="configuracao-icon" /> 
-                  Sair
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </aside>
         <main className="perfil-main">
           <form className="perfil-form" onSubmit={handleSubmit}>
             <h1 className="perfil-title">Edite seu perfil</h1>

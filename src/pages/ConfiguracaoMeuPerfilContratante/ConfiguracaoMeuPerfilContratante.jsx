@@ -1,83 +1,81 @@
 import React, { useState } from 'react';
-import './ConfiguracaoMeuPerfilContratante.css';
-import { FaUser, FaCog, FaSignOutAlt, FaEdit } from 'react-icons/fa';
 import Navbar from '../../components/navbar3/navbar3';
 import Footer from '../../components/footer/Footer';
-import PopUpSalvarInfos from '../../components/PopUpSalvarInfos/PopUpSalvarInfos'; // Importando o pop-up de salvar
-import PopUpSairDaConta from '../../components/PopUpSairDaConta/PopUpSairDaConta'; // Importando o pop-up de sair
+import './ConfiguracaoMeuPerfilContratante.css';
+import PopUpSalvarInfos from '../../components/PopUpSalvarInfos/PopUpSalvarInfos';  // Importando o PopUpSalvarInfos
+import PopUpSairDaConta from '../../components/PopUpSairDaConta/PopUpSairDaConta'; // Importando o PopUpSairDaConta
+import { Link } from 'react-router-dom';
 
-const ConfiguracaoMeuPerfilContratante = () => {
+const ConfiguracaoMeuPerfilFreelancer = () => {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
-  const [endereco, setEndereco] = useState('');
-  const [contato, setContato] = useState('');
   const [senha, setSenha] = useState('');
-  const [showPopUpSalvar, setShowPopUpSalvar] = useState(false); // Estado para controlar o pop-up de salvar
-  const [showPopUpSair, setShowPopUpSair] = useState(false); // Estado para controlar o pop-up de sair
+  const [telefone, setTelefone] = useState('');
+  const [endereco, setEndereco] = useState('');
+  
+  const [showPopUpSalvar, setShowPopUpSalvar] = useState(false);  // Controle para mostrar o pop-up de salvar
+  const [showPopUpSair, setShowPopUpSair] = useState(false); // Controle para mostrar o pop-up de sair
 
+  // Função que é chamada ao clicar em "Salvar"
   const handleSave = (event) => {
     event.preventDefault();
-    // Lógica de salvar os dados do perfil
+    // Exibir o pop-up quando o usuário clicar em "Salvar"
+    setShowPopUpSalvar(true);
+
+    // Implementar a lógica para salvar as alterações do perfil
     console.log('Nome:', nome);
     console.log('Email:', email);
-    console.log('Endereço:', endereco);
-    console.log('Contato:', contato);
     console.log('Senha:', senha);
-
-    // Mostrar o pop-up de salvar após salvar os dados
-    setShowPopUpSalvar(true);
+    console.log('Telefone:', telefone);
+    console.log('Endereço:', endereco);
+    
+    
   };
 
+  // Função para mostrar o pop-up de sair
   const handleShowPopUpSair = () => {
-    setShowPopUpSair(true); // Mostra o pop-up de sair quando clicar no "Sair da Conta"
+    setShowPopUpSair(true); // Exibe o pop-up de sair
   };
 
+  // Função para fechar o pop-up de salvar
   const handleClosePopUpSalvar = () => {
-    setShowPopUpSalvar(false); // Fecha o pop-up de salvar
+    setShowPopUpSalvar(false);
   };
 
+  // Função para fechar o pop-up de sair
   const handleClosePopUpSair = () => {
-    setShowPopUpSair(false); // Fecha o pop-up de sair
+    setShowPopUpSair(false);
   };
 
   return (
     <div>
       <Navbar />
-      <div className="perfil-container">
-        <aside className="perfil-sidebar">
-          <nav className="perfil-nav">
-            <ul>
-              <li>
-                <a href="/meu-perfil">
-                  <FaUser className="perfil-icon" />
-                  Meu Perfil
-                </a>
-              </li>
-              <li>
-                <a href="/editar-perfil">
-                  <FaEdit className="perfil-icon" />
-                  Editar Perfil
-                </a>
-              </li>
-              <li>
-                <a href="/configuracoes">
-                  <FaCog className="perfil-icon" />
-                  Configurações
-                </a>
-              </li>
-              <li>
-                <a href="#" onClick={handleShowPopUpSair}> {/* Ação para abrir o pop-up de sair */}
-                  <FaSignOutAlt className="perfil-icon" />
-                  Sair da Conta
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </aside>
-        <main className="perfil-main">
-          <form className="perfil-form" onSubmit={handleSave}>
-            <h1 className="perfil-title">Configurações do Perfil da Empresa</h1>
-            <div className="perfil-field">
+       {/* Navbar */}
+       <nav className="navbar">
+        <ul className="navbar-list">
+          <li>
+            <Link to='/PerfilFreelancer'>Meu Perfil</Link>
+          </li>
+          {/* Link para Editar Perfil */}
+          <li>
+            <Link to='/EditarMeuPerfilFreelancer'>Editar Perfil</Link>
+          </li>
+          {/* Link para Configurações */}
+          <li>
+            <Link to='/ConfiguracaoMeuPerfilFreelancer'>Configurações</Link>
+          </li>
+          {/* Link "Sair" que agora abre o pop-up */}
+          <li>
+            <Link to="#" onClick={handleShowPopUpSair}>Sair</Link>
+          </li>
+        </ul>
+      </nav>
+      <div className="configuracao-container">
+       
+        <main className="configuracao-main">
+          <form className="configuracao-form" onSubmit={handleSave}>
+            <h1 className="configuracao-title">Configurações do Freelancer</h1>
+            <div className="configuracao-field">
               <label htmlFor="nome">Nome:</label>
               <input
                 type="text"
@@ -86,7 +84,7 @@ const ConfiguracaoMeuPerfilContratante = () => {
                 onChange={(e) => setNome(e.target.value)}
               />
             </div>
-            <div className="perfil-field">
+            <div className="configuracao-field">
               <label htmlFor="email">Email:</label>
               <input
                 type="email"
@@ -95,25 +93,7 @@ const ConfiguracaoMeuPerfilContratante = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div className="perfil-field">
-              <label htmlFor="endereco">Endereço:</label>
-              <input
-                type="text"
-                id="endereco"
-                value={endereco}
-                onChange={(e) => setEndereco(e.target.value)}
-              />
-            </div>
-            <div className="perfil-field">
-              <label htmlFor="contato">Contato:</label>
-              <input
-                type="tel"
-                id="contato"
-                value={contato}
-                onChange={(e) => setContato(e.target.value)}
-              />
-            </div>
-            <div className="perfil-field">
+            <div className="configuracao-field">
               <label htmlFor="senha">Senha:</label>
               <input
                 type="password"
@@ -122,15 +102,26 @@ const ConfiguracaoMeuPerfilContratante = () => {
                 onChange={(e) => setSenha(e.target.value)}
               />
             </div>
-            <div className="perfil-field">
-              <label htmlFor="foto">Foto de perfil:</label>
+            <div className="configuracao-field">
+              <label htmlFor="telefone">Telefone:</label>
               <input
-                type="file"
-                id="foto"
-                className="perfil-upload-button"
+                type="tel"
+                id="telefone"
+                value={telefone}
+                onChange={(e) => setTelefone(e.target.value)}
               />
             </div>
-            <button className="perfil-button" type="submit">Salvar</button>
+            <div className="configuracao-field">
+              <label htmlFor="endereco">Endereço:</label>
+              <input
+                type="text"
+                id="endereco"
+                value={endereco}
+                onChange={(e) => setEndereco(e.target.value)}
+              />
+            </div>
+          
+            <button className="configuracao-button" type="submit">Salvar</button>
           </form>
         </main>
       </div>
@@ -145,4 +136,4 @@ const ConfiguracaoMeuPerfilContratante = () => {
   );
 };
 
-export default ConfiguracaoMeuPerfilContratante;
+export default ConfiguracaoMeuPerfilFreelancer;

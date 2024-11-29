@@ -1,38 +1,58 @@
 import React, { useState } from 'react';
 import './CadastroContratante.css';
-import { useNavigate } from 'react-router-dom'; // Importando o hook useNavigate
+import { Link, useNavigate } from 'react-router-dom'; // Importando o useNavigate
 
-const Cadastro = () => {
+const CadastroContratante = () => {
+  const navigate = useNavigate(); // Hook para navegação
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [telefone, setTelefone] = useState('');
   const [senha, setSenha] = useState('');
 
-  const navigate = useNavigate(); // Hook para navegação
-
   const handleCadastro = (event) => {
     event.preventDefault();
-
-    // Simular lógica de cadastro ou validação (se necessário)
+    // Implementar a lógica de cadastro aqui, se necessário
     console.log('Nome:', nome);
     console.log('Email:', email);
     console.log('Telefone:', telefone);
     console.log('Senha:', senha);
 
-    // Redirecionar para a tela "AreaContratante" após o cadastro
-    navigate('/AreaContratante');
+    // Após o cadastro, redirecionar para a tela de HomeFreelancer
+    navigate('/HomeContratante');
   };
 
   return (
     <div className="cadastro-container">
       <div className="cadastro-left">
         {/* Espaço reservado para conteúdo ou branding */}
+        <Link to="/" className="login-arrow" style={{ cursor: "pointer" }}>
+          <svg
+            width="30"
+            height="30"
+            viewBox="0 0 59 47"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M54.918 43.0015L34.2157 23.7779L54.918 4.55435"
+              stroke="white"
+              strokeWidth="5.51686"
+              strokeLinecap="square"
+            />
+            <path
+              d="M25.3359 43.0015L4.63364 23.7779L25.3359 4.55435"
+              stroke="white"
+              strokeWidth="5.51686"
+              strokeLinecap="square"
+            />
+          </svg>
+        </Link>
       </div>
       <div className="cadastro-right">
         <form className="cadastro-form" onSubmit={handleCadastro}>
           <h1 className="cadastro-title">Cadastre-se</h1>
           <div className="cadastro-field">
-            <label htmlFor="nome">Nome da Empresa:</label>
+            <label htmlFor="nome">Nome da empresa:</label>
             <input
               type="text"
               id="nome"
@@ -71,7 +91,10 @@ const Cadastro = () => {
               required
             />
           </div>
-          <button className="cadastro-button" type="submit">
+          <button 
+            className="cadastro-button" 
+            type="submit" // Botão agora é de submit
+          >
             Criar Conta
           </button>
         </form>
@@ -80,4 +103,4 @@ const Cadastro = () => {
   );
 };
 
-export default Cadastro;
+export default CadastroContratante;

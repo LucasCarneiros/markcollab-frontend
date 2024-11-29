@@ -1,6 +1,6 @@
 .perfil-container {
   display: flex;
-  height: 130vh;
+  height: 100vh;
   background-color: #ffffff;
 }
 
@@ -9,11 +9,13 @@
   width: 250px;
   padding: 20px;
   box-shadow: 2px 0 5px rgb(255, 255, 255, 0.1);
+  
 }
 
 .perfil-nav ul {
   list-style-type: none;
   padding: 0;
+  
 }
 
 .perfil-nav ul li {
@@ -118,11 +120,28 @@
     
   }
 }
-.configuracao-nav {
-  background-color: #ffffff;
-  margin-right: 100px; /* Remove margens desnecessárias */
-  padding: 0; /* Remove preenchimento desnecessário */
-  position: sticky; /* Deixa a navbar fixa no topo */
-  top: 0; /* Garantir que está no topo */
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: center;
+  background-color: #2C65F6;
+  padding: 10px 0;
  
+}
+
+.navbar-list {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-list li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.navbar-list li a:hover {
+  color: #00bcd4;
 }
