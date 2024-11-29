@@ -3,6 +3,7 @@ import Navbar from '../../components/navbar3/navbar3';
 import Footer from '../../components/footer/Footer';
 import PopUpAceitarProposta from '../../components/PopUpAceitarProposta/PopUpAceitarProposta'; // PopUpAceitarProposta
 import PopUpRejeitarProposta from '../../components/PopUpRejeitarProposta/PopUpRejeitarProposta'; // Importando o PopUpRejeitarProposta
+import { Link } from 'react-router-dom'; // Importando o Link do React Router
 import './VisualizacaoMeusProjetosContratante.css';
 
 const VisualizacaoMeusProjetosContratante = () => {
@@ -34,7 +35,9 @@ const VisualizacaoMeusProjetosContratante = () => {
       <Navbar />
       <div className="visualizacao-container">
         <header className="visualizacao-header">
-          <a href="/meus-projetos-contratante" className="visualizacao-backlink">Voltar para todos os projetos</a>
+          <Link to="/meusprojetoscontratante" className="visualizacao-backlink">
+            Voltar para todos os projetos
+          </Link>
           <h1 className="visualizacao-title">Visualização do Projeto</h1>
         </header>
         <div className="visualizacao-details">

@@ -2,15 +2,19 @@ import React, { useState } from 'react';
 import Navbar from '../../components/navbar2/Navbar2';
 import Footer from '../../components/footer/Footer';
 import './AreaContratante.css';
+import { useNavigate } from 'react-router-dom'; // Importando o hook useNavigate
 
 const AreaDeAtuacaoFreelancer = () => {
-  const [ramo] = useState('');
+  const [ramo, setRamo] = useState('');
+  const navigate = useNavigate(); // Hook para navegação
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // Implementar a lógica para enviar os dados aqui
     console.log('Ramo:', ramo);
 
+    // Redirecionar para a tela "HomeContratante" após a seleção
+    navigate('/HomeContratante');
   };
 
   return (
@@ -31,7 +35,7 @@ const AreaDeAtuacaoFreelancer = () => {
               <option value="design-grafico">Design Gráfico</option>
               <option value="redacao">Redação</option>
               <option value="marketing-digital">Marketing Digital</option>
-              <option value="marketing-digital">Outro</option>
+              <option value="outro">Outro</option>
             </select>
           </div>
           <button className="atuacao-button" type="submit">Criar</button>

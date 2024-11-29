@@ -28,31 +28,31 @@ function PerfilContratante() {
   return (
     <div>
       <Navbar />
-       {/* Navbar */}
-       <nav className="navbar">
+      {/* Navbar */}
+      <nav className="navbar">
         <ul className="navbar-list">
           <li>
-          <Link to='/PerfilFreelancer'>Meu Perfil</Link>
+            <Link to="/PerfilContratante">Meu Perfil</Link>
           </li>
           <li>
-            <Link to=''>Editar Perfil</Link>
+            <Link to="/EditarPerfilContratante">Editar Perfil</Link> {/* Corrigido o link para Editar Perfil */}
           </li>
           <li>
-          <Link to='/ConfiguracaoMeuPerfilFreelancer'>Configurações</Link>
+            <Link to="/ConfiguracaoMeuPerfilContratante">Configurações</Link>
           </li>
           <li>
-          <Link to='/PerfilFreelancer'>Sair</Link>  
+            <Link to="#" onClick={handleOpenPopUp}>Sair</Link> {/* Link para abrir o pop-up */}
           </li>
-          
         </ul>
       </nav>
+
       {/* Conteúdo da página */}
       <div className="conteudo">
         {/* Header Perfil */}
         <header id="perfil" className="header-perfil">
           <img
             src="https://via.placeholder.com/150"
-            alt="Foto do freelancer"
+            alt="Foto da empresa"
             className="perfil-foto"
           />
           <div>
@@ -66,18 +66,20 @@ function PerfilContratante() {
             </div>
           </div>
         </header>
-        {/* Sobre Mim */}
+
+        {/* Sobre a empresa */}
         <section id="sobre-mim" className="sobre-mim">
           <h2>Sobre a empresa</h2>
           <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
           </p>
           <h3 className='h3-PerfilContratante'>Resumo da experiência profissional</h3>
           <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
           </p>
         </section>
-        {/* Portfólio */}
+
+        {/* Projetos finalizados */}
         <section id="portifolio" className="portifolio">
           <h2>Projetos finalizados</h2>
           <div className="projetos-grid">
@@ -88,22 +90,6 @@ function PerfilContratante() {
             <div className="projeto">
               <img src="https://via.placeholder.com/150" alt="Projeto 2" />
               <h3>Projeto 2</h3>
-            </div>
-            <div className="projeto">
-              <img src="https://via.placeholder.com/150" alt="Projeto 3" />
-              <h3>Projeto 3</h3>
-            </div>
-            <div className="projeto">
-              <img src="https://via.placeholder.com/150" alt="Projeto 4" />
-              <h3>Projeto 4</h3>
-            </div>
-            <div className="projeto">
-              <img src="https://via.placeholder.com/150" alt="Projeto 5" />
-              <h3>Projeto 5</h3>
-            </div>
-            <div className="projeto">
-              <img src="https://via.placeholder.com/150" alt="Projeto 6" />
-              <h3>Projeto 6</h3>
             </div>
           </div>
         </section>
@@ -124,9 +110,9 @@ function PerfilContratante() {
             </div>
           </div>
         </section>
-    
       </div>
-      <Footer /> 
+
+      <Footer />
 
       {/* PopUp Sair da Conta - Só será exibido se isPopUpOpen for true */}
       {isPopUpOpen && (
@@ -136,7 +122,7 @@ function PerfilContratante() {
           onConfirm={handleConfirmExit}
         />
       )}
-    </div> 
+    </div>
   );
 }
 

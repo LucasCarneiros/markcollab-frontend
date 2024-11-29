@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Importa o hook useNavigate
 import Navbar from '../../components/navbar2/Navbar2';
 import Footer from '../../components/footer/Footer';
 import './MeusProjetosFreelancer.css';
 
 const MeusProjetosFreelancer = () => {
   const [status, setStatus] = useState('');
+  const navigate = useNavigate(); // Inicializa o hook de navegação
 
   const handleStatusChange = (event) => {
     setStatus(event.target.value);
+  };
+
+  // Função para navegação
+  const encontrarTrabalhos = () => {
+    navigate('/BuscarProjetosFreelancerPrincipal');
   };
 
   return (
@@ -28,10 +35,16 @@ const MeusProjetosFreelancer = () => {
             <option value="em-progresso">Em progresso</option>
             <option value="analisando">Analisando propostas</option>
           </select>
-          <button className="meusprojetosfreelancer-button">
-          Encontrar Trabalhos
+          
+          {/* Botão que usa a navegação */}
+          <button
+            className="meusprojetosfreelancer-button"
+            onClick={encontrarTrabalhos}
+          >
+            Encontrar Trabalhos
           </button>
         </div>
+        
         <div className="meusprojetosfreelancer-list">
           {[1, 2, 3].map((project) => (
             <div key={project} className="meusprojetosfreelancer-item">

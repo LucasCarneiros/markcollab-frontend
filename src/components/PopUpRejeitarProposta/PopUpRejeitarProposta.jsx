@@ -37,6 +37,7 @@ const PopUpRejeitarProposta = ({ onClose }) => {
             placeholder="Digite seu comentário aqui..."
           />
           <div className="popup-buttons">
+            {/* Botões confirm e cancelar */}
             <button className="popup-button confirmar" onClick={handleConfirmar}>
               Confirmar
             </button>

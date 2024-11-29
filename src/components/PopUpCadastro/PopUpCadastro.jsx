@@ -1,7 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom"; // Importar o hook para navegação
 import "./PopUpCadastro.css"; // CSS atualizado
 
-const PopUpCadastro = ({ isOpen, onFreelancer, onContratante, onClose }) => {
+const PopUpCadastro = ({ isOpen, onClose }) => {
+  const navigate = useNavigate(); // Criar a função de navegação
+
   // Se o pop-up não estiver aberto, ele não será renderizado
   if (!isOpen) return null;
 
@@ -10,6 +13,16 @@ const PopUpCadastro = ({ isOpen, onFreelancer, onContratante, onClose }) => {
     if (event.target === event.currentTarget) {
       onClose();
     }
+  };
+
+  // Navegar para a tela de Cadastro
+  const handleFreelancerClick = () => {
+    navigate("/Cadastro"); // Redireciona para a página de Cadastro
+  };
+
+  // Navegar para a tela de CadastroContratante
+  const handleContratanteClick = () => {
+    navigate("/CadastroContratante"); // Redireciona para a página de CadastroContratante
   };
 
   return (
@@ -23,10 +36,16 @@ const PopUpCadastro = ({ isOpen, onFreelancer, onContratante, onClose }) => {
         <div className="popup-body">
           <h2>VOCÊ É FREELANCER OU CONTRATANTE?</h2>
           <div className="popup-buttons">
-            <button className="popup-button freelancer" onClick={onFreelancer}>
+            <button
+              className="popup-button freelancer"
+              onClick={handleFreelancerClick}
+            >
               Freelancer
             </button>
-            <button className="popup-button contratante" onClick={onContratante}>
+            <button
+              className="popup-button contratante"
+              onClick={handleContratanteClick}
+            >
               Contratante
             </button>
           </div>
