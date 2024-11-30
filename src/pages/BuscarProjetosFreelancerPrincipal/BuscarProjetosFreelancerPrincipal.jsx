@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from '../../components/navbar2/Navbar2';
 import Footer from '../../components/footer/Footer';
 import './BuscarProjetosFreelancerPrincipal.css';
+import { Link } from 'react-router-dom';
 
 const BuscarProjetosFreelancerPrincipal = () => {
   const [busca, setBusca] = useState('');
@@ -39,7 +40,7 @@ const BuscarProjetosFreelancerPrincipal = () => {
                 <p className="resultado-description">
                   Descrição do projeto {result}. Aqui está um breve resumo sobre este projeto.
                 </p>
-                <button className="resultado-button">Fazer uma proposta</button>
+                <Link to='/PropostaFreelancer'button className="resultado-button">Fazer uma proposta</Link>
               </div>
             ))}
           </div>

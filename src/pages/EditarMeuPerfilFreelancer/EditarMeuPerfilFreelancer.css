@@ -1,123 +1,75 @@
-.perfil-container {
+.editar-perfil-container {
   display: flex;
-  height: 100vh;
-  background-color: #ffffff;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-.perfil-sidebar {
-  background-color: #ffffff;
-  width: 250px;
+.editar-perfil-content {
+  flex: 1;
   padding: 20px;
-  box-shadow: 2px 0 5px rgb(255, 255, 255, 0.1);
-  
-}
-
-.perfil-nav ul {
-  list-style-type: none;
-  padding: 0;
-  
-}
-
-.perfil-nav ul li {
-  margin-bottom: 20px;
-}
-
-.perfil-nav ul li a {
-  text-decoration: none;
-  font-size: 1rem;
-  color: #2C65F6;
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  border-radius: 20px;
-  transition: background-color 0.3s;
-}
-
-.perfil-nav ul li a:hover {
-  background-color: #e0e0e0;
-}
-
-.perfil-icon {
-  margin-right: 10px;
-}
-
-
-.perfil-form {
-  background-color: #fff;
-  padding: 5px;
-  border-radius: 20px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-  max-width: 600px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  margin: 0 auto; /* Centraliza o conteúdo */
-  
-}
-
-.perfil-title {
-  font-size: 1.5rem;
-  color: #2C65F6;
+  max-width: 800px;
+  margin: auto;
   text-align: center;
+}
+
+.editar-perfil-content h1 {
+  color: #2C65F6;
   margin-bottom: 20px;
 }
 
-.perfil-field {
+.editar-perfil-form {
   display: flex;
   flex-direction: column;
+  gap: 20px;
 }
 
-.perfil-field label {
-  margin-bottom: 5px;
+.editar-perfil-form label {
+  text-align: left;
+  font-size: 1rem;
 }
 
-.perfil-field input,
-.perfil-field textarea,
-.perfil-field select {
+.editar-perfil-form input,
+.editar-perfil-form select,
+.editar-perfil-form textarea {
+  width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  font-size: 0.875rem;
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  font-size: 1rem;
 }
 
-.perfil-button {
+.editar-perfil-form textarea {
+  resize: none;
+  height: 80px;
+}
+
+.salvar-button {
+  padding: 10px 20px;
   background-color: #007bff;
   color: white;
-  padding: 10px 20px;
   border: none;
-  border-radius: 20px;
-  cursor: pointer;
+  border-radius: 50px;
   font-size: 1rem;
+  cursor: pointer;
 }
 
-.perfil-button:hover {
-  background-color: #0056b3;
+.salvar-button:hover {
+  background-color: #0022aa;
 }
 
+/* Responsividade */
 @media (max-width: 768px) {
-  .perfil-container {
-    flex-direction: column;
-  }
-
-  .perfil-sidebar {
-    width: 100%;
-    box-shadow: none;
-    margin-bottom: 20px;
-  }
-
-  .perfil-main {
-    width: 100%;
-    height: 400vh;
-  }
-
-  .perfil-title {
-    font-size: 1.2rem;
-  }
-
-  .perfil-form {
+  .editar-perfil-content {
     padding: 10px;
-    
+  }
+
+  .editar-perfil-form label {
+    font-size: 0.9rem;
+  }
+
+  .salvar-button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
   }
 }
 /* Navbar */

@@ -1,144 +1,154 @@
 import React, { useState } from 'react';
 import Navbar from '../../components/navbar3/navbar3';
 import Footer from '../../components/footer/Footer';
+import PopUpSairDaConta from '../../components/PopUpSairDaConta/PopUpSairDaConta'; // Pop-up de sair
+import PopUpSalvarInfos from '../../components/PopUpSalvarInfos/PopUpSalvarInfos'; // Pop-up de salvar
 import './EditarPerfilContratante.css';
 import { Link } from 'react-router-dom';
-import PopUpSalvarInfos from '../../components/PopUpSalvarInfos/PopUpSalvarInfos'; // Importando o pop-up de salvar
-import PopUpSairDaConta from '../../components/PopUpSairDaConta/PopUpSairDaConta'; // Importando o pop-up de sair
 
 const EditarPerfilContratante = () => {
-  const [nome, setNome] = useState('');
-  const [usuario, setUsuario] = useState('');
-  const [ramo, setRamo] = useState('');
-  const [caracteristicas, setCaracteristicas] = useState(''); // Corrigido: nome do estado
-  const [descricao, setDescricao] = useState('');
-  const [portfolios, setPortfolios] = useState(null);
+  const [formData, setFormData] = useState({
+    nome: '',
+    usuario: '',
+    ramo: '',
+    sobre: '',
+    habilidades: '',
+    portfolio: null,
+  });
 
-  const [showPopUpSalvar, setShowPopUpSalvar] = useState(false); // Estado para controlar a visibilidade do pop-up de salvar
-  const [showPopUpSair, setShowPopUpSair] = useState(false); // Estado para controlar a visibilidade do pop-up de sair
+const [isPopUpSairOpen, setIsPopUpSairOpen] = useState(false);
+const [isPopUpSalvarOpen, setIsPopUpSalvarOpen] = useState(false);
 
-  // Função para envio do formulário
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Implementar a lógica para salvar as alterações do perfil
-    console.log('Nome da empresa:', nome);
-    console.log('Usuário:', usuario);
-    console.log('Ramo:', ramo);
-    console.log('Características:', caracteristicas); // Corrigido: estado correto
-    console.log('Descrição:', descricao);
-    console.log('Portfólios:', portfolios);
-
-    // Mostrar o pop-up após o envio do formulário
-    setShowPopUpSalvar(true);
+  // Função para controlar a alteração dos inputs
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+    if (name === 'portfolio') {
+      setFormData({ ...formData, [name]: files[0] });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
-  // Função para exibir o pop-up de sair
-  const handleShowPopUpSair = () => {
-    setShowPopUpSair(true); // Exibe o pop-up de sair
+  // Função para salvar as informações
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Dados salvos:', formData);
+    setIsPopUpSalvarOpen(true); // Exibe o pop-up de salvar ao enviar
   };
 
-  // Função para fechar o pop-up de salvar
-  const handleClosePopUpSalvar = () => {
-    setShowPopUpSalvar(false);
-  };
-
-  // Função para fechar o pop-up de sair
-  const handleClosePopUpSair = () => {
-    setShowPopUpSair(false);
+  // Função para abrir o pop-up de sair
+  const handleOpenPopUpSair = (e) => {
+    e.preventDefault(); // Evita o redirecionamento do link
+    setIsPopUpSairOpen(true);
   };
 
   return (
-    <div>
+    <div className="editar-perfil-container">
       <Navbar />
-      {/* Navbar */}
       <nav className="navbar">
         <ul className="navbar-list">
           <li>
-            <Link to="/PerfilContratante">Meu Perfil</Link>
+            <Link to='/PerfilContratante'>Meu Perfil</Link>
           </li>
-          {/* Link para Editar Perfil */}
           <li>
-            <Link to="/EditarPerfilContratante">Editar Perfil</Link>
+            <Link to='/EditarPerfilContratante'>Editar Perfil</Link>
           </li>
-          {/* Link para Configurações */}
           <li>
-            <Link to="/ConfiguracaoMeuPerfilContratante">Configurações</Link>
+            <Link to='/ConfiguracaoMeuPerfilContratante'>Configurações</Link>
           </li>
-          {/* Link "Sair" que agora abre o pop-up */}
           <li>
-            <Link to="#" onClick={handleShowPopUpSair}>Sair</Link>
+          <Link to ="#"button onClick={handleOpenPopUpSair}>Sair</Link>
           </li>
         </ul>
       </nav>
-      <div className="perfil-container">
-        <main className="perfil-main">
-          <form className="perfil-form" onSubmit={handleSubmit}>
-            <h1 className="perfil-title">Edite seu perfil</h1>
-            <div className="perfil-field">
-              <label htmlFor="nome">Nome da Empresa:</label>
-              <input
-                type="text"
-                id="nome"
-                value={nome}
-                onChange={(e) => setNome(e.target.value)}
-              />
-            </div>
-            <div className="perfil-field">
-              <label htmlFor="usuario">Usuário:</label>
-              <input
-                type="text"
-                id="usuario"
-                value={usuario}
-                onChange={(e) => setUsuario(e.target.value)}
-              />
-            </div>
-            <div className="perfil-field">
-              <label htmlFor="ramo">Ramo profissional:</label>
-              <input
-                type="text"
-                id="ramo"
-                value={ramo}
-                onChange={(e) => setRamo(e.target.value)}
-              />
-            </div>
-            <div className="perfil-field">
-              <label htmlFor="caracteristicas">
-                Características que você procura em um profissional:
-              </label>
-              <input
-                type="text"
-                id="caracteristicas"
-                value={caracteristicas}
-                onChange={(e) => setCaracteristicas(e.target.value)}
-              />
-            </div>
-            <div className="perfil-field">
-              <label htmlFor="descricao">Explique um pouco sobre a empresa:</label>
-              <textarea
-                id="descricao"
-                value={descricao}
-                onChange={(e) => setDescricao(e.target.value)}
-              ></textarea>
-            </div>
-            <div className="perfil-field">
-              <label htmlFor="portfolios">Portfólio de projetos:</label>
-              <input
-                type="file"
-                id="portfolios"
-                onChange={(e) => setPortfolios(e.target.files[0])}
-              />
-            </div>
-            <button className="perfil-button" type="submit">Salvar</button>
-          </form>
-        </main>
+      <div className="editar-perfil-content">
+        <h1>Edite seu perfil</h1>
+        <form className="editar-perfil-form" onSubmit={handleSubmit}>
+          <label>
+            Nome:
+            <input
+              type="text"
+              name="nome"
+              value={formData.nome}
+              onChange={handleChange}
+              placeholder="Digite o nome da empresa:"
+              required
+            />
+          </label>
+          <label>
+            Usuário:
+            <input
+              type="text"
+              name="usuario"
+              value={formData.usuario}
+              onChange={handleChange}
+              placeholder="Digite o user da empresa:"
+              required
+            />
+          </label>
+          <label>
+            Ramo:
+            <input
+              type="text"
+              name="titulo"
+              value={formData.titulo}
+              onChange={handleChange}
+              placeholder="Ramo atual da empresa:"
+              required
+            />
+          </label>
+          <label>
+            Escreva sobre a empresa:
+            <textarea
+              name="sobre"
+              value={formData.sobre}
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+           habilidades que procura em um profissional:
+            <select
+              name="habilidades"
+              value={formData.habilidades}
+              onChange={handleChange}
+            >
+              <option value="">Selecione...</option>
+              <option value="Habilidade1">Habilidade 1</option>
+              <option value="Habilidade2">Habilidade 2</option>
+              <option value="Habilidade3">Habilidade 3</option>
+              <option value="Habilidade3">Habilidade 4</option>
+            </select>
+          </label>
+          <label>
+            Projetos Disponivéis:
+            <input
+              type="file"
+              name="portfolio"
+              onChange={handleChange}
+            />
+          </label>
+        
+          <button type="submit" className="salvar-button">Salvar</button>
+        </form>
       </div>
-      {showPopUpSalvar && (
-        <PopUpSalvarInfos onClose={handleClosePopUpSalvar} />
-      )}
-      {showPopUpSair && (
-        <PopUpSairDaConta onClose={handleClosePopUpSair} />
-      )}
       <Footer />
+
+      {/* Pop-ups */}
+      {isPopUpSairOpen && (
+        <PopUpSairDaConta
+          onClose={() => setIsPopUpSairOpen(false)} // Fecha o pop-up
+          onConfirm={() => {
+            console.log('Usuário saiu da conta');
+            setIsPopUpSairOpen(false);
+          }}
+        />
+      )}
+
+      {isPopUpSalvarOpen && (
+        <PopUpSalvarInfos
+          onClose={() => setIsPopUpSalvarOpen(false)} // Fecha o pop-up de salvar
+        />
+      )}
     </div>
   );
 };

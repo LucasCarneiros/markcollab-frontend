@@ -1,121 +1,75 @@
-.perfil-container {
+.editar-perfil-container {
   display: flex;
-  height: 100vh;
-  background-color: #ffffff;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-.perfil-sidebar {
-  background-color: #ffffff;
-  width: 250px;
+.editar-perfil-content {
+  flex: 1;
   padding: 20px;
-  box-shadow: 2px 0 5px rgb(255, 255, 255, 0.1);
+  max-width: 800px;
+  margin: auto;
+  text-align: center;
 }
 
-.perfil-nav ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.perfil-nav ul li {
+.editar-perfil-content h1 {
+  color: #2C65F6;
   margin-bottom: 20px;
 }
 
-.perfil-nav ul li a {
-  text-decoration: none;
-  font-size: 1rem;
-  color: #2C65F6;
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  border-radius: 20px;
-  transition: background-color 0.3s;
-}
-
-.perfil-nav ul li a:hover {
-  background-color: #e0e0e0;
-}
-
-.perfil-icon {
-  margin-right: 10px;
-}
-
-.perfil-main {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 100px 20px; /* Adiciona espaço acima e abaixo */
-  box-sizing: border-box; /* Garante que padding seja incluído no tamanho */
-}
-
-
-.perfil-form {
-  background-color: #000000;
-  padding: 20px;
-  border-radius: 20px;
-  box-shadow: 0 0 10px rgb(255, 255, 255, 0.1);
-  max-width: 600px;
-  width: 100%;
+.editar-perfil-form {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.perfil-title {
-  font-size: 1.5rem;
-  color: #2C65F6;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.perfil-field {
-  display: flex;
-  flex-direction: column;
-}
-
-.perfil-field label {
-  margin-bottom: 5px;
-}
-
-.perfil-field input,
-.perfil-field textarea,
-.perfil-field select {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  font-size: 0.875rem;
-}
-
-.perfil-button {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
+.editar-perfil-form label {
+  text-align: left;
   font-size: 1rem;
 }
 
-.perfil-button:hover {
-  background-color: #0056b3;
+.editar-perfil-form input,
+.editar-perfil-form select,
+.editar-perfil-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  font-size: 1rem;
 }
 
+.editar-perfil-form textarea {
+  resize: none;
+  height: 80px;
+}
+
+.salvar-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.salvar-button:hover {
+  background-color: #0022aa;
+}
+
+/* Responsividade */
 @media (max-width: 768px) {
-  .perfil-container {
-    flex-direction: column;
-  }
-
-  .perfil-sidebar {
-    width: 100%;
-    box-shadow: none;
-    margin-bottom: 20px;
-  }
-  .perfil-title {
-    font-size: 1.2rem;
-  }
-
-  .perfil-form {
+  .editar-perfil-content {
     padding: 10px;
+  }
+
+  .editar-perfil-form label {
+    font-size: 0.9rem;
+  }
+
+  .salvar-button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
   }
 }
 /* Navbar */

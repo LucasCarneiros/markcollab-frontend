@@ -66,7 +66,7 @@ const ConfiguracaoMeuPerfilFreelancer = () => {
           </li>
           {/* Link "Sair" que agora abre o pop-up */}
           <li>
-            <Link to="#" onClick={handleShowPopUpSair}>Sair</Link>
+          <Link to ="#"button onClick={handleShowPopUpSair}>Sair</Link>
           </li>
         </ul>
       </nav>

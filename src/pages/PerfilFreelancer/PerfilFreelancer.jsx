@@ -9,7 +9,7 @@ function PerfilFreelancer() {
   const [isPopUpOpen, setIsPopUpOpen] = useState(false); // Estado para controlar a visibilidade do pop-up
 
   // Função para abrir o pop-up
-  const handleOpenPopUp = (e) => {
+  const handleOpenPopUpSair = (e) => {
     e.preventDefault(); // Impede o redirecionamento do link
     setIsPopUpOpen(true);
   };
@@ -45,7 +45,7 @@ function PerfilFreelancer() {
           </li>
           {/* Link "Sair" que agora abre o pop-up */}
           <li>
-            <Link to="#" onClick={handleOpenPopUp}>Sair</Link>
+          <Link to ="#"button onClick={handleOpenPopUpSair}>Sair</Link>
           </li>
         </ul>
       </nav>
@@ -60,22 +60,26 @@ function PerfilFreelancer() {
             className="perfil-foto"
           />
           <div>
-            <h1>Nome_do_freelancer</h1>
-            <p>Freelancer experiente em Programação e tecnologia</p>
+            <h1>User_do_freelancer</h1>
+            <p>Freelancer experiente em...</p>
             <div className="habilidades">
-              <span className="habilidade">Javascript</span>
-              <span className="habilidade">Java</span>
-              <span className="habilidade">HTML</span>
-              <span className="habilidade">SpringBoot</span>
+              <span className="habilidade">habilidade</span>
+              <span className="habilidade">habilidade</span>
+              <span className="habilidade">habilidade</span>
+              <span className="habilidade">habilidade</span>
             </div>
           </div>
         </header>
 
-        {/* Outras seções */}
+        {/* Sobre Mim */}
         <section id="sobre-mim" className="sobre-mim">
           <h2>Sobre mim</h2>
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+          </p>
+          <h3 className='h3-PerfilContratante'>Minha experiência profissional</h3>
+          <p>
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
           </p>
         </section>
 
@@ -87,12 +91,47 @@ function PerfilFreelancer() {
               <img src="https://via.placeholder.com/150" alt="Projeto 1" />
               <h3>Projeto 1</h3>
             </div>
-            {/* Outros projetos */}
+            <div className="projeto">
+              <img src="https://via.placeholder.com/150" alt="Projeto 2" />
+              <h3>Projeto 2</h3>
+            </div>
+            <div className="projeto">
+              <img src="https://via.placeholder.com/150" alt="Projeto 3" />
+              <h3>Projeto 3</h3>
+            </div>
+            <div className="projeto">
+              <img src="https://via.placeholder.com/150" alt="Projeto 4" />
+              <h3>Projeto 4</h3>
+            </div>
+            <div className="projeto">
+              <img src="https://via.placeholder.com/150" alt="Projeto 5" />
+              <h3>Projeto 5</h3>
+            </div>
+            <div className="projeto">
+              <img src="https://via.placeholder.com/150" alt="Projeto 6" />
+              <h3>Projeto 6</h3>
+            </div>
           </div>
         </section>
-      </div>
 
-      {/* Footer */}
+        {/* Avaliações */}
+        <section id="avaliacoes" className="avaliacoes">
+          <h2>Avaliações dos Clientes</h2>
+          <div className="avaliacoes-lista">
+            <div className="avaliacao">
+              <p>Excelente trabalho!</p>
+              <p>⭐⭐⭐⭐⭐</p>
+              <p>Cliente 1</p>
+            </div>
+            <div className="avaliacao">
+              <p>Muito bom e ágil!</p>
+              <p>⭐⭐⭐⭐</p>
+              <p>Cliente 2</p>
+            </div>
+          </div>
+        </section>
+    
+     </div>
       <Footer />
 
       {/* PopUp Sair da Conta - Só será exibido se isPopUpOpen for true */}

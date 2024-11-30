@@ -54,19 +54,19 @@ const ConfiguracaoMeuPerfilFreelancer = () => {
        <nav className="navbar">
         <ul className="navbar-list">
           <li>
-            <Link to='/PerfilFreelancer'>Meu Perfil</Link>
+            <Link to='/PerfilContratante'>Meu Perfil</Link>
           </li>
           {/* Link para Editar Perfil */}
           <li>
-            <Link to='/EditarMeuPerfilFreelancer'>Editar Perfil</Link>
+            <Link to='/EditarPerfilContratante'>Editar Perfil</Link>
           </li>
           {/* Link para Configurações */}
           <li>
-            <Link to='/ConfiguracaoMeuPerfilFreelancer'>Configurações</Link>
+            <Link to='/ConfiguracaoMeuPerfilContratante'>Configurações</Link>
           </li>
           {/* Link "Sair" que agora abre o pop-up */}
           <li>
-            <Link to="#" onClick={handleShowPopUpSair}>Sair</Link>
+            <Link to ="#"button onClick={handleShowPopUpSair}>Sair</Link>
           </li>
         </ul>
       </nav>
@@ -74,7 +74,7 @@ const ConfiguracaoMeuPerfilFreelancer = () => {
        
         <main className="configuracao-main">
           <form className="configuracao-form" onSubmit={handleSave}>
-            <h1 className="configuracao-title">Configurações do Freelancer</h1>
+            <h1 className="configuracao-title">Configurações da Empresa</h1>
             <div className="configuracao-field">
               <label htmlFor="nome">Nome:</label>
               <input
@@ -85,7 +85,7 @@ const ConfiguracaoMeuPerfilFreelancer = () => {
               />
             </div>
             <div className="configuracao-field">
-              <label htmlFor="email">Email:</label>
+              <label htmlFor="email">Email corporativo:</label>
               <input
                 type="email"
                 id="email"

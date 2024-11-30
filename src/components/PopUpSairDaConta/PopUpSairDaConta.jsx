@@ -2,6 +2,7 @@ import React from 'react';
 import './PopUpSairDaConta.css'; // Importar a folha de estilo para o PopUpSairDaConta
 import { FaDoorOpen } from 'react-icons/fa'; // Novo ícone de porta
 import { useNavigate } from 'react-router-dom'; // Importando o hook useNavigate
+import { Link } from 'react-router-dom';
 
 // Componente PopUpSairDaConta
 const PopUpSairDaConta = ({ onClose, onConfirm }) => {
@@ -9,7 +10,6 @@ const PopUpSairDaConta = ({ onClose, onConfirm }) => {
 
   const handleConfirmExit = () => {
     onConfirm(); // Chama a função onConfirm do componente pai
-    navigate('/Home'); // Redireciona para a página Home
     onClose(); // Fecha o pop-up após confirmar
   };
 
@@ -29,12 +29,12 @@ const PopUpSairDaConta = ({ onClose, onConfirm }) => {
 
         {/* Botões de "SAIR" e "CANCELAR" */}
         <div className="popup-footer">
-          <button
+          <Link to="/"button
             className="popup-button sair"
             onClick={handleConfirmExit} // Chama a função que realiza a navegação
           >
             SAIR
-          </button>
+          </Link>
           <button className="popup-button cancelar" onClick={onClose}>
             CANCELAR
           </button>
