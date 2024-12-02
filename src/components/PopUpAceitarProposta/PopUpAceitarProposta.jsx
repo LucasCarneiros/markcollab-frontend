@@ -6,10 +6,10 @@ const PopUpAceitarProposta = ({ onClose }) => {
     <div className="popup-overlay" onClick={onClose}>
       <div className="popup-content" onClick={(e) => e.stopPropagation()}>
         <div className="popup-header">
-          Proposta aceita!
+          Aceito!
         </div>
         <div className="popup-body">
-          <h2>PROPOSTA ACEITA!</h2>
+          <h2>Contrato feito! Vamos notificar o profissional.</h2>
           <div className="popup-buttons">
           </div>
         </div>

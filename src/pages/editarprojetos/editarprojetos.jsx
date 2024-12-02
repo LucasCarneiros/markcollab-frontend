@@ -1,33 +1,32 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios'; // Importa o Axios
+import axios from 'axios';
 import Navbar from '../../components/navbar3/navbar3';
 import Footer from '../../components/footer/Footer';
-import './PublicacaoProjetoContratante.css';
+import './editarprojetos.css';
 
-const PublicacaoProjetoContratante = () => {
-  const navigate = useNavigate();
+const Editarprojetos = () => {
   const [nomeProjeto, setNomeProjeto] = useState('');
   const [descricaoProjeto, setDescricaoProjeto] = useState('');
   const [especificacao, setEspecificacao] = useState('');
   const [preco, setPreco] = useState('');
+  const [projectId, setProjectId] = useState(''); // Novo campo para o ID do projeto
+  const [status, setStatus] = useState(''); // Campo para o novo status do projeto
   const [employerCpf] = useState('98765432110'); // CPF mockado
 
-  const handleSubmit = async (event) => {
+  const handleEditProject = async (event) => {
     event.preventDefault();
 
-    // Remover a autenticação (sem necessidade de token)
     try {
       const payload = {
         projectTitle: nomeProjeto,
         projectDescription: descricaoProjeto,
         projectSpecifications: especificacao,
-        projectPrice: parseFloat(preco), // Certifique-se de que o preço seja um número
+        projectPrice: parseFloat(preco),
       };
 
-      // Usando o CPF mockado (98765432110)
-      const response = await axios.post(
-        `https://markcollab-backend.onrender.com/api/projects/${employerCpf}`,
+      // Faz a requisição para editar o projeto
+      const response = await axios.put(
+        `https://markcollab-backend.onrender.com/api/projects/${projectId}/${employerCpf}`,
         payload,
         {
           headers: {
@@ -36,14 +35,31 @@ const PublicacaoProjetoContratante = () => {
         }
       );
 
-      console.log('Projeto criado com sucesso:', response.data);
-      alert('Projeto publicado com sucesso!');
-
-      // Navega para a tela de ProjetoPublicadoContratante
-      navigate('/ProjetoPublicadoContratante');
+      console.log('Projeto atualizado com sucesso:', response.data);
+      alert('Projeto atualizado com sucesso!');
     } catch (error) {
-      console.error('Erro ao criar o projeto:', error);
-      alert('Erro ao criar o projeto. Verifique os dados e tente novamente.');
+      console.error('Erro ao atualizar o projeto:', error);
+      alert('Erro ao atualizar o projeto. Verifique os dados e tente novamente.');
+    }
+  };
+
+  const handleUpdateStatus = async () => {
+    try {
+      const response = await axios.put(
+        `https://markcollab-backend.onrender.com/api/projects/${projectId}/status/${employerCpf}`,
+        status, // Envia o novo status diretamente no corpo
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      console.log('Status atualizado com sucesso:', response.data);
+      alert('Status atualizado com sucesso!');
+    } catch (error) {
+      console.error('Erro ao atualizar o status:', error);
+      alert('Erro ao atualizar o status. Verifique os dados e tente novamente.');
     }
   };
 
@@ -55,9 +71,18 @@ const PublicacaoProjetoContratante = () => {
       </a>
       <div className="publicacao-container">
         <header className="publicacao-header">
-          <h1 className="publicacao-title">Publicação de Projeto</h1>
+          <h1 className="publicacao-title">Editar projeto:</h1>
         </header>
-        <form className="publicacao-form" onSubmit={handleSubmit}>
+        <form className="publicacao-form" onSubmit={handleEditProject}>
+          <div className="publicacao-field">
+            <label htmlFor="projectId">ID do projeto:</label>
+            <input
+              type="text"
+              id="projectId"
+              value={projectId}
+              onChange={(e) => setProjectId(e.target.value)}
+            />
+          </div>
           <div className="publicacao-field">
             <label htmlFor="nomeProjeto">Nome do projeto:</label>
             <input
@@ -93,24 +118,27 @@ const PublicacaoProjetoContratante = () => {
               onChange={(e) => setPreco(e.target.value)}
             />
           </div>
-          <div className="publicacao-field">
-            <label htmlFor="employerCpf">CPF do empregador:</label>
-            <input
-              type="text"
-              id="employerCpf"
-              value={employerCpf}
-              onChange={(e) => setEmployerCpf(e.target.value)}
-              disabled // Campo desabilitado pois o CPF está mockado
-            />
-          </div>
           <button className="publicacao-button" type="submit">
-            Publicar
+            Atualizar Projeto
           </button>
         </form>
+        <div className="status-update">
+          <label htmlFor="status">Atualizar Status do Projeto:</label>
+          <select
+            id="status"
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+          >
+            <option value="">Selecione um status</option>
+            <option value="Em andamento">Em andamento</option>
+            <option value="Concluído">Concluído</option>
+          </select>
+          <button onClick={handleUpdateStatus}>Atualizar Status</button>
+        </div>
       </div>
       <Footer />
     </div>
   );
 };
 
-export default PublicacaoProjetoContratante;
+export default Editarprojetos;

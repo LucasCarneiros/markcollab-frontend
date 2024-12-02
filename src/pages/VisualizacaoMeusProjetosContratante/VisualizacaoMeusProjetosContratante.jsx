@@ -54,9 +54,9 @@ const VisualizacaoMeusProjetosContratante = () => {
           </div>
         </div>
         <div className="visualizacao-proposals">
-          <h2 className="visualizacao-proposals-title">Propostas</h2>
+          <h2 className="visualizacao-proposals-title">Interessados</h2>
           <select className="visualizacao-filter">
-            <option value="">Filtrar propostas</option>
+            <option value="">Filtrar perfis</option>
             <option value="recentes">Mais recentes</option>
             <option value="antigas">Mais antigas</option>
             <option value="melhores-avaliadas">Melhores avaliadas</option>
@@ -73,8 +73,7 @@ const VisualizacaoMeusProjetosContratante = () => {
               </p>
               <div className="visualizacao-proposal-actions">
                 <button className="visualizacao-action-button">Ver Perfil</button>
-                <button className="visualizacao-action-button">Mensagem</button>
-                <button className="visualizacao-action-button" onClick={handleAcceptProposal}>Aceitar</button> {/* Botão "Aceitar" */}
+                <button className="visualizacao-action-button" onClick={handleAcceptProposal}>Contratar</button> {/* Botão "Aceitar" */}
                 <button className="visualizacao-action-button" onClick={handleRejectProposal}>Recusar</button> {/* Botão "Recusar" */}
               </div>
             </div>

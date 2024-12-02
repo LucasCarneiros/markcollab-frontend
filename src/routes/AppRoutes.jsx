@@ -12,6 +12,7 @@ import AreaContratante from '../pages/AreaContratante/AreaContratante';
 import HomeContratante from '../pages/HomeContratante/HomeContratante';
 import PerfilContratante from '../pages/PerfilContratante/PerfilContratante';
 import CadastroContratante from '../pages/CadastroContratante/CadastroContratante';
+import Editarprojetos from '../pages/editarprojetos/editarprojetos';
 
 
 // Páginas freelancer
@@ -54,6 +55,7 @@ const AppRoutes = () => {
         <Route path="AreaContratante" element={<AreaContratante />} />
         <Route path="HomeContratante" element={<HomeContratante />} />
         <Route path="PerfilContratante" element={<PerfilContratante />} />
+        <Route path='editarprojetos' element={<Editarprojetos/>}/>
 
         <Route path="MeusProjetosFreelancer" element={<MeusProjetosFreelancer />} />
         <Route path="areaDeAtuacaoFreelancer" element={<AreaDeAtuacaoFreelancer />} />
@@ -65,6 +67,7 @@ const AppRoutes = () => {
         <Route path="PerfilFreelancer" element={<PerfilFreelancer />} />
         <Route path="CadastroContratante" element={<CadastroContratante />} />
         <Route path='PropostaFreelancer' element={<PropostaFreelancer/>}/>
+        
       
       </Routes>
     </Router>

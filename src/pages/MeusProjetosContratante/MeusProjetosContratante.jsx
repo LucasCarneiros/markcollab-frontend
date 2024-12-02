@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from '../../components/navbar3/navbar3';
 import Footer from '../../components/footer/Footer';
-import { useNavigate } from 'react-router-dom'; // Importando o hook useNavigate
+import { useNavigate, Link } from 'react-router-dom'; // Importando o hook useNavigate
 import './MeusProjetosContratante.css';
 
 const MeusProjetosContratante = () => {
@@ -45,12 +45,11 @@ const MeusProjetosContratante = () => {
                 className="meusprojetoscontratante-item-button" 
                 onClick={handleAnalyzeProposals} // Chama a função ao clicar
               >
-                Analisar propostas
+               Ver interessados
               </button>
               <div className="meusprojetoscontratante-item-options">
-                <button className="meusprojetoscontratante-item-option">Editar projeto</button>
+              <Link to="/editarprojetos" className="meusprojetoscontratante-items">Editar projeto</Link>
                 <button className="meusprojetoscontratante-item-option">Cancelar projeto</button>
-                <button className="meusprojetoscontratante-item-option">Postar novamente</button>
               </div>
             </div>
           ))}

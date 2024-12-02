@@ -87,6 +87,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  
 }
 
 .meusprojetoscontratante-item-option {
@@ -115,3 +116,21 @@
     width: 100%;
   }
 }
+.meusprojetoscontratante-items {
+  background-color: #2C65F6;
+  color: white;
+  padding: 8px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  width: 98%;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 13px;
+  align-items: center;
+
+}
+
