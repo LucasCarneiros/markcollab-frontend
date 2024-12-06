@@ -52,9 +52,7 @@ const MeusProjetosFreelancer = () => {
               <p className="meusprojetosfreelancer-item-time">Publicado há 42 minutos</p>
               <button className="meusprojetosfreelancer-item-button">Concluído</button>
               <div className="meusprojetosfreelancer-item-options">
-                <button className="meusprojetosfreelancer-item-option">Editar projeto</button>
-                <button className="meusprojetosfreelancer-item-option">Cancelar projeto</button>
-                <button className="meusprojetosfreelancer-item-option">Postar novamente</button>
+                
               </div>
             </div>
           ))}

@@ -140,11 +140,58 @@
   border: none;
   border-radius: 20px;
   cursor: pointer;
-  font-size: 0.875rem;  /* Diminuir tamanho da fonte */
+  font-size: 0.800rem;  /* Diminuir tamanho da fonte */
   width: auto;  /* Remover largura fixa */
+  text-decoration: none;
+  align-items: center;
+    text-align: center;
 }
 
 .visualizacao-action-button:hover {
   background-color: #0056b3;
 }
+.popup-content {
+  padding: 15px;
+  text-align: center;
+  padding-bottom: 20px;
+ 
+  
+}
 
+.popup-buttons {
+  display: flex;
+  justify-content: center; /* Centraliza os botões horizontalmente */
+  gap: 10px; /* Espaço entre os botões */
+  margin-top: 10px; /* Diminui a distância entre o texto e os botões */
+}
+
+.confirmar-button,
+.cancelar-button {
+  padding: 8px 20px; /* Diminui o padding para ajustar o espaço */
+  font-size: 1rem;
+  border: 2px solid #007bff; /* Cor da borda */
+  border-radius: 5px;
+  cursor: pointer;
+  width: 120px;
+  text-align: center; /* Garante que o texto esteja centralizado */
+  font-weight: bold; /* Texto em negrito */
+}
+
+.confirmar-button {
+  background-color: #007bff; /* Azul preenchido */
+  color: white; /* Texto branco */
+}
+
+.confirmar-button:hover {
+  background-color: #0056b3; /* Azul mais escuro no hover */
+}
+
+.cancelar-button {
+  background-color: transparent; /* Sem preenchimento */
+  color: #007bff; /* Texto azul */
+}
+
+.cancelar-button:hover {
+  background-color: #e7f3ff; /* Azul claro no hover */
+  color: #0056b3; /* Azul mais escuro no texto no hover */
+}

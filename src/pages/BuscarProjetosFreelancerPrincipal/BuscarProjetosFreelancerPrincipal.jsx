@@ -40,7 +40,7 @@ const BuscarProjetosFreelancerPrincipal = () => {
                 <p className="resultado-description">
                   Descrição do projeto {result}. Aqui está um breve resumo sobre este projeto.
                 </p>
-                <Link to='/PropostaFreelancer'button className="resultado-button">Fazer uma proposta</Link>
+                <button className="resultado-button">Demonstrar Interesse</button>
               </div>
             ))}
           </div>
