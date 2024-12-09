@@ -1,16 +1,39 @@
 import React, { useState } from 'react';
 import './Login.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const handleLogin = (event) => {
-    event.preventDefault();
-    // Implementar a lógica de login aqui
-    console.log('Email:', email);
-    console.log('Password:', password);
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("https://markcollab-backend.onrender.com/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+
+        // Armazena o token no localStorage
+        localStorage.setItem("authToken", data.token);
+
+        // Navega para a página inicial do freelancer
+        navigate("/HomeFreelancer");
+      } else {
+        alert("Erro: Usuário ou senha inválidos.");
+      }
+    } catch (error) {
+      console.error("Erro de conexão:", error);
+      alert("Erro ao conectar ao servidor.");
+    }
   };
 
   return (
@@ -31,7 +54,7 @@ const Login = () => {
           <div className="login-field">
             <label htmlFor="email">Email:</label>
             <input
-              type="email"
+              type='email'
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}

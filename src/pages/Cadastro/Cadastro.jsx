@@ -1,30 +1,75 @@
-import React, { useState } from 'react';
-import './Cadastro.css';
-import { Link, useNavigate } from 'react-router-dom'; // Importando o useNavigate
+import React, { useState } from "react";
+import "./Cadastro.css";
+import { Link, useNavigate } from "react-router-dom";
 
 const Cadastro = () => {
   const navigate = useNavigate(); // Hook para navegação
-  const [nome, setNome] = useState('');
-  const [email, setEmail] = useState('');
-  const [telefone, setTelefone] = useState('');
-  const [senha, setSenha] = useState('');
+  const [cpf, setCpf] = useState("");
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [portfolioLink, setPortfolioLink] = useState("");
 
-  const handleCadastro = (event) => {
+  const handleCadastro = async (event) => {
     event.preventDefault();
-    // Implementar a lógica de cadastro aqui, se necessário
-    console.log('Nome:', nome);
-    console.log('Email:', email);
-    console.log('Telefone:', telefone);
-    console.log('Senha:', senha);
 
-    // Após o cadastro, redirecionar para a tela de HomeFreelancer
-    navigate('/HomeFreelancer');
+    const novoFreelancer = {
+      role: "FREELANCER",
+      cpf,
+      name: nome,
+      username: email.split("@")[0],
+      email,
+      password: senha,
+      portfolioLink,
+    };
+  
+    console.log("Dados enviados para o backend:", novoFreelancer);
+  
+    try {
+      const response = await fetch(
+        "https://markcollab-backend.onrender.com/api/auth/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(novoFreelancer),
+        }
+      );
+  
+      const contentType = response.headers.get("Content-Type");
+  
+      if (response.ok) {
+        if (contentType && contentType.includes("application/json")) {
+          const data = await response.json();
+          console.log("Cadastro realizado com sucesso (JSON):", data);
+          alert(data.message || "Cadastro realizado com sucesso!");
+        } else {
+          const text = await response.text();
+          console.log("Cadastro realizado com sucesso (Texto):", text);
+          alert(text || "Cadastro realizado com sucesso!");
+        }
+        navigate("/HomeFreelancer");
+      } else {
+        if (contentType && contentType.includes("application/json")) {
+          const errorData = await response.json();
+          console.error("Erro ao cadastrar (JSON):", errorData.message);
+          alert("Erro ao cadastrar: " + errorData.message);
+        } else {
+          const errorText = await response.text();
+          console.error("Erro ao cadastrar (Texto):", errorText);
+          alert("Erro ao cadastrar: " + errorText);
+        }
+      }
+    } catch (error) {
+      console.error("Erro de conexão:", error);
+      alert("Erro de conexão com o servidor.");
+    }
   };
 
   return (
     <div className="cadastro-container">
       <div className="cadastro-left">
-        {/* Espaço reservado para conteúdo ou branding */}
         <Link to="/" className="login-arrow" style={{ cursor: "pointer" }}>
           <svg
             width="30"
@@ -52,6 +97,16 @@ const Cadastro = () => {
         <form className="cadastro-form" onSubmit={handleCadastro}>
           <h1 className="cadastro-title">Cadastre-se</h1>
           <div className="cadastro-field">
+            <label htmlFor="cpf">CPF:</label>
+            <input
+              type="text"
+              id="cpf"
+              value={cpf}
+              onChange={(e) => setCpf(e.target.value)}
+              required
+            />
+          </div>
+          <div className="cadastro-field">
             <label htmlFor="nome">Nome completo:</label>
             <input
               type="text"
@@ -72,16 +127,6 @@ const Cadastro = () => {
             />
           </div>
           <div className="cadastro-field">
-            <label htmlFor="telefone">Telefone:</label>
-            <input
-              type="tel"
-              id="telefone"
-              value={telefone}
-              onChange={(e) => setTelefone(e.target.value)}
-              required
-            />
-          </div>
-          <div className="cadastro-field">
             <label htmlFor="senha">Senha:</label>
             <input
               type="password"
@@ -91,10 +136,17 @@ const Cadastro = () => {
               required
             />
           </div>
-          <button 
-            className="cadastro-button" 
-            type="submit" // Botão agora é de submit
-          >
+          <div className="cadastro-field">
+            <label htmlFor="portfolioLink">Link do Portfólio:</label>
+            <input
+              type="url"
+              id="portfolioLink"
+              value={portfolioLink}
+              onChange={(e) => setPortfolioLink(e.target.value)}
+              placeholder="http://exemplo.com"
+            />
+          </div>
+          <button className="cadastro-button" type="submit">
             Criar Conta
           </button>
         </form>
