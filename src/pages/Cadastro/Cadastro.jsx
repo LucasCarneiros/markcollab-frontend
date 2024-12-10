@@ -49,7 +49,7 @@ const Cadastro = () => {
           console.log("Cadastro realizado com sucesso (Texto):", text);
           alert(text || "Cadastro realizado com sucesso!");
         }
-        navigate("/HomeFreelancer");
+        navigate("/Home");
       } else {
         if (contentType && contentType.includes("application/json")) {
           const errorData = await response.json();

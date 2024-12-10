@@ -31,7 +31,7 @@ const Login = () => {
         setIsLoggedIn(true); // <- Isso é importante
 
         // Navega para a página inicial do freelancer
-        navigate("/HomeFreelancer");
+        navigate("/Home");
       } else {
         alert("Erro: Usuário ou senha inválidos.");
       }

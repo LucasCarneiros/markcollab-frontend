@@ -120,7 +120,7 @@ const Navbar = () => {
                 <Link to="" className='nav2_icons'><CiBellOn /></Link>
               </li>
               <li>
-                <Link to={userRole === "FREELANCER" ? "/perfil-freelancer" : "/perfil-employer"} className='nav2_icons'><VscAccount /></Link>
+                <Link to={userRole === "FREELANCER" ? "/PerfilFreelancer" : "/PerfilContratante"} className='nav2_icons'><VscAccount /></Link>
               </li>
             </>
           ) : (
@@ -144,8 +144,8 @@ const Navbar = () => {
             <li><Link to="/servicos" className='nav2_icons' onClick={closeSidebar}>Serviços</Link></li>
             {isLoggedIn ? (
               <>
-                <li><Link to={userRole === "FREELANCER" ? "/projetos-freelancer" : "/projetos-employer"} className='nav2_icons' onClick={closeSidebar}>Projetos</Link></li>
-                <li><Link to={userRole === "FREELANCER" ? "/perfil-freelancer" : "/perfil-employer"} className='nav2_icons' onClick={closeSidebar}>Perfil</Link></li>
+                <li><Link to={userRole === "FREELANCER" ? "/MeusProjetosFreelancer" : "/MeusProjetosContratante"} className='nav2_icons' onClick={closeSidebar}>Projetos</Link></li>
+                <li><Link to={userRole === "FREELANCER" ? "/PerfilFreelancer" : "/PerfilContratante"} className='nav2_icons' onClick={closeSidebar}>Perfil</Link></li>
                 <li>
                   <button className='btn_sairConta' onClick={handleLogout}>Sair da conta</button>
                 </li>

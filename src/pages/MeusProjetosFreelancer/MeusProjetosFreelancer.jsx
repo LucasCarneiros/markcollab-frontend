@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Importa o hook useNavigate
-import Navbar from '../../components/navbar2/Navbar2';
+import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/footer/Footer';
 import './MeusProjetosFreelancer.css';
 

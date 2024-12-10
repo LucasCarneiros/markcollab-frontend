@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Navbar from '../../components/navbar3/navbar3';
+import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/footer/Footer';
 import './PerfilContratante.css';
 import { Link } from 'react-router-dom';
