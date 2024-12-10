@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { AuthContext } from "../../../context/AuthContext";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { CiMail, CiBellOn } from "react-icons/ci";
 import { VscAccount } from "react-icons/vsc";
 import Logo from '../../assets/images/logo_markcollab.png';
 import './Navbar.css';
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import PopUpCadastro from '../../components/PopUpCadastro/PopUpCadastro'; // Importação do PopUpCadastro
 
 const Navbar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Estado para controle de login
   const [isPopUpOpen, setIsPopUpOpen] = useState(false); // Estado para controlar a abertura do PopUp
+
+  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -20,27 +22,38 @@ const Navbar = () => {
     setIsSidebarOpen(false);
   };
 
-  // Fecha a sidebar ao redimensionar a tela
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth > 727) {
-        closeSidebar();
-      }
-    };
+      // Fecha a sidebar ao redimensionar a tela
+      useEffect(() => {
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+        const token = localStorage.getItem("authToken"); // Verifica se o token existe
+        setIsLoggedIn(!!token); // Atualiza o estado: true se o token existir, false caso contrário
 
-  // Função para abrir o PopUpCadastro
-  const openPopUp = () => {
-    setIsPopUpOpen(true);
-  };
+        const handleResize = () => {
+          if (window.innerWidth > 727) {
+            closeSidebar();
+          }
+        };
 
-  // Função para fechar o PopUpCadastro
-  const closePopUp = () => {
-    setIsPopUpOpen(false);
-  };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+      },
+  []);
+
+      // Função para abrir o PopUpCadastro
+      const openPopUp = () => {
+        setIsPopUpOpen(true);
+      };
+
+      // Função para fechar o PopUpCadastro
+      const closePopUp = () => {
+        setIsPopUpOpen(false);
+      };
+
+      const handleLogout = () => {
+        localStorage.removeItem("authToken"); // Remove o token do localStorage
+        setIsLoggedIn(false); // Atualiza o estado de login
+        navigate("/"); // Redireciona para a página inicial
+      };
 
   return (
     <div>
@@ -108,8 +121,11 @@ const Navbar = () => {
             {isLoggedIn ? (
               <>
                 <li><Link to="/projetos" className='nav2_icons' id='projetos' onClick={closeSidebar}>Projetos</Link></li>
-                <li><Link to="/notificacoes" className='nav2_icons' onClick={closeSidebar}><CiBellOn />Notificações</Link></li>
-                <li><Link to="/perfil" className='nav2_icons' onClick={closeSidebar}><VscAccount />Perfil</Link></li>
+                <li><Link to="/notificacoes" className='nav2_icons' onClick={closeSidebar}>Notificações</Link></li>
+                <li><Link to="/perfil" className='nav2_icons' onClick={closeSidebar}>Perfil</Link></li>
+                <li>
+                {isLoggedIn && <button className='btn_sairConta' onClick={handleLogout}>Sair da conta</button>}
+                </li>
               </>
             ) : (
               <>
