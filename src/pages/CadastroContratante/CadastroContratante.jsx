@@ -6,19 +6,66 @@ const CadastroContratante = () => {
   const navigate = useNavigate(); // Hook para navegação
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
+  const [cpf, setCpf] = useState("");
   const [telefone, setTelefone] = useState('');
   const [senha, setSenha] = useState('');
+  const [companyName, setCompanyName] = useState('');
 
-  const handleCadastro = (event) => {
+  const handleCadastro = async (event) => {
     event.preventDefault();
-    // Implementar a lógica de cadastro aqui, se necessário
-    console.log('Nome:', nome);
-    console.log('Email:', email);
-    console.log('Telefone:', telefone);
-    console.log('Senha:', senha);
 
-    // Após o cadastro, redirecionar para a tela de HomeFreelancer
-    navigate('/HomeContratante');
+    const novoContratante = {
+      role: "EMPLOYER",
+      cpf,
+      name: nome,
+      username: email.split("@")[0],
+      email,
+      password: senha,
+      companyName,
+    };
+  
+    console.log("Dados enviados para o backend:", novoContratante);
+  
+    try {
+      const response = await fetch(
+        "https://markcollab-backend.onrender.com/api/auth/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(novoContratante),
+        }
+      );
+  
+      const contentType = response.headers.get("Content-Type");
+  
+      if (response.ok) {
+        if (contentType && contentType.includes("application/json")) {
+          const data = await response.json();
+          console.log("Cadastro realizado com sucesso (JSON):", data);
+          alert(data.message || "Cadastro realizado com sucesso!");
+        } else {
+          const text = await response.text();
+          console.log("Cadastro realizado com sucesso (Texto):", text);
+          alert(text || "Cadastro realizado com sucesso!");
+        }
+        navigate("/Login");
+      } else {
+        if (contentType && contentType.includes("application/json")) {
+          const errorData = await response.json();
+          console.error("Erro ao cadastrar (JSON):", errorData.message);
+          alert("Erro ao cadastrar: " + errorData.message);
+        } else {
+          const errorText = await response.text();
+          console.error("Erro ao cadastrar (Texto):", errorText);
+          alert("Erro ao cadastrar: " + errorText);
+        }
+      }
+    } catch (error) {
+      console.error("Erro de conexão:", error);
+      alert("Erro de conexão com o servidor.");
+    }
   };
 
   return (
@@ -52,12 +99,32 @@ const CadastroContratante = () => {
         <form className="cadastro-form" onSubmit={handleCadastro}>
           <h1 className="cadastro-title">Cadastre-se</h1>
           <div className="cadastro-field">
-            <label htmlFor="nome">Nome da empresa:</label>
+            <label htmlFor="nome">Nome Completo:</label>
             <input
               type="text"
               id="nome"
               value={nome}
               onChange={(e) => setNome(e.target.value)}
+              required
+            />
+          </div>
+           <div className="cadastro-field">
+            <label htmlFor="telefone">Telefone:</label>
+            <input
+              type="tel"
+              id="telefone"
+              value={telefone}
+              onChange={(e) => setTelefone(e.target.value)}
+              required
+            />
+          </div>
+          <div className="cadastro-field">
+            <label htmlFor="telefone">CPF:</label>
+            <input
+              type="text"
+              id="cpf"
+              value={cpf}
+              onChange={(e) => setCpf(e.target.value)}
               required
             />
           </div>
@@ -71,16 +138,7 @@ const CadastroContratante = () => {
               required
             />
           </div>
-          <div className="cadastro-field">
-            <label htmlFor="telefone">Telefone:</label>
-            <input
-              type="tel"
-              id="telefone"
-              value={telefone}
-              onChange={(e) => setTelefone(e.target.value)}
-              required
-            />
-          </div>
+         
           <div className="cadastro-field">
             <label htmlFor="senha">Senha:</label>
             <input
@@ -88,6 +146,16 @@ const CadastroContratante = () => {
               id="senha"
               value={senha}
               onChange={(e) => setSenha(e.target.value)}
+              required
+            />
+          </div>
+          <div className="cadastro-field">
+            <label htmlFor="companyName">Nome da sua Empresa:</label>
+            <input
+              type="text"
+              id="companyName"
+              value={companyName}
+              onChange={(e) => setCompanyName(e.target.value)}
               required
             />
           </div>
