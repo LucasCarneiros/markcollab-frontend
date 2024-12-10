@@ -1,61 +1,75 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Importa o hook useNavigate
-import Navbar from '../../components/navbar3/navbar3';
-import Footer from '../../components/footer/Footer';
-import './PublicacaoProjetoContratante.css';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./PublicacaoProjetoContratante.css";
+import Navbar from "../../components/navbar3/navbar3";
+import Footer from "../../components/footer/Footer";
 
 const PublicacaoProjetoContratante = () => {
-  const navigate = useNavigate(); // Inicializa o hook de navegação
-  const [categoria, setCategoria] = useState('');
-  const [nomeProjeto, setNomeProjeto] = useState('');
-  const [descricaoProjeto, setDescricaoProjeto] = useState('');
-  const [habilidades, setHabilidades] = useState('');
-  const [nivelExperiencia, setNivelExperiencia] = useState('');
-  const [diasPropostas, setDiasPropostas] = useState('');
-  const [prazoEntrega, setPrazoEntrega] = useState('');
-  const [arquivo, setArquivo] = useState(null);
+  const navigate = useNavigate(); // Hook para navegação
+  const [nomeProjeto, setNomeProjeto] = useState("");
+  const [descricaoProjeto, setDescricaoProjeto] = useState("");
+  const [especificacao, setEspecificacao] = useState("");
+  const [preco, setPreco] = useState("");
+  const [employerCpf] = useState("98765432110"); // CPF mockado
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle form submission
-    console.log({
-      categoria,
-      nomeProjeto,
-      descricaoProjeto,
-      habilidades,
-      nivelExperiencia,
-      diasPropostas,
-      prazoEntrega,
-      arquivo
-    });
-    
-    // Após submeter o formulário, navega para a tela de ProjetoPublicadoContratante
-    navigate('/ProjetoPublicadoContratante');
+  
+    const payload = {
+      projectTitle: nomeProjeto,
+      projectDescription: descricaoProjeto,
+      projectSpecifications: especificacao,
+      projectPrice: parseFloat(preco), // Certifique-se de que o preço seja um número
+    };
+  
+    // Supondo que o token esteja armazenado no localStorage
+    const token = localStorage.getItem("jwtToken");
+  
+    if (!token) {
+      alert("Você precisa estar logado para criar um projeto.");
+      return;
+    }
+  
+    try {
+      const response = await fetch(
+        `https://markcollab-backend.onrender.com/api/projects/${employerCpf}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`, // Adicionando o token JWT no cabeçalho
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+  
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Projeto criado com sucesso:", data);
+        alert(data.message || "Projeto publicado com sucesso!");
+        navigate("/ProjetoPublicadoContratante");
+      } else {
+        const errorText = await response.text();
+        console.error("Erro ao criar o projeto (Texto):", errorText);
+        alert("Erro ao criar o projeto: " + errorText);
+      }
+    } catch (error) {
+      console.error("Erro de conexão:", error);
+      alert("Erro de conexão com o servidor.");
+    }
   };
-
+  
   return (
     <div>
       <Navbar />
-      <a href="/meusprojetoscontratante" className="meusprojetos-button">Ir para os meus projetos publicados</a>
+      <a href="/meusprojetoscontratante" className="meusprojetos-button">
+        Ir para os meus projetos publicados
+      </a>
       <div className="publicacao-container">
         <header className="publicacao-header">
           <h1 className="publicacao-title">Publicação de Projeto</h1>
         </header>
         <form className="publicacao-form" onSubmit={handleSubmit}>
-          <div className="publicacao-field">
-            <label htmlFor="categoria">Categoria do projeto:</label>
-            <select
-              id="categoria"
-              value={categoria}
-              onChange={(e) => setCategoria(e.target.value)}
-            >
-              <option value="">Selecione a categoria</option>
-              <option value="desenvolvimento-web">Desenvolvimento Web</option>
-              <option value="design-grafico">Design Gráfico</option>
-              <option value="redacao">Redação</option>
-              <option value="marketing-digital">Marketing Digital</option>
-            </select>
-          </div>
           <div className="publicacao-field">
             <label htmlFor="nomeProjeto">Nome do projeto:</label>
             <input
@@ -63,6 +77,7 @@ const PublicacaoProjetoContratante = () => {
               id="nomeProjeto"
               value={nomeProjeto}
               onChange={(e) => setNomeProjeto(e.target.value)}
+              required
             />
           </div>
           <div className="publicacao-field">
@@ -71,84 +86,41 @@ const PublicacaoProjetoContratante = () => {
               id="descricaoProjeto"
               value={descricaoProjeto}
               onChange={(e) => setDescricaoProjeto(e.target.value)}
+              required
             ></textarea>
           </div>
           <div className="publicacao-field">
-            <label htmlFor="habilidades">Quais habilidades você procura? (Opcional):</label>
-            <select
-              id="habilidades"
-              value={habilidades}
-              onChange={(e) => setHabilidades(e.target.value)}
-            >
-              <option value="">Selecione as habilidades</option>
-              <option value="html-css">HTML e CSS</option>
-              <option value="javascript">JavaScript</option>
-              <option value="react">React</option>
-              <option value="photoshop">Photoshop</option>
-            </select>
-          </div>
-          <div className="publicacao-field">
-            <label htmlFor="arquivo">Anexar arquivos (Opcional):</label>
+            <label htmlFor="especificacao">Especificações do projeto:</label>
             <input
-              type="file"
-              id="arquivo"
-              onChange={(e) => setArquivo(e.target.files[0])}
+              type="text"
+              id="especificacao"
+              value={especificacao}
+              onChange={(e) => setEspecificacao(e.target.value)}
+              required
             />
           </div>
           <div className="publicacao-field">
-            <label>Nível de experiência desejado:</label>
-            <div className="publicacao-radio-group">
-              <label>
-                <input
-                  type="radio"
-                  name="nivelExperiencia"
-                  value="iniciante"
-                  checked={nivelExperiencia === 'iniciante'}
-                  onChange={(e) => setNivelExperiencia(e.target.value)}
-                />
-                Iniciante
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="nivelExperiencia"
-                  value="intermediario"
-                  checked={nivelExperiencia === 'intermediario'}
-                  onChange={(e) => setNivelExperiencia(e.target.value)}
-                />
-                Intermediário
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="nivelExperiencia"
-                  value="especialista"
-                  checked={nivelExperiencia === 'especialista'}
-                  onChange={(e) => setNivelExperiencia(e.target.value)}
-                />
-                Especialista
-              </label>
-            </div>
-          </div>
-          <div className="publicacao-field">
-            <label htmlFor="diasPropostas">Por quantos dias você deseja receber propostas para esse projeto?</label>
+            <label htmlFor="preco">Preço:</label>
             <input
-              type="number"
-              id="diasPropostas"
-              value={diasPropostas}
-              onChange={(e) => setDiasPropostas(e.target.value)}
+              type="text"
+              id="preco"
+              value={preco}
+              onChange={(e) => setPreco(e.target.value)}
+              required
             />
           </div>
           <div className="publicacao-field">
-            <label htmlFor="prazoEntrega">Prazo de entrega:</label>
+            <label htmlFor="employerCpf">CPF do empregador:</label>
             <input
-              type="date"
-              id="prazoEntrega"
-              value={prazoEntrega}
-              onChange={(e) => setPrazoEntrega(e.target.value)}
+              type="text"
+              id="employerCpf"
+              value={employerCpf}
+              disabled // Campo desabilitado pois o CPF está mockado
             />
           </div>
-          <button className="publicacao-button" type="submit">Publicar</button>
+          <button className="publicacao-button" type="submit">
+            Publicar
+          </button>
         </form>
       </div>
       <Footer />
