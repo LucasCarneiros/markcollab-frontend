@@ -114,7 +114,7 @@ const Navbar = () => {
           {isLoggedIn ? (
             <>
               <li>
-                <Link to={userRole === "FREELANCER" ? "/MeusProjetosFreelancer" : "/MeusProjetosContratante"} className='nav2_icons' id='projetos'>Projetos</Link>
+                <Link to={userRole === "FREELANCER" ? "/MeusProjetosFreelancer" : "/PublicacaoProjetoContratante"} className='nav2_icons' id='projetos'>Projetos</Link>
               </li>
               <li>
                 <Link to="" className='nav2_icons'><CiBellOn /></Link>

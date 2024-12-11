@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Navbar from "../../components/navbar2/Navbar2"; // Ajuste o caminho, se necessário
+import Navbar from "../../components/navbar/Navbar"; // Ajuste o caminho, se necessário
 import Footer from "../../components/footer/Footer"; // Ajuste o caminho, se necessário
 import "./PropostaFreelancer.css"; // Arquivo de estilos para este componente
 

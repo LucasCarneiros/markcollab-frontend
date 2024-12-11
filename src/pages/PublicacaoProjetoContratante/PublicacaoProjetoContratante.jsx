@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./PublicacaoProjetoContratante.css";
-import Navbar from "../../components/navbar3/navbar3";
+import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
+import "./PublicacaoProjetoContratante.css";
 
 const PublicacaoProjetoContratante = () => {
   const navigate = useNavigate(); // Hook para navegação
@@ -10,55 +10,51 @@ const PublicacaoProjetoContratante = () => {
   const [descricaoProjeto, setDescricaoProjeto] = useState("");
   const [especificacao, setEspecificacao] = useState("");
   const [preco, setPreco] = useState("");
-  const [employerCpf] = useState("98765432110"); // CPF mockado
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-  
-    const payload = {
-      projectTitle: nomeProjeto,
-      projectDescription: descricaoProjeto,
-      projectSpecifications: especificacao,
-      projectPrice: parseFloat(preco), // Certifique-se de que o preço seja um número
-    };
-  
-    // Supondo que o token esteja armazenado no localStorage
-    const token = localStorage.getItem("jwtToken");
-  
-    if (!token) {
-      alert("Você precisa estar logado para criar um projeto.");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Verifica se todos os campos estão preenchidos
+    if (!nomeProjeto || !descricaoProjeto || !preco) {
+      alert("Por favor, preencha todos os campos antes de enviar.");
       return;
     }
-  
+
+    const token = localStorage.getItem("authToken"); // Recupera o token salvo no login
+    if (!token) {
+      alert("Erro: Token de autenticação não encontrado. Faça login novamente.");
+      navigate("/login");
+      return;
+    }
+
     try {
-      const response = await fetch(
-        `https://markcollab-backend.onrender.com/api/projects/${employerCpf}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`, // Adicionando o token JWT no cabeçalho
-          },
-          body: JSON.stringify(payload),
-        }
-      );
-  
+      const response = await fetch("https://markcollab-backend.onrender.com/api/projects/{employercpf}", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Adiciona o token no cabeçalho
+        },
+        body: JSON.stringify({
+          titulo: nomeProjeto, // Altere para nomeProjeto
+          descricao: descricaoProjeto, // Altere para descricaoProjeto
+          orcamento: preco, // Altere para preco
+        }),
+      });
+
       if (response.ok) {
-        const data = await response.json();
-        console.log("Projeto criado com sucesso:", data);
-        alert(data.message || "Projeto publicado com sucesso!");
-        navigate("/ProjetoPublicadoContratante");
+        const data = await response.json(); // Espera-se obter JSON da resposta
+        alert("Projeto criado com sucesso!");
+        navigate("/home"); // Redireciona para a página inicial
       } else {
-        const errorText = await response.text();
-        console.error("Erro ao criar o projeto (Texto):", errorText);
-        alert("Erro ao criar o projeto: " + errorText);
+        const errorData = await response.json();
+        alert(`Erro: ${errorData.message || "Ocorreu um erro na publicação do projeto."}`);
       }
     } catch (error) {
-      console.error("Erro de conexão:", error);
-      alert("Erro de conexão com o servidor.");
+      console.error("Erro ao conectar ao servidor:", error);
+      alert("Erro ao conectar ao servidor.");
     }
   };
-  
+
   return (
     <div>
       <Navbar />
@@ -107,15 +103,6 @@ const PublicacaoProjetoContratante = () => {
               value={preco}
               onChange={(e) => setPreco(e.target.value)}
               required
-            />
-          </div>
-          <div className="publicacao-field">
-            <label htmlFor="employerCpf">CPF do empregador:</label>
-            <input
-              type="text"
-              id="employerCpf"
-              value={employerCpf}
-              disabled // Campo desabilitado pois o CPF está mockado
             />
           </div>
           <button className="publicacao-button" type="submit">

@@ -30,7 +30,7 @@ import PropostaFreelancer from '../pages/PropostaFreelancer/PropostaFreelancer';
 import Home from '../pages/home/Home';
 import Sobre from '../pages/sobre/sobre';
 import Servicos from '../pages/serviços/Serviços';
-import Login from '../pages/login/Login';
+import Login from '../pages/Login/Login';
 
 
 
