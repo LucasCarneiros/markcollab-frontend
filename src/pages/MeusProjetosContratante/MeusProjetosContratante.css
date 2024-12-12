@@ -87,6 +87,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  
 }
 
 .meusprojetoscontratante-item-option {
@@ -114,4 +115,59 @@
   .meusprojetoscontratante-status {
     width: 100%;
   }
+}
+.meusprojetoscontratante-items {
+  background-color: #2C65F6;
+  color: white;
+  padding: 8px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  width: 98%;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 13px;
+  align-items: center;
+
+}
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.confirmar-button {
+  background-color: #28a745;
+  color: white;
+  margin-right: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.cancelar-button {
+  background-color: #dc3545;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
 }

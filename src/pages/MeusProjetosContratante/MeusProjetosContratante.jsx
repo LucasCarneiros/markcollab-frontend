@@ -1,42 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/footer/Footer';
 import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
 
 import './MeusProjetosContratante.css';
 
 const MeusProjetosContratante = () => {
   const [status, setStatus] = useState('');
-  const [projects, setProjects] = useState([]);
-  const employerCpf = '98765432110'; // Substitua com o CPF do empregador logado (use um contexto de autenticação, se aplicável)
   const navigate = useNavigate();
 
-  // Carregar os projetos publicados pelo empregador
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const response = await axios.get(
-          `https://markcollab-backend.onrender.com/api/projects/employer/${employerCpf}`,
-          {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
-        );
-        setProjects(response.data); // Atualiza os projetos com os dados recebidos do backend
-      } catch (error) {
-        console.error('Erro ao carregar projetos:', error.response || error.message);
-        alert(
-          `Erro ao carregar projetos: ${
-            error.response?.data?.message || error.message || 'Erro desconhecido'
-          }`
-        );
-      }
-    };
-
-    fetchProjects();
-  }, [employerCpf]); // Executa ao montar o componente ou se o CPF mudar
+  // Projetos estáticos para exibição
+  const projects = [
+    {
+      projectId: 1,
+      projectTitle: 'Projeto de Marketing Digital',
+      projectDescription: 'Criação de uma estratégia de marketing digital para aumentar engajamento.',
+    },
+    {
+      projectId: 2,
+      projectTitle: 'Desenvolvimento de Website',
+      projectDescription: 'Desenvolvimento de um site institucional responsivo.',
+    },
+    {
+      projectId: 3,
+      projectTitle: 'Campanha Publicitária',
+      projectDescription: 'Elaboração de uma campanha para lançamento de produto.',
+    },
+  ];
 
   const handleStatusChange = (event) => {
     setStatus(event.target.value);
@@ -46,29 +36,11 @@ const MeusProjetosContratante = () => {
     navigate('/VisualizacaoMeusProjetosContratante');
   };
 
-  const handleDeleteProject = async (projectId, employerCpf) => {
+  const handleDeleteProject = (projectId) => {
     const confirmDelete = window.confirm('Tem certeza de que deseja excluir este projeto?');
     if (!confirmDelete) return;
 
-    try {
-      await axios.delete(
-        `https://markcollab-backend.onrender.com/api/projects/${projectId}/${employerCpf}`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-      alert('Projeto excluído com sucesso!');
-      setProjects(projects.filter((project) => project.projectId !== projectId));
-    } catch (error) {
-      console.error('Erro ao excluir o projeto:', error.response || error.message);
-      alert(
-        `Erro ao excluir o projeto: ${
-          error.response?.data?.message || error.message || 'Erro desconhecido'
-        }`
-      );
-    }
+    alert(`Projeto com ID ${projectId} excluído! `);
   };
 
   return (
@@ -110,7 +82,7 @@ const MeusProjetosContratante = () => {
                   </Link>
                   <button
                     className="meusprojetoscontratante-item-option"
-                    onClick={() => handleDeleteProject(project.projectId, employerCpf)}
+                    onClick={() => handleDeleteProject(project.projectId)}
                   >
                     Excluir projeto
                   </button>
