@@ -7,27 +7,64 @@ import { Link } from 'react-router-dom'; // Importando o Link do React Router
 import './VisualizacaoMeusProjetosContratante.css';
 
 const VisualizacaoMeusProjetosContratante = () => {
-  const [isPopUpAceitarVisible, setPopUpAceitarVisible] = useState(false); // Estado para o pop-up de aceitar
-  const [isPopUpRejeitarVisible, setPopUpRejeitarVisible] = useState(false); // Estado para o pop-up de rejeitar
+  const [isPopUpAceitarVisible, setPopUpAceitarVisible] = useState(false);
+  const [isPopUpRejeitarVisible, setPopUpRejeitarVisible] = useState(false);
+  const [propostas, setPropostas] = useState([
+    { id: 1, nome: 'Freelancer 1', descricao: 'Proposta de trabalho exemplo 1', cpf: '12345678901' },
+    { id: 2, nome: 'Freelancer 2', descricao: 'Proposta de trabalho exemplo 2', cpf: '10987654321' },
+  ]); // Propostas fictícias com CPF do freelancer
+  const [propostaParaExcluir, setPropostaParaExcluir] = useState(null);
+  const [projectId] = useState('1'); // ID do projeto (mockado para o exemplo)
+  const [employerCpf] = useState('98765432110'); // CPF do empregador (mockado para o exemplo)
 
   // Função para abrir o pop-up de aceitar proposta
-  const handleAcceptProposal = () => {
-    setPopUpAceitarVisible(true);
+  const handleAcceptProposal = async (freelancerCpf) => {
+    try {
+      const response = await axios.post(
+        `https://markcollab-backend.onrender.com/api/projects/${projectId}/hire/${freelancerCpf}/${employerCpf}`,
+        null, // Não é necessário corpo na requisição
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      console.log('Freelancer contratado com sucesso:', response.data);
+      alert('Freelancer contratado com sucesso!');
+      setPopUpAceitarVisible(true); // Mostra pop-up de confirmação
+    } catch (error) {
+      console.error('Erro ao contratar o freelancer:', error.response || error.message);
+      alert(
+        `Erro ao contratar o freelancer: ${
+          error.response?.data?.message || error.message || 'Erro desconhecido'
+        }`
+      );
+    }
   };
 
-  // Função para fechar o pop-up (quando clica fora dele)
+  // Função para fechar o pop-up de aceitar proposta
   const handleClosePopUpAceitar = () => {
     setPopUpAceitarVisible(false);
   };
 
   // Função para abrir o pop-up de rejeitar proposta
-  const handleRejectProposal = () => {
+  const handleRejectProposal = (id) => {
+    setPropostaParaExcluir(id);
     setPopUpRejeitarVisible(true);
   };
 
-  // Função para fechar o pop-up de rejeitar
+  // Função para fechar o pop-up de rejeitar proposta
   const handleClosePopUpRejeitar = () => {
     setPopUpRejeitarVisible(false);
+    setPropostaParaExcluir(null);
+  };
+
+  // Função para confirmar a rejeição da proposta
+  const confirmRejectProposal = () => {
+    setPropostas(propostas.filter((proposta) => proposta.id !== propostaParaExcluir));
+    setPopUpRejeitarVisible(false);
+    setPropostaParaExcluir(null);
   };
 
   return (
@@ -54,40 +91,66 @@ const VisualizacaoMeusProjetosContratante = () => {
           </div>
         </div>
         <div className="visualizacao-proposals">
-          <h2 className="visualizacao-proposals-title">Propostas</h2>
+          <h2 className="visualizacao-proposals-title">Interessados</h2>
           <select className="visualizacao-filter">
-            <option value="">Filtrar propostas</option>
+            <option value="">Filtrar perfis</option>
             <option value="recentes">Mais recentes</option>
             <option value="antigas">Mais antigas</option>
             <option value="melhores-avaliadas">Melhores avaliadas</option>
           </select>
-          {[1].map((proposal) => (
-            <div key={proposal} className="visualizacao-proposal">
-              <div className="visualizacao-proposal-header">
-                <img src="/path/to/profile-pic.jpg" alt="Freelancer Profile" className="visualizacao-profile-pic" />
-                <h3 className="visualizacao-freelancer-name">Nome_do_Freelancer</h3>
-                <div className="visualizacao-rating">⭐⭐⭐⭐⭐</div>
+          {propostas.length > 0 ? (
+            propostas.map((proposta) => (
+              <div key={proposta.id} className="visualizacao-proposal">
+                <div className="visualizacao-proposal-header">
+                  <img src="/path/to/profile-pic.jpg" alt="Freelancer Profile" className="visualizacao-profile-pic" />
+                  <h3 className="visualizacao-freelancer-name">{proposta.nome}</h3>
+                  <div className="visualizacao-rating">⭐⭐⭐⭐⭐</div>
+                </div>
+                <p className="visualizacao-proposal-description">{proposta.descricao}</p>
+                <div className="visualizacao-proposal-actions">
+                 <Link to="/PerfilFreelancerContratante" button className="visualizacao-action-button">Ver Perfil</Link>
+                  <button
+                    className="visualizacao-action-button"
+                    onClick={() => handleAcceptProposal(proposta.cpf)}
+                  >
+                    Contratar
+                  </button>
+                  <button
+                    className="visualizacao-action-button"
+                    onClick={() => handleRejectProposal(proposta.id)}
+                  >
+                    Recusar
+                  </button>
+                </div>
               </div>
-              <p className="visualizacao-proposal-description">
-                Proposta: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-              <div className="visualizacao-proposal-actions">
-                <button className="visualizacao-action-button">Ver Perfil</button>
-                <button className="visualizacao-action-button">Mensagem</button>
-                <button className="visualizacao-action-button" onClick={handleAcceptProposal}>Aceitar</button> {/* Botão "Aceitar" */}
-                <button className="visualizacao-action-button" onClick={handleRejectProposal}>Recusar</button> {/* Botão "Recusar" */}
-              </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            <p className="visualizacao-no-proposals">Nenhum interessado ainda.</p>
+          )}
         </div>
       </div>
       <Footer />
 
       {/* Pop-up para mostrar quando aceitar a proposta */}
-      {isPopUpAceitarVisible && <PopUpAceitarProposta onClose={handleClosePopUpAceitar} />} {/* Usando o pop-up de aceitar */}
+      {isPopUpAceitarVisible && <PopUpAceitarProposta onClose={handleClosePopUpAceitar} />}
 
       {/* Pop-up para mostrar quando recusar a proposta */}
-      {isPopUpRejeitarVisible && <PopUpRejeitarProposta onClose={handleClosePopUpRejeitar} />} {/* Usando o pop-up de rejeitar */}
+      {isPopUpRejeitarVisible && (
+        <div className="popup">
+        <div className="popup-content">
+  <p>Tem certeza de que deseja recusar esta proposta?</p>
+  <div className="popup-buttons"> {/* Contêiner para os botões */}
+    <button className="confirmar-button" onClick={confirmRejectProposal}>
+      Sim
+    </button>
+    <button className="cancelar-button" onClick={handleClosePopUpRejeitar}>
+      Não
+    </button>
+  </div>
+</div>
+
+        </div>
+      )}
     </div>
   );
 };

@@ -51,7 +51,7 @@ const PublicacaoProjetoContratante = () => {
       if (response.ok) {
         const data = await response.json();
         alert("Projeto criado com sucesso!");
-        navigate("/ProjetoPublicadoContratante"); // Redireciona para a página inicial
+        navigate("/ProjetoPublicadoContratante"); // Redireciona para a página seguinte
       } else {
         const errorData = await response.json();
         alert(

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/footer/Footer';
 import { useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
 
 import './MeusProjetosContratante.css';
 
