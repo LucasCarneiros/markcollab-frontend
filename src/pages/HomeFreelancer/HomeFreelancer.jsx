@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../../components/navbar2/Navbar2.jsx'
+import Navbar from '../../components/navbar/Navbar.jsx'
 import Footer from '../../components/footer/Footer.jsx'
 import './HomeFreelancer.css'
 import imagem2 from '../../assets/images/fOTO.png'

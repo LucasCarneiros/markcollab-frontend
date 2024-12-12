@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Importa o hook useNavigate
-import Navbar from '../../components/navbar2/Navbar2';
+import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/footer/Footer';
 import './MeusProjetosFreelancer.css';
 
@@ -49,7 +49,7 @@ const MeusProjetosFreelancer = () => {
           {[1, 2, 3].map((project) => (
             <div key={project} className="meusprojetosfreelancer-item">
               <h2 className="meusprojetosfreelancer-item-title">Nome do projeto</h2>
-              <p className="meusprojetosfreelancer-item-time">Publicado há 42 minutos</p>
+              <p className="meusprojetosfreelancer-item-time">Descrição do projeto</p>
               <button className="meusprojetosfreelancer-item-button">Concluído</button>
               <div className="meusprojetosfreelancer-item-options">
                 

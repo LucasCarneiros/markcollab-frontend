@@ -1,49 +1,68 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios'; // Importa o Axios
-import Navbar from '../../components/navbar3/navbar3';
-import Footer from '../../components/footer/Footer';
-import './PublicacaoProjetoContratante.css';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Navbar from "../../components/navbar/Navbar";
+import Footer from "../../components/footer/Footer";
+import "./PublicacaoProjetoContratante.css";
 
 const PublicacaoProjetoContratante = () => {
   const navigate = useNavigate();
-  const [nomeProjeto, setNomeProjeto] = useState('');
-  const [descricaoProjeto, setDescricaoProjeto] = useState('');
-  const [especificacao, setEspecificacao] = useState('');
-  const [preco, setPreco] = useState('');
-  const [employerCpf] = useState('98765432110'); // CPF mockado
+  const [projectTitle, setProjectTitle] = useState("");
+  const [projectDescription, setProjectDescription] = useState("");
+  const [projectSpecifications, setProjectSpecifications] = useState("");
+  const [projectPrice, setProjectPrice] = useState("");
+  const [employerCpf, setEmployerCpf] = useState("");
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    // Remover a autenticação (sem necessidade de token)
+    // Verifica se todos os campos obrigatórios estão preenchidos
+    if (!projectTitle || !projectDescription || !projectPrice || !employerCpf) {
+      alert("Por favor, preencha todos os campos antes de enviar.");
+      return;
+    }
+
+    const token = localStorage.getItem("authToken"); // Recupera o token salvo no login
+    if (!token) {
+      alert("Erro: Token de autenticação não encontrado. Faça login novamente.");
+      navigate("/Login");
+      return;
+    }
+
     try {
-      const payload = {
-        projectTitle: nomeProjeto,
-        projectDescription: descricaoProjeto,
-        projectSpecifications: especificacao,
-        projectPrice: parseFloat(preco), // Certifique-se de que o preço seja um número
-      };
-
-      // Usando o CPF mockado (98765432110)
-      const response = await axios.post(
+      const response = await fetch(
         `https://markcollab-backend.onrender.com/api/projects/${employerCpf}`,
-        payload,
         {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
+          body: JSON.stringify({
+            projectTitle, // Nome do projeto
+            projectDescription, // Descrição do projeto
+            projectSpecifications, // Especificações do projeto
+            projectPrice: parseFloat(projectPrice), // Preço (convertido para número)
+            open: true, // Campo adicional para indicar se o projeto está aberto
+            status: "Ativo", // Status inicial do projeto
+          }),
         }
       );
 
-      console.log('Projeto criado com sucesso:', response.data);
-      alert('Projeto publicado com sucesso!');
-
-      // Navega para a tela de ProjetoPublicadoContratante
-      navigate('/ProjetoPublicadoContratante');
+      if (response.ok) {
+        const data = await response.json();
+        alert("Projeto criado com sucesso!");
+        navigate("/ProjetoPublicadoContratante"); // Redireciona para a página inicial
+      } else {
+        const errorData = await response.json();
+        alert(
+          `Erro: ${
+            errorData.message || "Ocorreu um erro na publicação do projeto."
+          }`
+        );
+      }
     } catch (error) {
-      console.error('Erro ao criar o projeto:', error);
-      alert('Erro ao criar o projeto. Verifique os dados e tente novamente.');
+      console.error("Erro ao conectar ao servidor:", error);
+      alert("Erro ao conectar ao servidor.");
     }
   };
 
@@ -63,16 +82,18 @@ const PublicacaoProjetoContratante = () => {
             <input
               type="text"
               id="nomeProjeto"
-              value={nomeProjeto}
-              onChange={(e) => setNomeProjeto(e.target.value)}
+              value={projectTitle}
+              onChange={(e) => setProjectTitle(e.target.value)}
+              required
             />
           </div>
           <div className="publicacao-field">
             <label htmlFor="descricaoProjeto">Descrição do projeto:</label>
             <textarea
               id="descricaoProjeto"
-              value={descricaoProjeto}
-              onChange={(e) => setDescricaoProjeto(e.target.value)}
+              value={projectDescription}
+              onChange={(e) => setProjectDescription(e.target.value)}
+              required
             ></textarea>
           </div>
           <div className="publicacao-field">
@@ -80,8 +101,9 @@ const PublicacaoProjetoContratante = () => {
             <input
               type="text"
               id="especificacao"
-              value={especificacao}
-              onChange={(e) => setEspecificacao(e.target.value)}
+              value={projectSpecifications}
+              onChange={(e) => setProjectSpecifications(e.target.value)}
+              required
             />
           </div>
           <div className="publicacao-field">
@@ -89,18 +111,19 @@ const PublicacaoProjetoContratante = () => {
             <input
               type="text"
               id="preco"
-              value={preco}
-              onChange={(e) => setPreco(e.target.value)}
+              value={projectPrice}
+              onChange={(e) => setProjectPrice(e.target.value)}
+              required
             />
           </div>
           <div className="publicacao-field">
-            <label htmlFor="employerCpf">CPF do empregador:</label>
+            <label htmlFor="employerCpf">CPF do Contratante:</label>
             <input
               type="text"
               id="employerCpf"
               value={employerCpf}
               onChange={(e) => setEmployerCpf(e.target.value)}
-              disabled // Campo desabilitado pois o CPF está mockado
+              required
             />
           </div>
           <button className="publicacao-button" type="submit">

@@ -8,7 +8,6 @@ import PublicacaoProjetoContratante from '../pages/PublicacaoProjetoContratante/
 import ProjetoPublicadoContratante from '../pages/ProjetoPublicadoContratante/ProjetoPublicadoContratante';
 import EditarPerfilContratante from '../pages/EditarPerfilContratante/EditarPerfilContratante'; //n ta abrindo
 import ConfiguracaoMeuPerfilContratante from '../pages/ConfiguracaoMeuPerfilContratante/ConfiguracaoMeuPerfilContratante'; // ajeitar css
-import AreaContratante from '../pages/AreaContratante/AreaContratante';
 import HomeContratante from '../pages/HomeContratante/HomeContratante';
 import PerfilContratante from '../pages/PerfilContratante/PerfilContratante';
 import CadastroContratante from '../pages/CadastroContratante/CadastroContratante';
@@ -20,7 +19,6 @@ import PerfilFreelancerContratante from '../pages/PerfilFreelancerContratante/Pe
 import MeusProjetosFreelancer from '../pages/MeusProjetosFreelancer/MeusProjetosFreelancer'; //aumentar espaço do container publicar para o footer
 import EditarMeuPerfilFreelancer from '../pages/EditarMeuPerfilFreelancer/EditarMeuPerfilFreelancer'; //ajusatr css
 import ConfiguracaoMeuPerfilFreelancer from '../pages/ConfiguracaoMeuPerfilFreelancer/ConfiguracaoMeuPerfilFreelancer';//ajusatr css
-import AreaDeAtuacaoFreelancer from '../pages/AreaDeAtuacaoFreelancer/AreaDeAtuacaoFreelancer';//ajusatr css
 import BuscarProjetosFreelancerVisualizacao from '../pages/BuscarProjetosFreelancerVisualizacao/BuscarProjetosFreelancerVisualizacao';//ajusatr css
 import BuscarProjetosFreelancerPrincipal from '../pages/BuscarProjetosFreelancerPrincipal/BuscarProjetosFreelancerPrincipal';
 import HomeFreelancer from '../pages/HomeFreelancer/HomeFreelancer';
@@ -32,7 +30,7 @@ import PropostaFreelancer from '../pages/PropostaFreelancer/PropostaFreelancer';
 import Home from '../pages/home/Home';
 import Sobre from '../pages/sobre/sobre';
 import Servicos from '../pages/serviços/Serviços';
-import Login from '../pages/login/Login';
+import Login from '../pages/Login/Login';
 
 
 
@@ -53,7 +51,6 @@ const AppRoutes = () => {
         <Route path="projetoPublicadoContratante" element={<ProjetoPublicadoContratante />} />
         <Route path="EditarPerfilContratante" element={<EditarPerfilContratante />} />
         <Route path="configuracaoMeuPerfilContratante" element={<ConfiguracaoMeuPerfilContratante />} />
-        <Route path="AreaContratante" element={<AreaContratante />} />
         <Route path="HomeContratante" element={<HomeContratante />} />
         <Route path="PerfilContratante" element={<PerfilContratante />} />
         <Route path='editarprojetos' element={<Editarprojetos/>}/>
@@ -61,7 +58,6 @@ const AppRoutes = () => {
 
 
         <Route path="MeusProjetosFreelancer" element={<MeusProjetosFreelancer />} />
-        <Route path="areaDeAtuacaoFreelancer" element={<AreaDeAtuacaoFreelancer />} />
         <Route path="editarMeuPerfilFreelancer" element={<EditarMeuPerfilFreelancer />} />
         <Route path="configuracaoMeuPerfilFreelancer" element={<ConfiguracaoMeuPerfilFreelancer />} />
         <Route path="buscarProjetosFreelancerVisualizacao" element={<BuscarProjetosFreelancerVisualizacao />} />

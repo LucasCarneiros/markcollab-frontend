@@ -1,16 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { AuthContext } from '../../../context/AuthContext';
 import './Login.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const { setIsLoggedIn } = useContext(AuthContext);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const handleLogin = (event) => {
-    event.preventDefault();
-    // Implementar a lógica de login aqui
-    console.log('Email:', email);
-    console.log('Password:', password);
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("https://markcollab-backend.onrender.com/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+
+        // Armazena o token no localStorage
+        localStorage.setItem("authToken", data.token);
+
+        // Atualiza o estado de login
+        setIsLoggedIn(true); // <- Isso é importante
+
+        // Navega para a página inicial do freelancer
+        navigate("/");
+      } else {
+        alert("Erro: Usuário ou senha inválidos.");
+      }
+    } catch (error) {
+      console.error("Erro de conexão:", error);
+      alert("Erro ao conectar ao servidor.");
+    }
   };
 
   return (
@@ -29,12 +57,11 @@ const Login = () => {
         <form className="login-form" onSubmit={handleLogin}>
           <h1 className="login-title">Fazer Login</h1>
           <div className="login-field">
-            <label htmlFor="email">Email:</label>
+            <label htmlFor="">Username:</label>
             <input
-              type="email"
               id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               required
             />
           </div>

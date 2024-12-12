@@ -1,128 +1,77 @@
-import React, { useState } from 'react';
-import './Cadastro.css';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import "./Cadastro.css";
+import { Link, useNavigate } from "react-router-dom";
 
 const Cadastro = () => {
   const navigate = useNavigate(); // Hook para navegação
-  const [nome, setNome] = useState('');
-  const [email, setEmail] = useState('');
-  const [telefone, setTelefone] = useState('');
-  const [senha, setSenha] = useState('');
-  const [cpf, setCpf] = useState('');
-  const [cpfErro, setCpfErro] = useState('');
-  const [senhaErro, setSenhaErro] = useState('');
-  const [emailErro, setEmailErro] = useState('');
-  const [erroNome, setErroNome] = useState('');
-  const [telefoneErro, setTelefoneErro] = useState('');
+  const [cpf, setCpf] = useState("");
+  const [username, setUsername] = useState("");
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [portfolioLink, setPortfolioLink] = useState("");
 
-
-  const validarTelefone = (telefone) => {
-    const regex = /^\d{11}$/; // Exemplo: 81996057991
-    return regex.test(telefone);
-  };
-  
-  const LIMITE_EMAIL = 100; // Definindo o limite máximo de caracteres para o campo de email
-
-  // Função para validar CPF
-  const validarCpf = (cpf) => {
-    const cpfLimpo = cpf.replace(/[^\d]/g, '');
-
-    if (cpfLimpo.length !== 11 || /^(\d)\1{10}$/.test(cpfLimpo)) {
-      return false;
-    }
-
-    const calcularDigito1 = (cpf) => {
-      let soma = 0;
-      for (let i = 0; i < 9; i++) {
-        soma += parseInt(cpf.charAt(i)) * (10 - i);
-      }
-      let digito = (soma * 10) % 11;
-      return digito === 10 || digito === 11 ? 0 : digito;
-    };
-
-    const calcularDigito2 = (cpf) => {
-      let soma = 0;
-      for (let i = 0; i < 10; i++) {
-        soma += parseInt(cpf.charAt(i)) * (11 - i);
-      }
-      let digito = (soma * 10) % 11;
-      return digito === 10 || digito === 11 ? 0 : digito;
-    };
-
-    const digito1 = calcularDigito1(cpfLimpo);
-    const digito2 = calcularDigito2(cpfLimpo);
-
-    return cpfLimpo.charAt(9) == digito1 && cpfLimpo.charAt(10) == digito2;
-  };
-
-  // Função de handle para cadastro
-  const handleCadastro = (event) => {
+  const handleCadastro = async (event) => {
     event.preventDefault();
 
-    // Validação de CPF
-    if (!validarCpf(cpf)) {
-      setCpfErro('CPF inválido');
-      return;
-    }
-    setCpfErro('');
-
-    // Validação de senha
-    if (senha.length < 6) {
-      setSenhaErro('Senha deve conter pelo menos 6 caracteres');
-      return;
-    }
-    setSenhaErro('');
-
-    // Validação de email (limite de caracteres)
-    if (email.length > LIMITE_EMAIL) {
-      setEmailErro('Máximo de caracteres excedido');
-      return;
-    }
-    setEmailErro('');
-    if (senha.length < 6) {
-      setSenhaErro('Senha deve conter pelo menos 6 caracteres');
-      return;
-    }
-    if (senha.length > 40) { // Valida se excedeu os 40 caracteres
-      setSenhaErro('A senha deve conter no máximo 40 caracteres');
-      return;
-    }
-    setSenhaErro('');
-    const validarNome = (nome) => {
-      const regex = /[<>{}[\]]/; // Adicione aqui os caracteres que deseja bloquear
-      return regex.test(nome); // Retorna true se houver caracteres inválidos
+    const novoFreelancer = {
+      role: "FREELANCER",
+      cpf,
+      name: nome,
+      username,    /*username: email.split("@")[0],*/
+      email,
+      password: senha,
+      portfolioLink,
     };
-    
-      // Verificar se há caracteres inválidos no campo "Nome Completo"
-      if (validarNome(nome)) {
-        setErroNome('O nome não pode conter caracteres inválidos como <, >, {, }.');
-        return;
+  
+    console.log("Dados enviados para o backend:", novoFreelancer);
+  
+    try {
+      const response = await fetch(
+        "https://markcollab-backend.onrender.com/api/auth/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(novoFreelancer),
+        }
+      );
+  
+      const contentType = response.headers.get("Content-Type");
+  
+      if (response.ok) {
+        if (contentType && contentType.includes("application/json")) {
+          const data = await response.json();
+          console.log("Cadastro realizado com sucesso (JSON):", data);
+          alert(data.message || "Cadastro realizado com sucesso!");
+        } else {
+          const text = await response.text();
+          console.log("Cadastro realizado com sucesso (Texto):", text);
+          alert(text || "Cadastro realizado com sucesso!");
+        }
+        navigate("/Login");
+      } else {
+        if (contentType && contentType.includes("application/json")) {
+          const errorData = await response.json();
+          console.error("Erro ao cadastrar (JSON):", errorData.message);
+          alert("Erro ao cadastrar: " + errorData.message);
+        } else {
+          const errorText = await response.text();
+          console.error("Erro ao cadastrar (Texto):", errorText);
+          alert("Erro ao cadastrar: " + errorText);
+        }
       }
-      setErroNome('');
-
-       // Validação de telefone
-  if (!validarTelefone(telefone)) {
-    setTelefoneErro('Número de telefone inválido. Exemplo: 81912345678');
-    return;
-  }
-  setTelefoneErro('');
-
-    // Lógica de cadastro
-    console.log('Nome:', nome);
-    console.log('Email:', email);
-    console.log('Telefone:', telefone);
-    console.log('Senha:', senha);
-    console.log('CPF:', cpf);
-
-    // Após o cadastro, redirecionar para a tela de HomeFreelancer
-    navigate('/HomeFreelancer');
+    } catch (error) {
+      console.error("Erro de conexão:", error);
+      alert("Erro de conexão com o servidor.");
+    }
   };
 
   return (
     <div className="cadastro-container">
       <div className="cadastro-left">
-        {/* Espaço reservado para conteúdo ou branding */}
-        <Link to="/" className="login-arrow" style={{ cursor: 'pointer' }}>
+        <Link to="/" className="login-arrow" style={{ cursor: "pointer" }}>
           <svg
             width="30"
             height="30"
@@ -149,6 +98,16 @@ const Cadastro = () => {
         <form className="cadastro-form" onSubmit={handleCadastro}>
           <h1 className="cadastro-title">Cadastre-se</h1>
           <div className="cadastro-field">
+            <label htmlFor="cpf">CPF:</label>
+            <input
+              type="text"
+              id="cpf"
+              value={cpf}
+              onChange={(e) => setCpf(e.target.value)}
+              required
+            />
+          </div>
+          <div className="cadastro-field">
             <label htmlFor="nome">Nome completo:</label>
             <input
               type="text"
@@ -157,7 +116,16 @@ const Cadastro = () => {
               onChange={(e) => setNome(e.target.value)}
               required
             />
-            {erroNome && <span className="erro">{erroNome}</span>}
+          </div>
+          <div className="cadastro-field">
+            <label htmlFor="username">Usuário:</label>
+            <input
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
           </div>
           <div className="cadastro-field">
             <label htmlFor="email">Email:</label>
@@ -167,32 +135,7 @@ const Cadastro = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              maxLength={LIMITE_EMAIL} // Limite de caracteres para o e-mail
             />
-            {emailErro && <span className="erro">{emailErro}</span>}
-          </div>
-          <div className="cadastro-field">
-            <label htmlFor="telefone">Telefone:</label>
-            <input
-              type="tel"
-              id="telefone"
-              value={telefone}
-              onChange={(e) => setTelefone(e.target.value)}
-              required
-            />
-            {telefoneErro && <span className="erro">{telefoneErro}</span>}
-          </div>
-          <div className="cadastro-field">
-            <label htmlFor="cpf">CPF:</label>
-            <input
-              type="text"
-              id="cpf"
-              value={cpf}
-              onChange={(e) => setCpf(e.target.value)}
-              required
-              placeholder="Digite seu CPF"
-            />
-            {cpfErro && <span className="erro">{cpfErro}</span>}
           </div>
           <div className="cadastro-field">
             <label htmlFor="senha">Senha:</label>
@@ -203,7 +146,16 @@ const Cadastro = () => {
               onChange={(e) => setSenha(e.target.value)}
               required
             />
-            {senhaErro && <span className="erro">{senhaErro}</span>}
+          </div>
+          <div className="cadastro-field">
+            <label htmlFor="portfolioLink">Link do Portfólio:</label>
+            <input
+              type="url"
+              id="portfolioLink"
+              value={portfolioLink}
+              onChange={(e) => setPortfolioLink(e.target.value)}
+              placeholder="http://exemplo.com"
+            />
           </div>
           <button className="cadastro-button" type="submit">
             Criar Conta

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Navbar from '../../components/navbar2/Navbar2';
+import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/footer/Footer';
 import PopUpSairDaConta from '../../components/PopUpSairDaConta/PopUpSairDaConta'; // Pop-up de sair
 import PopUpSalvarInfos from '../../components/PopUpSalvarInfos/PopUpSalvarInfos'; // Pop-up de salvar

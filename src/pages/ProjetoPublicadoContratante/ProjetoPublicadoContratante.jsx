@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom'; // Importa o hook useNavigate
-import Navbar from '../../components/navbar3/navbar3';
+import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/footer/Footer';
 import './ProjetoPublicadoContratante.css';
 
