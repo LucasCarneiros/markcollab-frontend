@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 const Cadastro = () => {
   const navigate = useNavigate(); // Hook para navegação
   const [cpf, setCpf] = useState("");
+  const [username, setUsername] = useState("");
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -17,7 +18,7 @@ const Cadastro = () => {
       role: "FREELANCER",
       cpf,
       name: nome,
-      username: email.split("@")[0],
+      username,    /*username: email.split("@")[0],*/
       email,
       password: senha,
       portfolioLink,
@@ -49,7 +50,7 @@ const Cadastro = () => {
           console.log("Cadastro realizado com sucesso (Texto):", text);
           alert(text || "Cadastro realizado com sucesso!");
         }
-        navigate("/Home");
+        navigate("/Login");
       } else {
         if (contentType && contentType.includes("application/json")) {
           const errorData = await response.json();
@@ -113,6 +114,16 @@ const Cadastro = () => {
               id="nome"
               value={nome}
               onChange={(e) => setNome(e.target.value)}
+              required
+            />
+          </div>
+          <div className="cadastro-field">
+            <label htmlFor="username">Usuário:</label>
+            <input
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               required
             />
           </div>

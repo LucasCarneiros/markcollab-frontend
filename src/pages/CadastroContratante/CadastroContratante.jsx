@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'; // Importando o useNavigat
 const CadastroContratante = () => {
   const navigate = useNavigate(); // Hook para navegação
   const [nome, setNome] = useState('');
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState('');
   const [cpf, setCpf] = useState("");
   const [telefone, setTelefone] = useState('');
@@ -18,7 +19,7 @@ const CadastroContratante = () => {
       role: "EMPLOYER",
       cpf,
       name: nome,
-      username: email.split("@")[0],
+      username, /*username: email.split("@")[0],*/
       email,
       password: senha,
       companyName,
@@ -108,18 +109,18 @@ const CadastroContratante = () => {
               required
             />
           </div>
-           <div className="cadastro-field">
-            <label htmlFor="telefone">Telefone:</label>
+          <div className="cadastro-field">
+            <label htmlFor="username">Usuário:</label>
             <input
-              type="tel"
-              id="telefone"
-              value={telefone}
-              onChange={(e) => setTelefone(e.target.value)}
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               required
             />
           </div>
           <div className="cadastro-field">
-            <label htmlFor="telefone">CPF:</label>
+            <label htmlFor="CPF">CPF:</label>
             <input
               type="text"
               id="cpf"

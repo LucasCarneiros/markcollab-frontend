@@ -1,20 +1,73 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/footer/Footer';
-import { useNavigate } from 'react-router-dom'; // Importando o hook useNavigate
+import { useNavigate, Link } from 'react-router-dom';
+
 import './MeusProjetosContratante.css';
 
 const MeusProjetosContratante = () => {
   const [status, setStatus] = useState('');
-  const navigate = useNavigate(); // Hook para navegação
+  const [projects, setProjects] = useState([]);
+  const employerCpf = '98765432110'; // Substitua com o CPF do empregador logado (use um contexto de autenticação, se aplicável)
+  const navigate = useNavigate();
+
+  // Carregar os projetos publicados pelo empregador
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await axios.get(
+          `https://markcollab-backend.onrender.com/api/projects/employer/${employerCpf}`,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        );
+        setProjects(response.data); // Atualiza os projetos com os dados recebidos do backend
+      } catch (error) {
+        console.error('Erro ao carregar projetos:', error.response || error.message);
+        alert(
+          `Erro ao carregar projetos: ${
+            error.response?.data?.message || error.message || 'Erro desconhecido'
+          }`
+        );
+      }
+    };
+
+    fetchProjects();
+  }, [employerCpf]); // Executa ao montar o componente ou se o CPF mudar
 
   const handleStatusChange = (event) => {
     setStatus(event.target.value);
   };
 
-  // Função para redirecionar ao clicar em "Analisar propostas"
   const handleAnalyzeProposals = () => {
-    navigate('/VisualizacaoMeusProjetosContratante'); // Redireciona para a tela de visualização
+    navigate('/VisualizacaoMeusProjetosContratante');
+  };
+
+  const handleDeleteProject = async (projectId, employerCpf) => {
+    const confirmDelete = window.confirm('Tem certeza de que deseja excluir este projeto?');
+    if (!confirmDelete) return;
+
+    try {
+      await axios.delete(
+        `https://markcollab-backend.onrender.com/api/projects/${projectId}/${employerCpf}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      alert('Projeto excluído com sucesso!');
+      setProjects(projects.filter((project) => project.projectId !== projectId));
+    } catch (error) {
+      console.error('Erro ao excluir o projeto:', error.response || error.message);
+      alert(
+        `Erro ao excluir o projeto: ${
+          error.response?.data?.message || error.message || 'Erro desconhecido'
+        }`
+      );
+    }
   };
 
   return (
@@ -37,23 +90,35 @@ const MeusProjetosContratante = () => {
           </select>
         </div>
         <div className="meusprojetoscontratante-list">
-          {[1, 2, 3].map((project) => (
-            <div key={project} className="meusprojetoscontratante-item">
-              <h2 className="meusprojetoscontratante-item-title">Nome do projeto</h2>
-              <p className="meusprojetoscontratante-item-time">Publicado há 42 minutos</p>
-              <button 
-                className="meusprojetoscontratante-item-button" 
-                onClick={handleAnalyzeProposals} // Chama a função ao clicar
-              >
-                Analisar propostas
-              </button>
-              <div className="meusprojetoscontratante-item-options">
-                <button className="meusprojetoscontratante-item-option">Editar projeto</button>
-                <button className="meusprojetoscontratante-item-option">Cancelar projeto</button>
-                <button className="meusprojetoscontratante-item-option">Postar novamente</button>
+          {projects.length > 0 ? (
+            projects.map((project) => (
+              <div key={project.projectId} className="meusprojetoscontratante-item">
+                <h2 className="meusprojetoscontratante-item-title">{project.projectTitle}</h2>
+                <p className="meusprojetoscontratante-item-time">
+                  {project.projectDescription}
+                </p>
+                <button
+                  className="meusprojetoscontratante-item-button"
+                  onClick={handleAnalyzeProposals}
+                >
+                  Ver interessados
+                </button>
+                <div className="meusprojetoscontratante-item-options">
+                  <Link to="/editarprojetos" className="meusprojetoscontratante-items">
+                    Editar projeto
+                  </Link>
+                  <button
+                    className="meusprojetoscontratante-item-option"
+                    onClick={() => handleDeleteProject(project.projectId, employerCpf)}
+                  >
+                    Excluir projeto
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            <p>Nenhum projeto encontrado.</p>
+          )}
         </div>
       </div>
       <Footer />

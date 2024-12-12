@@ -5,17 +5,18 @@ import Footer from "../../components/footer/Footer";
 import "./PublicacaoProjetoContratante.css";
 
 const PublicacaoProjetoContratante = () => {
-  const navigate = useNavigate(); // Hook para navegação
-  const [nomeProjeto, setNomeProjeto] = useState("");
-  const [descricaoProjeto, setDescricaoProjeto] = useState("");
-  const [especificacao, setEspecificacao] = useState("");
-  const [preco, setPreco] = useState("");
+  const navigate = useNavigate();
+  const [projectTitle, setProjectTitle] = useState("");
+  const [projectDescription, setProjectDescription] = useState("");
+  const [projectSpecifications, setProjectSpecifications] = useState("");
+  const [projectPrice, setProjectPrice] = useState("");
+  const [employerCpf, setEmployerCpf] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Verifica se todos os campos estão preenchidos
-    if (!nomeProjeto || !descricaoProjeto || !preco) {
+    // Verifica se todos os campos obrigatórios estão preenchidos
+    if (!projectTitle || !projectDescription || !projectPrice || !employerCpf) {
       alert("Por favor, preencha todos os campos antes de enviar.");
       return;
     }
@@ -28,26 +29,36 @@ const PublicacaoProjetoContratante = () => {
     }
 
     try {
-      const response = await fetch("https://markcollab-backend.onrender.com/api/projects/{employercpf}", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // Adiciona o token no cabeçalho
-        },
-        body: JSON.stringify({
-          titulo: nomeProjeto, // Altere para nomeProjeto
-          descricao: descricaoProjeto, // Altere para descricaoProjeto
-          orcamento: preco, // Altere para preco
-        }),
-      });
+      const response = await fetch(
+        `https://markcollab-backend.onrender.com/api/projects/${employerCpf}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            projectTitle, // Nome do projeto
+            projectDescription, // Descrição do projeto
+            projectSpecifications, // Especificações do projeto
+            projectPrice: parseFloat(projectPrice), // Preço (convertido para número)
+            open: true, // Campo adicional para indicar se o projeto está aberto
+            status: "Ativo", // Status inicial do projeto
+          }),
+        }
+      );
 
       if (response.ok) {
-        const data = await response.json(); // Espera-se obter JSON da resposta
+        const data = await response.json();
         alert("Projeto criado com sucesso!");
-        navigate("/home"); // Redireciona para a página inicial
+        navigate("/ProjetoPublicadoContratante"); // Redireciona para a página inicial
       } else {
         const errorData = await response.json();
-        alert(`Erro: ${errorData.message || "Ocorreu um erro na publicação do projeto."}`);
+        alert(
+          `Erro: ${
+            errorData.message || "Ocorreu um erro na publicação do projeto."
+          }`
+        );
       }
     } catch (error) {
       console.error("Erro ao conectar ao servidor:", error);
@@ -71,8 +82,8 @@ const PublicacaoProjetoContratante = () => {
             <input
               type="text"
               id="nomeProjeto"
-              value={nomeProjeto}
-              onChange={(e) => setNomeProjeto(e.target.value)}
+              value={projectTitle}
+              onChange={(e) => setProjectTitle(e.target.value)}
               required
             />
           </div>
@@ -80,8 +91,8 @@ const PublicacaoProjetoContratante = () => {
             <label htmlFor="descricaoProjeto">Descrição do projeto:</label>
             <textarea
               id="descricaoProjeto"
-              value={descricaoProjeto}
-              onChange={(e) => setDescricaoProjeto(e.target.value)}
+              value={projectDescription}
+              onChange={(e) => setProjectDescription(e.target.value)}
               required
             ></textarea>
           </div>
@@ -90,8 +101,8 @@ const PublicacaoProjetoContratante = () => {
             <input
               type="text"
               id="especificacao"
-              value={especificacao}
-              onChange={(e) => setEspecificacao(e.target.value)}
+              value={projectSpecifications}
+              onChange={(e) => setProjectSpecifications(e.target.value)}
               required
             />
           </div>
@@ -100,8 +111,18 @@ const PublicacaoProjetoContratante = () => {
             <input
               type="text"
               id="preco"
-              value={preco}
-              onChange={(e) => setPreco(e.target.value)}
+              value={projectPrice}
+              onChange={(e) => setProjectPrice(e.target.value)}
+              required
+            />
+          </div>
+          <div className="publicacao-field">
+            <label htmlFor="employerCpf">CPF do Contratante:</label>
+            <input
+              type="text"
+              id="employerCpf"
+              value={employerCpf}
+              onChange={(e) => setEmployerCpf(e.target.value)}
               required
             />
           </div>
