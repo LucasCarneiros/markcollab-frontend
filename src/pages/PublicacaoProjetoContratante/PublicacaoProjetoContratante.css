@@ -90,3 +90,14 @@
 .meusprojetos-button:hover {
   background-color: #0056b3;
 }
+.error-message {
+  color: red;
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+.char-count {
+  font-size: 0.8rem;
+  color: gray;
+  margin-top: 5px;
+}

@@ -177,6 +177,7 @@
   font-weight: bold; /* Texto em negrito */
 }
 
+
 .confirmar-button {
   background-color: #007bff; /* Azul preenchido */
   color: white; /* Texto branco */
@@ -195,3 +196,4 @@
   background-color: #e7f3ff; /* Azul claro no hover */
   color: #0056b3; /* Azul mais escuro no texto no hover */
 }
+

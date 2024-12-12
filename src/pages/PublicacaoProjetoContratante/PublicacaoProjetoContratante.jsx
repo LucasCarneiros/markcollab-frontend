@@ -24,7 +24,7 @@ const PublicacaoProjetoContratante = () => {
     const token = localStorage.getItem("authToken"); // Recupera o token salvo no login
     if (!token) {
       alert("Erro: Token de autenticação não encontrado. Faça login novamente.");
-      navigate("/login");
+      navigate("/Login");
       return;
     }
 
@@ -51,7 +51,7 @@ const PublicacaoProjetoContratante = () => {
       if (response.ok) {
         const data = await response.json();
         alert("Projeto criado com sucesso!");
-        navigate("/ProjetoPublicadoContratante"); // Redireciona para a página seguinte
+        navigate("/ProjetoPublicadoContratante"); // Redireciona para a página inicial
       } else {
         const errorData = await response.json();
         alert(

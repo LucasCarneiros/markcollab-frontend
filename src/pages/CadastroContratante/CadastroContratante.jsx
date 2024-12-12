@@ -8,7 +8,6 @@ const CadastroContratante = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState('');
   const [cpf, setCpf] = useState("");
-  const [telefone, setTelefone] = useState('');
   const [senha, setSenha] = useState('');
   const [companyName, setCompanyName] = useState('');
 

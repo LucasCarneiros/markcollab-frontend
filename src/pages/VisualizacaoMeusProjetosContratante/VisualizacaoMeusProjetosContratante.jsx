@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/footer/Footer';
-import PopUpAceitarProposta from '../../components/PopUpAceitarProposta/PopUpAceitarProposta'; // PopUpAceitarProposta
-import PopUpRejeitarProposta from '../../components/PopUpRejeitarProposta/PopUpRejeitarProposta'; // Importando o PopUpRejeitarProposta
-import { Link } from 'react-router-dom'; // Importando o Link do React Router
+import PopUpAceitarProposta from '../../components/PopUpAceitarProposta/PopUpAceitarProposta';
+import PopUpRejeitarProposta from '../../components/PopUpRejeitarProposta/PopUpRejeitarProposta';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 import './VisualizacaoMeusProjetosContratante.css';
 
 const VisualizacaoMeusProjetosContratante = () => {

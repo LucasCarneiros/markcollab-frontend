@@ -1,13 +1,17 @@
 .cadastro-container {
   display: flex;
+
   flex-direction: row; /* Para telas grandes */
+
   height: 100vh;
 }
 
 .cadastro-left {
   background-color: #007bff;
   width: 50%;
+
   min-height: 100vh;
+
 }
 
 .cadastro-right {
@@ -16,12 +20,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
   padding: 20px; /* Adiciona um espaço interno */
   box-sizing: border-box; /* Inclui padding no cálculo do tamanho */
+
 }
 
 .cadastro-form {
   background-color: #fff;
+
   padding: 40px;
   border-radius: 30px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -35,6 +42,7 @@
   scrollbar-width: none; /* Para navegadores baseados no Firefox */
     -ms-overflow-style: none; /* Para navegadores baseados no IE/Edge */
   margin: 0 auto;
+
 }
 
 .cadastro-title {
@@ -51,6 +59,7 @@
 
 .cadastro-field label {
   margin-bottom: 5px;
+
 }
 
 .cadastro-field input {
@@ -74,20 +83,24 @@
   background-color: #0056b3;
 }
 
+
 /* Responsividade */
 @media (max-width: 768px) {
   .cadastro-container {
     flex-direction: column; /* Ajusta a ordem dos elementos */
+
   }
 
   .cadastro-left,
   .cadastro-right {
     width: 100%;
+
     min-height: auto; /* Permite ajustar melhor o conteúdo */
   } 
 
   .cadastro-left {
     height: 150px; /* Reduz a altura da seção azul */
+
   }
 
   .cadastro-title {
@@ -99,6 +112,7 @@
     padding: 15px; /* Ajusta o espaço interno */
   }
 }
+  
 
 .login-arrow {
   position: absolute; /* Permite ajustar com top e left */
@@ -113,3 +127,4 @@
   width: 90%; /* Reduz a largura dos inputs */
   margin: 0 auto; /* Centraliza os inputs dentro do form */
 }
+
