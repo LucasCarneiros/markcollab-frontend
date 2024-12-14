@@ -7,12 +7,15 @@ import PopUpSairDaConta from '../../components/PopUpSairDaConta/PopUpSairDaConta
 import { Link } from 'react-router-dom';
 
 const ConfiguracaoMeuPerfilFreelancer = () => {
-  const [nome, setNome] = useState('');
-  const [email, setEmail] = useState('');
+  const [nome, setNome] = useState('Carlos Silva');
+  const [usuario, setUsuario] = useState('carlos.silva');
+  const [cpf, setCpf] = useState('123.456.789-00');
+  const [email, setEmail] = useState('carlos.silva@exemplo.com');
+  const [empresa, setEmpresa] = useState('Empresa Exemplo');
   const [senha, setSenha] = useState('');
-  const [telefone, setTelefone] = useState('');
-  const [endereco, setEndereco] = useState('');
-  
+  const [confirmarSenha, setConfirmarSenha] = useState('');
+  const [mostrarSenha, setMostrarSenha] = useState(false);
+
   const [showPopUpSalvar, setShowPopUpSalvar] = useState(false);  // Controle para mostrar o pop-up de salvar
   const [showPopUpSair, setShowPopUpSair] = useState(false); // Controle para mostrar o pop-up de sair
 
@@ -24,12 +27,12 @@ const ConfiguracaoMeuPerfilFreelancer = () => {
 
     // Implementar a lógica para salvar as alterações do perfil
     console.log('Nome:', nome);
+    console.log('Usuário:', usuario);
+    console.log('CPF:', cpf);
     console.log('Email:', email);
+    console.log('Empresa:', empresa);
     console.log('Senha:', senha);
-    console.log('Telefone:', telefone);
-    console.log('Endereço:', endereco);
-    
-    
+    console.log('Confirmar Senha:', confirmarSenha);
   };
 
   // Função para mostrar o pop-up de sair
@@ -62,7 +65,7 @@ const ConfiguracaoMeuPerfilFreelancer = () => {
           </li>
           {/* Link para Configurações */}
           <li>
-            <Link to='/ConfiguracaoMeuPerfilContratante'>Configurações</Link>
+            <Link to='/ConfiguracaoMeuPerfilContratante'>Dados Pessoais </Link>
           </li>
           {/* Link "Sair" que agora abre o pop-up */}
           <li>
@@ -73,10 +76,31 @@ const ConfiguracaoMeuPerfilFreelancer = () => {
       <div className="configuracao-container">
        
         <main className="configuracao-main">
+          {/* Exibição de dados antes do formulário */}
+          <div className="dados-pessoais-container">
+            <h1 className="configuracao-title">Seus dados pessoais</h1>
+            <div className="dados-pessoais-field">
+              <strong>Nome Completo:</strong> {nome}
+            </div>
+            <div className="dados-pessoais-field">
+              <strong>Usuário:</strong> {usuario}
+            </div>
+            <div className="dados-pessoais-field">
+              <strong>CPF:</strong> {cpf}
+            </div>
+            <div className="dados-pessoais-field">
+              <strong>Email Corporativo:</strong> {email}
+            </div>
+            <div className="dados-pessoais-field">
+              <strong>Nome da sua Empresa:</strong> {empresa}
+            </div>
+          </div>
+
+          {/* Formulário para edição dos dados */}
           <form className="configuracao-form" onSubmit={handleSave}>
-            <h1 className="configuracao-title">Configurações da Empresa</h1>
+            <h1 className="configuracao-title">Altere seus dados pessoais</h1>
             <div className="configuracao-field">
-              <label htmlFor="nome">Nome:</label>
+              <label htmlFor="nome">Nome Completo:</label>
               <input
                 type="text"
                 id="nome"
@@ -85,7 +109,25 @@ const ConfiguracaoMeuPerfilFreelancer = () => {
               />
             </div>
             <div className="configuracao-field">
-              <label htmlFor="email">Email corporativo:</label>
+              <label htmlFor="usuario">Usuário:</label>
+              <input
+                type="text"
+                id="usuario"
+                value={usuario}
+                onChange={(e) => setUsuario(e.target.value)}
+              />
+            </div>
+            <div className="configuracao-field">
+              <label htmlFor="cpf">CPF:</label>
+              <input
+                type="text"
+                id="cpf"
+                value={cpf}
+                onChange={(e) => setCpf(e.target.value)}
+              />
+            </div>
+            <div className="configuracao-field">
+              <label htmlFor="email">Email Corporativo:</label>
               <input
                 type="email"
                 id="email"
@@ -94,33 +136,40 @@ const ConfiguracaoMeuPerfilFreelancer = () => {
               />
             </div>
             <div className="configuracao-field">
+              <label htmlFor="empresa">Nome da sua Empresa:</label>
+              <input
+                type="text"
+                id="empresa"
+                value={empresa}
+                onChange={(e) => setEmpresa(e.target.value)}
+              />
+            </div>
+            <div className="configuracao-field">
               <label htmlFor="senha">Senha:</label>
               <input
-                type="password"
+                type={mostrarSenha ? "text" : "password"}
                 id="senha"
                 value={senha}
                 onChange={(e) => setSenha(e.target.value)}
               />
+              
             </div>
             <div className="configuracao-field">
-              <label htmlFor="telefone">Telefone:</label>
-              <input
-                type="tel"
-                id="telefone"
-                value={telefone}
-                onChange={(e) => setTelefone(e.target.value)}
+              <button
+                type="button"
+                className="mostrar-senha-button"
+                onClick={() => setMostrarSenha(!mostrarSenha)}
+              >
+                {mostrarSenha ? "Ocultar" : "Mostrar"} Senha
+              </button>
+              <label htmlFor="confirmarSenha">Confirmar Senha:</label>
+              <input 
+                type={mostrarSenha ? "text" : "password"}
+                id="confirmarSenha"
+                value={confirmarSenha}
+                onChange={(e) => setConfirmarSenha(e.target.value)}
               />
             </div>
-            <div className="configuracao-field">
-              <label htmlFor="endereco">Endereço:</label>
-              <input
-                type="text"
-                id="endereco"
-                value={endereco}
-                onChange={(e) => setEndereco(e.target.value)}
-              />
-            </div>
-          
             <button className="configuracao-button" type="submit">Salvar</button>
           </form>
         </main>

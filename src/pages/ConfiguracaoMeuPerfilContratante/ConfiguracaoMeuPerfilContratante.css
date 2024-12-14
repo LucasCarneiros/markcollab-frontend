@@ -1,9 +1,7 @@
 .configuracao-container {
-  display: flex;
-  height: 100vh;
-  background-color: #ffffff;
+  margin-top: 350px; /* Espaço entre o topo da navbar e o conteúdo */
+  margin-bottom: 350px; /* Espaço entre o conteúdo e o footer */
 }
-
 .configuracao-sidebar {
   background-color: #ffffff;
   width: 250px;
@@ -40,11 +38,13 @@
 }
 
 .configuracao-main {
-  flex: 1;
   display: flex;
+  flex-direction: column; /* Alinha elementos verticalmente */
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  gap: 30px; /* Espaçamento entre as seções */
 }
+
 
 .configuracao-form {
   background-color: #ffffff;
@@ -68,6 +68,7 @@
 .configuracao-field {
   display: flex;
   flex-direction: column;
+  margin-bottom: 15px;
 }
 
 .configuracao-field label {
@@ -143,3 +144,44 @@
 .navbar-list li a:hover {
   color: #00bcd4;
 }
+.dados-pessoais-container,
+.configuracao-form {
+  width: 100%; /* Faz ambas as seções ocuparem 100% da largura disponível */
+  max-width: 600px; /* Limita a largura máxima */
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.dados-pessoais-field {
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.dados-pessoais-container h1 {
+  font-size: 1.5rem;
+  color: #2C65F6;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.configuracao-form h1 {
+  font-size: 1.5rem;
+  color: #2C65F6;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.mostrar-senha-button {
+  color: gray;
+  padding: 1px 2px;
+  margin-left: 10px; /* Adiciona um espaço entre o campo de senha e o botão */
+  margin-top: -25px;
+  margin-bottom:15px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  border: none;
+  background-color: white;
+  align-self: flex-start; /* Coloca o botão alinhado à esquerda dentro do campo */
+}
+

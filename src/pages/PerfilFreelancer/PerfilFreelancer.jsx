@@ -41,7 +41,7 @@ function PerfilFreelancer() {
           </li>
           {/* Link para Configurações */}
           <li>
-            <Link to='/ConfiguracaoMeuPerfilFreelancer'>Configurações</Link>
+            <Link to='/ConfiguracaoMeuPerfilContratante'>Dados Pessoais </Link>
           </li>
           {/* Link "Sair" que agora abre o pop-up */}
           <li>

@@ -55,7 +55,7 @@ const [isPopUpSalvarOpen, setIsPopUpSalvarOpen] = useState(false);
             <Link to='/EditarMeuPerfilFreelancer'>Editar Perfil</Link>
           </li>
           <li>
-            <Link to='/ConfiguracaoMeuPerfilFreelancer'>Configurações</Link>
+           <Link to='/ConfiguracaoMeuPerfilContratante'>Dados Pessoais </Link>
           </li>
           <li>
           <Link to ="#"button onClick={handleOpenPopUpSair}>Sair</Link>

@@ -6,6 +6,7 @@ import imagem2 from '../../assets/images/fOTO.png'
 
 
 
+
 const Home = () => {
   return (
     <div>
@@ -17,7 +18,7 @@ const Home = () => {
             <p>Estamos aqui para simplificar o marketing para você, proporcionando uma experiência sem estresse e resultados que realmente fazem a diferença.</p>
           </div>
           <div>
-            <img src={imagem2} alt="descricao da imagem" id='imagem1'/>
+            <img src={imagem2} alt="descricao da imagem" id='imagem2'/>
           </div>
         </div> 
         <div className='home_div2'>

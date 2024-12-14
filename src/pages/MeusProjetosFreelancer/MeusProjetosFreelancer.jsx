@@ -17,6 +17,12 @@ const MeusProjetosFreelancer = () => {
     navigate('/BuscarProjetosFreelancerPrincipal');
   };
 
+  // Função para formatar a data e hora
+  const formatarDataHora = (data) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
+    return new Date(data).toLocaleString('pt-BR', options);
+  };
+
   return (
     <div>
       <Navbar />
@@ -50,9 +56,26 @@ const MeusProjetosFreelancer = () => {
             <div key={project} className="meusprojetosfreelancer-item">
               <h2 className="meusprojetosfreelancer-item-title">Nome do projeto</h2>
               <p className="meusprojetosfreelancer-item-time">Descrição do projeto</p>
-              <button className="meusprojetosfreelancer-item-button">Concluído</button>
+
+              {/* Adicionando especificações do projeto */}
+              <div className="meusprojetosfreelancer-item-specifications">
+                <strong>Especificações:</strong> 
+                <p>Especificação do projeto - Detalhes sobre o que o freelancer precisa fazer.</p>
+              </div>
+              {/* Adicionando o preço do projeto */}
+              <div className="meusprojetosfreelancer-item-price">
+                <strong>Preço:</strong>
+                <p>R$ 2.500,00</p> {/* Exemplo de preço */}
+              </div>
+
+              {/* Adicionando a data e hora de publicação */}
+              <div className="meusprojetosfreelancer-item-published">
+                <strong>Publicado em:</strong>
+                <p>{formatarDataHora('2024-12-13T08:30:00')}</p> {/* Data de exemplo */}
+              </div>
+
               <div className="meusprojetosfreelancer-item-options">
-                
+                {/* Opções do projeto, como editar ou ver mais detalhes */}
               </div>
             </div>
           ))}
